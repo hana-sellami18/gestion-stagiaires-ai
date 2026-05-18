@@ -1,0 +1,1623 @@
+{
+  "generated_at": "2026-05-07T19:45:07.347013",
+  "metrics": {
+    "global": {
+      "accuracy": 0.6031746031746031,
+      "f1_macro": 0.5867845117845117,
+      "f1_weighted": 0.5790444123777457,
+      "kappa": 0.412094064949608,
+      "n_total": 63,
+      "n_correct": 38
+    },
+    "confusion_matrix": [
+      [
+        16,
+        0,
+        4
+      ],
+      [
+        7,
+        7,
+        9
+      ],
+      [
+        2,
+        3,
+        15
+      ]
+    ],
+    "labels_order": [
+      "ADAPTE",
+      "PARTIELLEMENT_ADAPTE",
+      "PEU_ADAPTE"
+    ],
+    "per_subject": {
+      "S1_BACKEND": {
+        "accuracy": 0.5714285714285714,
+        "f1_macro": 0.5456349206349206,
+        "n": 21
+      },
+      "S2_MOBILE": {
+        "accuracy": 0.6666666666666666,
+        "f1_macro": 0.6257631257631258,
+        "n": 21
+      },
+      "S3_FRONTEND": {
+        "accuracy": 0.5714285714285714,
+        "f1_macro": 0.5106837606837606,
+        "n": 21
+      }
+    },
+    "classification_report": {
+      "ADAPTE": {
+        "precision": 0.64,
+        "recall": 0.8,
+        "f1-score": 0.7111111111111111,
+        "support": 20.0
+      },
+      "PARTIELLEMENT_ADAPTE": {
+        "precision": 0.7,
+        "recall": 0.30434782608695654,
+        "f1-score": 0.42424242424242425,
+        "support": 23.0
+      },
+      "PEU_ADAPTE": {
+        "precision": 0.5357142857142857,
+        "recall": 0.75,
+        "f1-score": 0.625,
+        "support": 20.0
+      },
+      "accuracy": 0.6031746031746031,
+      "macro avg": {
+        "precision": 0.6252380952380951,
+        "recall": 0.6181159420289856,
+        "f1-score": 0.5867845117845117,
+        "support": 63.0
+      },
+      "weighted avg": {
+        "precision": 0.6287981859410431,
+        "recall": 0.6031746031746031,
+        "f1-score": 0.5790444123777457,
+        "support": 63.0
+      }
+    }
+  },
+  "bias_metrics": {
+    "ecart_moyen": 0.0,
+    "conforme": true,
+    "nb_non_conformes": 0,
+    "details": [
+      {
+        "cv_filename": "1776620108789_CV_HANA.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 84.1,
+        "score_anonymise": 84.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "1776620108789_CV_HANA.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 76.1,
+        "score_anonymise": 76.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "1776620108789_CV_HANA.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 89.1,
+        "score_anonymise": 89.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "anascv.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 56.3,
+        "score_anonymise": 56.3,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "anascv.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 51.5,
+        "score_anonymise": 51.5,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "anascv.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 70.9,
+        "score_anonymise": 70.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Blue Simple Professional CV Resume .pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 84.5,
+        "score_anonymise": 84.5,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Blue Simple Professional CV Resume .pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 82.3,
+        "score_anonymise": 82.3,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Blue Simple Professional CV Resume .pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 89.5,
+        "score_anonymise": 89.5,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "chaima_hamdaoui.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 81.7,
+        "score_anonymise": 81.7,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "chaima_hamdaoui.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 73.7,
+        "score_anonymise": 73.7,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "chaima_hamdaoui.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 85.4,
+        "score_anonymise": 85.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 67.7,
+        "score_anonymise": 67.7,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 62.4,
+        "score_anonymise": 62.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 75.9,
+        "score_anonymise": 75.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "cv_Ahmed_Feki.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 57.3,
+        "score_anonymise": 57.3,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "cv_Ahmed_Feki.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 58.2,
+        "score_anonymise": 58.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "cv_Ahmed_Feki.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 71.1,
+        "score_anonymise": 71.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV_Amina Zouaghi.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 87.2,
+        "score_anonymise": 87.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV_Amina Zouaghi.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 85.0,
+        "score_anonymise": 85.0,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV_Amina Zouaghi.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 92.2,
+        "score_anonymise": 92.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "jawhar.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 29.2,
+        "score_anonymise": 29.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "jawhar.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 56.1,
+        "score_anonymise": 56.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "jawhar.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 59.1,
+        "score_anonymise": 59.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "LAJMI Zouhour.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 71.6,
+        "score_anonymise": 71.6,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "LAJMI Zouhour.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 76.8,
+        "score_anonymise": 76.8,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "LAJMI Zouhour.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 81.6,
+        "score_anonymise": 81.6,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Maryem_Fakhfekh.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 75.2,
+        "score_anonymise": 75.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Maryem_Fakhfekh.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 70.0,
+        "score_anonymise": 70.0,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Maryem_Fakhfekh.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 80.0,
+        "score_anonymise": 80.0,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "med-aziz-mesfar-cv.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 56.2,
+        "score_anonymise": 56.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "med-aziz-mesfar-cv.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 67.4,
+        "score_anonymise": 67.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "med-aziz-mesfar-cv.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 79.8,
+        "score_anonymise": 79.8,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Professional Modern CV Resume.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 76.8,
+        "score_anonymise": 76.8,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Professional Modern CV Resume.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 76.8,
+        "score_anonymise": 76.8,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Professional Modern CV Resume.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 82.1,
+        "score_anonymise": 82.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Rihab Ghallabi_20241115_202753_0000.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 24.2,
+        "score_anonymise": 24.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Rihab Ghallabi_20241115_202753_0000.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 47.1,
+        "score_anonymise": 47.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Rihab Ghallabi_20241115_202753_0000.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 35.2,
+        "score_anonymise": 35.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Sellami_Hana.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 74.6,
+        "score_anonymise": 74.6,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Sellami_Hana.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 69.4,
+        "score_anonymise": 69.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "Sellami_Hana.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 79.4,
+        "score_anonymise": 79.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "YC.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 85.1,
+        "score_anonymise": 85.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "YC.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 77.1,
+        "score_anonymise": 77.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "YC.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 90.1,
+        "score_anonymise": 90.1,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "yesmine cherif.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 75.7,
+        "score_anonymise": 75.7,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "yesmine cherif.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 75.7,
+        "score_anonymise": 75.7,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "yesmine cherif.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 83.4,
+        "score_anonymise": 83.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV (9).pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 33.6,
+        "score_anonymise": 33.6,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV (9).pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 62.0,
+        "score_anonymise": 62.0,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV (9).pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 61.4,
+        "score_anonymise": 61.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV Emna_br.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 80.9,
+        "score_anonymise": 80.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV Emna_br.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 70.2,
+        "score_anonymise": 70.2,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV Emna_br.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 81.9,
+        "score_anonymise": 81.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV_Eya_Fersi.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 88.9,
+        "score_anonymise": 88.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV_Eya_Fersi.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 86.3,
+        "score_anonymise": 86.3,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV_Eya_Fersi.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 92.6,
+        "score_anonymise": 92.6,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "cv _eya.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 36.4,
+        "score_anonymise": 36.4,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "cv _eya.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 51.5,
+        "score_anonymise": 51.5,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "cv _eya.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 59.5,
+        "score_anonymise": 59.5,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV rihab Ghallabi en.pdf",
+        "subject_id": "S1_BACKEND",
+        "score_original": 82.9,
+        "score_anonymise": 82.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV rihab Ghallabi en.pdf",
+        "subject_id": "S2_MOBILE",
+        "score_original": 82.9,
+        "score_anonymise": 82.9,
+        "ecart": 0.0,
+        "conforme": true
+      },
+      {
+        "cv_filename": "CV rihab Ghallabi en.pdf",
+        "subject_id": "S3_FRONTEND",
+        "score_original": 89.2,
+        "score_anonymise": 89.2,
+        "ecart": 0.0,
+        "conforme": true
+      }
+    ]
+  },
+  "cases": [
+    {
+      "cv_filename": "1776620108789_CV_HANA.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 84.1,
+      "match": true,
+      "pillars": {
+        "skills": 88.5,
+        "formation": 80.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "1776620108789_CV_HANA.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 76.1,
+      "match": true,
+      "pillars": {
+        "skills": 74.0,
+        "formation": 80.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "1776620108789_CV_HANA.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 89.1,
+      "match": true,
+      "pillars": {
+        "skills": 97.6,
+        "formation": 80.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "anascv.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 56.3,
+      "match": false,
+      "pillars": {
+        "skills": 61.3,
+        "formation": 64.0,
+        "experience": 76.0
+      }
+    },
+    {
+      "cv_filename": "anascv.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 51.5,
+      "match": false,
+      "pillars": {
+        "skills": 51.6,
+        "formation": 64.0,
+        "experience": 76.0
+      }
+    },
+    {
+      "cv_filename": "anascv.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 70.9,
+      "match": false,
+      "pillars": {
+        "skills": 78.6,
+        "formation": 80.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "Blue Simple Professional CV Resume .pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 84.5,
+      "match": false,
+      "pillars": {
+        "skills": 85.5,
+        "formation": 80.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "Blue Simple Professional CV Resume .pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 82.3,
+      "match": false,
+      "pillars": {
+        "skills": 80.6,
+        "formation": 80.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "Blue Simple Professional CV Resume .pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 89.5,
+      "match": false,
+      "pillars": {
+        "skills": 94.6,
+        "formation": 80.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "chaima_hamdaoui.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 81.7,
+      "match": true,
+      "pillars": {
+        "skills": 93.3,
+        "formation": 65.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "chaima_hamdaoui.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 73.7,
+      "match": true,
+      "pillars": {
+        "skills": 78.8,
+        "formation": 65.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "chaima_hamdaoui.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 85.4,
+      "match": true,
+      "pillars": {
+        "skills": 100.0,
+        "formation": 65.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "CV.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 67.7,
+      "match": false,
+      "pillars": {
+        "skills": 83.6,
+        "formation": 40.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "CV.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 62.4,
+      "match": true,
+      "pillars": {
+        "skills": 74.0,
+        "formation": 40.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "CV.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 75.9,
+      "match": true,
+      "pillars": {
+        "skills": 97.6,
+        "formation": 40.0,
+        "experience": 90.0
+      }
+    },
+    {
+      "cv_filename": "cv_Ahmed_Feki.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 57.3,
+      "match": false,
+      "pillars": {
+        "skills": 56.5,
+        "formation": 64.0,
+        "experience": 56.0
+      }
+    },
+    {
+      "cv_filename": "cv_Ahmed_Feki.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 58.2,
+      "match": true,
+      "pillars": {
+        "skills": 56.5,
+        "formation": 64.0,
+        "experience": 56.0
+      }
+    },
+    {
+      "cv_filename": "cv_Ahmed_Feki.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 71.1,
+      "match": true,
+      "pillars": {
+        "skills": 73.2,
+        "formation": 80.0,
+        "experience": 70.0
+      }
+    },
+    {
+      "cv_filename": "CV_Amina Zouaghi.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 87.2,
+      "match": true,
+      "pillars": {
+        "skills": 88.5,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "CV_Amina Zouaghi.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 85.0,
+      "match": false,
+      "pillars": {
+        "skills": 83.6,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "CV_Amina Zouaghi.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 92.2,
+      "match": false,
+      "pillars": {
+        "skills": 97.6,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "jawhar.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 29.2,
+      "match": true,
+      "pillars": {
+        "skills": 25.8,
+        "formation": 24.0,
+        "experience": 28.5
+      }
+    },
+    {
+      "cv_filename": "jawhar.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 56.1,
+      "match": true,
+      "pillars": {
+        "skills": 51.6,
+        "formation": 64.0,
+        "experience": 76.0
+      }
+    },
+    {
+      "cv_filename": "jawhar.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 59.1,
+      "match": true,
+      "pillars": {
+        "skills": 57.1,
+        "formation": 64.0,
+        "experience": 76.0
+      }
+    },
+    {
+      "cv_filename": "LAJMI Zouhour.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 71.6,
+      "match": true,
+      "pillars": {
+        "skills": 71.0,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "LAJMI Zouhour.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 76.8,
+      "match": true,
+      "pillars": {
+        "skills": 80.6,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "LAJMI Zouhour.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 81.6,
+      "match": true,
+      "pillars": {
+        "skills": 89.3,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Maryem_Fakhfekh.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 75.2,
+      "match": false,
+      "pillars": {
+        "skills": 80.6,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Maryem_Fakhfekh.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 70.0,
+      "match": true,
+      "pillars": {
+        "skills": 71.0,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Maryem_Fakhfekh.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 80.0,
+      "match": false,
+      "pillars": {
+        "skills": 89.3,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "med-aziz-mesfar-cv.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 56.2,
+      "match": false,
+      "pillars": {
+        "skills": 57.8,
+        "formation": 52.0,
+        "experience": 80.0
+      }
+    },
+    {
+      "cv_filename": "med-aziz-mesfar-cv.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 67.4,
+      "match": false,
+      "pillars": {
+        "skills": 69.1,
+        "formation": 65.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "med-aziz-mesfar-cv.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 79.8,
+      "match": false,
+      "pillars": {
+        "skills": 92.3,
+        "formation": 65.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "Professional Modern CV Resume.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 76.8,
+      "match": true,
+      "pillars": {
+        "skills": 80.6,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Professional Modern CV Resume.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 76.8,
+      "match": false,
+      "pillars": {
+        "skills": 80.6,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Professional Modern CV Resume.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 82.1,
+      "match": true,
+      "pillars": {
+        "skills": 89.3,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Rihab Ghallabi_20241115_202753_0000.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 24.2,
+      "match": true,
+      "pillars": {
+        "skills": 25.8,
+        "formation": 12.0,
+        "experience": 12.0
+      }
+    },
+    {
+      "cv_filename": "Rihab Ghallabi_20241115_202753_0000.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 47.1,
+      "match": true,
+      "pillars": {
+        "skills": 56.5,
+        "formation": 32.0,
+        "experience": 32.0
+      }
+    },
+    {
+      "cv_filename": "Rihab Ghallabi_20241115_202753_0000.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 35.2,
+      "match": true,
+      "pillars": {
+        "skills": 39.3,
+        "formation": 24.0,
+        "experience": 24.0
+      }
+    },
+    {
+      "cv_filename": "Sellami_Hana.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 74.6,
+      "match": false,
+      "pillars": {
+        "skills": 80.6,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Sellami_Hana.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 69.4,
+      "match": true,
+      "pillars": {
+        "skills": 71.0,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "Sellami_Hana.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 79.4,
+      "match": false,
+      "pillars": {
+        "skills": 89.3,
+        "formation": 80.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "YC.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 85.1,
+      "match": true,
+      "pillars": {
+        "skills": 88.5,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "YC.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 77.1,
+      "match": true,
+      "pillars": {
+        "skills": 74.0,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "YC.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 90.1,
+      "match": true,
+      "pillars": {
+        "skills": 97.6,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "yesmine cherif.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 75.7,
+      "match": true,
+      "pillars": {
+        "skills": 83.6,
+        "formation": 40.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "yesmine cherif.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "PARTIELLEMENT_ADAPTE",
+      "ai_score": 75.7,
+      "match": true,
+      "pillars": {
+        "skills": 83.6,
+        "formation": 40.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "yesmine cherif.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 83.4,
+      "match": false,
+      "pillars": {
+        "skills": 97.6,
+        "formation": 40.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "CV (9).pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 33.6,
+      "match": false,
+      "pillars": {
+        "skills": 25.8,
+        "formation": 24.0,
+        "experience": 21.0
+      }
+    },
+    {
+      "cv_filename": "CV (9).pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 62.0,
+      "match": true,
+      "pillars": {
+        "skills": 56.5,
+        "formation": 64.0,
+        "experience": 56.0
+      }
+    },
+    {
+      "cv_filename": "CV (9).pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 61.4,
+      "match": false,
+      "pillars": {
+        "skills": 55.4,
+        "formation": 64.0,
+        "experience": 56.0
+      }
+    },
+    {
+      "cv_filename": "CV Emna_br.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 80.9,
+      "match": true,
+      "pillars": {
+        "skills": 98.2,
+        "formation": 40.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "CV Emna_br.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PARTIELLEMENT_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 70.2,
+      "match": false,
+      "pillars": {
+        "skills": 78.8,
+        "formation": 40.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "CV Emna_br.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 81.9,
+      "match": true,
+      "pillars": {
+        "skills": 100.0,
+        "formation": 40.0,
+        "experience": 95.0
+      }
+    },
+    {
+      "cv_filename": "CV_Eya_Fersi.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 88.9,
+      "match": true,
+      "pillars": {
+        "skills": 93.3,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "CV_Eya_Fersi.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 86.3,
+      "match": true,
+      "pillars": {
+        "skills": 88.5,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "CV_Eya_Fersi.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 92.6,
+      "match": true,
+      "pillars": {
+        "skills": 100.0,
+        "formation": 80.0,
+        "experience": 100.0
+      }
+    },
+    {
+      "cv_filename": "cv _eya.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 36.4,
+      "match": false,
+      "pillars": {
+        "skills": 35.5,
+        "formation": 24.0,
+        "experience": 45.0
+      }
+    },
+    {
+      "cv_filename": "cv _eya.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 51.5,
+      "match": false,
+      "pillars": {
+        "skills": 56.5,
+        "formation": 32.0,
+        "experience": 60.0
+      }
+    },
+    {
+      "cv_filename": "cv _eya.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "PEU_ADAPTE",
+      "label_ai": "PEU_ADAPTE",
+      "ai_score": 59.5,
+      "match": false,
+      "pillars": {
+        "skills": 66.1,
+        "formation": 40.0,
+        "experience": 75.0
+      }
+    },
+    {
+      "cv_filename": "CV rihab Ghallabi en.pdf",
+      "subject_id": "S1_BACKEND",
+      "subject_title": "Stage Développeur Backend Java/Spring Boot",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 82.9,
+      "match": true,
+      "pillars": {
+        "skills": 88.5,
+        "formation": 80.0,
+        "experience": 80.0
+      }
+    },
+    {
+      "cv_filename": "CV rihab Ghallabi en.pdf",
+      "subject_id": "S2_MOBILE",
+      "subject_title": "Stage Développeur Mobile Flutter",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 82.9,
+      "match": true,
+      "pillars": {
+        "skills": 88.5,
+        "formation": 80.0,
+        "experience": 80.0
+      }
+    },
+    {
+      "cv_filename": "CV rihab Ghallabi en.pdf",
+      "subject_id": "S3_FRONTEND",
+      "subject_title": "Stage Développeur Frontend Angular",
+      "label_human": "ADAPTE",
+      "label_ai": "ADAPTE",
+      "ai_score": 89.2,
+      "match": true,
+      "pillars": {
+        "skills": 100.0,
+        "formation": 80.0,
+        "experience": 80.0
+      }
+    }
+  ],
+  "subjects": {
+    "S1_BACKEND": {
+      "title": "Stage Développeur Backend Java/Spring Boot",
+      "description": "Développement d'une API REST avec Spring Boot, Java 17, base MySQL, déploiement Docker. Architecture microservices appréciée. Méthodologie Agile.",
+      "core_skills": [
+        "Java",
+        "Spring Boot"
+      ],
+      "important_skills": [
+        "REST API",
+        "MySQL",
+        "JPA",
+        "Hibernate",
+        "SQL"
+      ],
+      "bonus_skills": [
+        "Docker",
+        "Git",
+        "Microservices",
+        "Maven"
+      ],
+      "skill_equivalents": {
+        "Spring Boot": [
+          "Spring"
+        ],
+        "MySQL": [
+          "SQL",
+          "PostgreSQL",
+          "Database"
+        ],
+        "REST API": [
+          "REST",
+          "API",
+          "Web Services"
+        ],
+        "Hibernate": [
+          "JPA"
+        ],
+        "Java": [
+          "Java SE",
+          "Java EE"
+        ]
+      },
+      "required_languages": [
+        "Français",
+        "Anglais"
+      ],
+      "filiere": "Informatique",
+      "cycle": "Licence"
+    },
+    "S2_MOBILE": {
+      "title": "Stage Développeur Mobile Flutter",
+      "description": "Développement d'une application mobile multi-plateforme avec Flutter et Dart. Intégration d'API REST, Firebase pour le backend.",
+      "core_skills": [
+        "Flutter",
+        "Dart"
+      ],
+      "important_skills": [
+        "REST API",
+        "Firebase",
+        "Mobile Development",
+        "API"
+      ],
+      "bonus_skills": [
+        "Git",
+        "Android",
+        "iOS",
+        "React Native",
+        "Kotlin",
+        "SQLite"
+      ],
+      "skill_equivalents": {
+        "Flutter": [
+          "React Native"
+        ],
+        "Dart": [
+          "JavaScript"
+        ],
+        "REST API": [
+          "REST",
+          "API"
+        ],
+        "Firebase": [
+          "Backend as a Service"
+        ],
+        "Mobile Development": [
+          "Android",
+          "iOS"
+        ]
+      },
+      "required_languages": [
+        "Français",
+        "Anglais"
+      ],
+      "filiere": "Informatique",
+      "cycle": "Licence"
+    },
+    "S3_FRONTEND": {
+      "title": "Stage Développeur Frontend Angular",
+      "description": "Développement d'une interface web responsive avec Angular et TypeScript. Intégration d'API REST, design Material UI.",
+      "core_skills": [
+        "Angular",
+        "TypeScript"
+      ],
+      "important_skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "REST API"
+      ],
+      "bonus_skills": [
+        "Git",
+        "Bootstrap",
+        "Material UI",
+        "SASS"
+      ],
+      "skill_equivalents": {
+        "Angular": [
+          "AngularJS",
+          "React",
+          "Vue"
+        ],
+        "TypeScript": [
+          "JavaScript"
+        ],
+        "REST API": [
+          "REST",
+          "API"
+        ],
+        "CSS": [
+          "SASS",
+          "SCSS",
+          "Bootstrap"
+        ]
+      },
+      "required_languages": [
+        "Français",
+        "Anglais"
+      ],
+      "filiere": "Informatique",
+      "cycle": "Licence"
+    }
+  }
+}

@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Rapport d'extraction des CVs</title>
+<style>
+body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 30px auto; padding: 20px; background: #f5f7fa; color: #2c3e50; }
+h1 { color: #1e3a5f; border-bottom: 3px solid #1e3a5f; padding-bottom: 10px; }
+h2 { color: #c0392b; margin-top: 25px; }
+.cv-card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.cv-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #ecf0f1; }
+.cv-title { font-size: 18px; font-weight: bold; color: #1e3a5f; }
+.cv-meta { color: #7f8c8d; font-size: 13px; }
+.method-native { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.method-ocr { background: #e67e22; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.section { margin-top: 12px; }
+.section-title { font-weight: 600; color: #34495e; margin-bottom: 6px; font-size: 14px; }
+.skill-tag { display: inline-block; background: #ebf5fb; color: #2874a6; padding: 3px 8px; margin: 2px; border-radius: 4px; font-size: 12px; }
+.category { background: #f8f9fa; padding: 8px 12px; margin: 6px 0; border-radius: 4px; font-size: 13px; }
+.cat-name { font-weight: 600; color: #16a085; }
+.education-line { background: #fef9e7; padding: 6px 12px; margin: 4px 0; border-radius: 4px; font-size: 13px; border-left: 3px solid #f39c12; }
+.error { color: #c0392b; background: #fadbd8; padding: 10px; border-radius: 4px; }
+.summary { background: #1e3a5f; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; }
+.summary-stats { display: flex; gap: 30px; margin-top: 10px; }
+.stat-block { font-size: 14px; }
+.stat-num { font-size: 22px; font-weight: bold; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+th { background: #34495e; color: white; padding: 8px; text-align: left; }
+td { padding: 8px; border-bottom: 1px solid #ecf0f1; }
+tr:hover { background: #f8f9fa; }
+</style>
+</head>
+<body>
+<h1>📊 Rapport d'extraction des CVs — Gold Dataset</h1>
+
+<div class="summary">
+  <div style="font-size: 18px; font-weight: 600;">Résumé global</div>
+  <div class="summary-stats">
+    <div class="stat-block"><div class="stat-num">51</div>CVs analysés</div>
+    <div class="stat-block"><div class="stat-num">37</div>Natifs (PyMuPDF)</div>
+    <div class="stat-block"><div class="stat-num">14</div>Scannés (OCR)</div>
+    <div class="stat-block"><div class="stat-num">0</div>Erreurs</div>
+    <div class="stat-block"><div class="stat-num">25.7</div>Skills moyennes</div>
+  </div>
+</div>
+
+<h2>📋 Tableau récapitulatif</h2>
+<table>
+<thead>
+<tr><th>#</th><th>CV</th><th>Méthode</th><th>Pages</th><th>Skills</th><th>Formations</th><th>Années</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><b>1776620108789_CV_HANA.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>30</td>
+<td>3</td>
+<td>2023, 2025</td>
+</tr><tr>
+<td>2</td>
+<td><b>anascv.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>25</td>
+<td>6</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>3</td>
+<td><b>Bassem-MOALLA_newest.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>27</td>
+<td>7</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>4</td>
+<td><b>Blue Simple Professional CV Resume (7).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>26</td>
+<td>3</td>
+<td>2022, 2023, 2025, 2026</td>
+</tr><tr>
+<td>5</td>
+<td><b>chaima_hamdaoui.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>38</td>
+<td>5</td>
+<td>2023, 2025</td>
+</tr><tr>
+<td>6</td>
+<td><b>CV (1) (1).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>35</td>
+<td>2</td>
+<td>2018, 2022, 2023, 2024, 2025</td>
+</tr><tr>
+<td>7</td>
+<td><b>CV (9).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>12</td>
+<td>3</td>
+<td>2024, 2025, 2026</td>
+</tr><tr>
+<td>8</td>
+<td><b>cv _eya.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>17</td>
+<td>1</td>
+<td>2023, 2025</td>
+</tr><tr>
+<td>9</td>
+<td><b>CV Emna_br.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>39</td>
+<td>1</td>
+<td>2023, 2024, 2025, 2026</td>
+</tr><tr>
+<td>10</td>
+<td><b>CV Informatique Étudiant - ISET Sfax.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>17</td>
+<td>7</td>
+<td>2024, 2025, 2027</td>
+</tr><tr>
+<td>11</td>
+<td><b>CV Professionnel Français – Ameni CHAABANE (1).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>26</td>
+<td>7</td>
+<td>2021, 2024, 2025</td>
+</tr><tr>
+<td>12</td>
+<td><b>CV rihab Ghallabi en.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>2</td>
+<td>31</td>
+<td>6</td>
+<td>2023</td>
+</tr><tr>
+<td>13</td>
+<td><b>cv shahdBenHmida (2).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>20</td>
+<td>4</td>
+<td>2020, 2023, 2024, 2025</td>
+</tr><tr>
+<td>14</td>
+<td><b>CV Étudiant Informatique Débutant.pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>23</td>
+<td>1</td>
+<td>2022, 2024, 2025</td>
+</tr><tr>
+<td>15</td>
+<td><b>CV Étudiant Informatique – Mohamed Amine Jlassi.pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>18</td>
+<td>3</td>
+<td>2022, 2023, 2024, 2025</td>
+</tr><tr>
+<td>16</td>
+<td><b>CV Étudiant Ingénieur Informatique (1).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>15</td>
+<td>3</td>
+<td>2024, 2025</td>
+</tr><tr>
+<td>17</td>
+<td><b>CV Étudiant Ingénieur Informatique (2).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>21</td>
+<td>2</td>
+<td>2021, 2023</td>
+</tr><tr>
+<td>18</td>
+<td><b>CV Étudiant Ingénieur Informatique (3).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>31</td>
+<td>4</td>
+<td>2020, 2022, 2024, 2025</td>
+</tr><tr>
+<td>19</td>
+<td><b>CV Étudiant Ingénieur Informatique (4).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>15</td>
+<td>3</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>20</td>
+<td><b>CV Étudiant Ingénieur Informatique.pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>20</td>
+<td>4</td>
+<td>2022, 2024, 2025</td>
+</tr><tr>
+<td>21</td>
+<td><b>CV Étudiante Ingénieure Informatique (1).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>15</td>
+<td>8</td>
+<td>2021, 2023, 2024, 2025</td>
+</tr><tr>
+<td>22</td>
+<td><b>CV Étudiante Ingénieure Informatique (2).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>22</td>
+<td>5</td>
+<td>2022, 2023, 2024, 2025</td>
+</tr><tr>
+<td>23</td>
+<td><b>CV Étudiante Ingénieure Informatique.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>19</td>
+<td>6</td>
+<td>2021, 2024, 2025</td>
+</tr><tr>
+<td>24</td>
+<td><b>CV_Ahmed_benAli.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>57</td>
+<td>5</td>
+<td>2022, 2025</td>
+</tr><tr>
+<td>25</td>
+<td><b>cv_Ahmed_Feki (1).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>19</td>
+<td>5</td>
+<td>2023, 2024, 2025, 2026</td>
+</tr><tr>
+<td>26</td>
+<td><b>CV_Amin.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>17</td>
+<td>4</td>
+<td>2019, 2022, 2024, 2025</td>
+</tr><tr>
+<td>27</td>
+<td><b>CV_Amina Zouaghi.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>2</td>
+<td>38</td>
+<td>2</td>
+<td>2019, 2023, 2024, 2025</td>
+</tr><tr>
+<td>28</td>
+<td><b>CV_Amira.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>27</td>
+<td>1</td>
+<td>2022, 2024, 2025</td>
+</tr><tr>
+<td>29</td>
+<td><b>CV_AZIZ.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>31</td>
+<td>3</td>
+<td>2021, 2025, 2028</td>
+</tr><tr>
+<td>30</td>
+<td><b>CV_ELYES.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>39</td>
+<td>3</td>
+<td>2022, 2024, 2025</td>
+</tr><tr>
+<td>31</td>
+<td><b>CV_EMNA_MASMOUDI.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>41</td>
+<td>4</td>
+<td>2021, 2024, 2025</td>
+</tr><tr>
+<td>32</td>
+<td><b>CV_Eya_Fersi.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>41</td>
+<td>4</td>
+<td>2023, 2024, 2025, 2026</td>
+</tr><tr>
+<td>33</td>
+<td><b>CV_EYA_MOALLA.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>41</td>
+<td>4</td>
+<td>2019, 2023, 2024, 2025</td>
+</tr><tr>
+<td>34</td>
+<td><b>cv_fr (1).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>2</td>
+<td>28</td>
+<td>3</td>
+<td>2020, 2023, 2024, 2025, 2026</td>
+</tr><tr>
+<td>35</td>
+<td><b>CV_Kenza.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>15</td>
+<td>4</td>
+<td>—</td>
+</tr><tr>
+<td>36</td>
+<td><b>CV_NOUR.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>37</td>
+<td>3</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>37</td>
+<td><b>CV_YASMINE_BOUAZIZ.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>27</td>
+<td>3</td>
+<td>2025</td>
+</tr><tr>
+<td>38</td>
+<td><b>CV_YOUSSEF.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>27</td>
+<td>5</td>
+<td>2022, 2024, 2025</td>
+</tr><tr>
+<td>39</td>
+<td><b>cvEmnaGassara.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>22</td>
+<td>6</td>
+<td>2023, 2025</td>
+</tr><tr>
+<td>40</td>
+<td><b>Dhia Triki CV_EN.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>26</td>
+<td>4</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>41</td>
+<td><b>Dhia_Triki_CV.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>26</td>
+<td>3</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>42</td>
+<td><b>jawhar.pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>14</td>
+<td>6</td>
+<td>2015, 2019, 2020, 2021, 2022, 2023, 2024</td>
+</tr><tr>
+<td>43</td>
+<td><b>LAJMI Zouhour (3).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>13</td>
+<td>4</td>
+<td>2023, 2024</td>
+</tr><tr>
+<td>44</td>
+<td><b>Mahdi-Boujelben CV .pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>22</td>
+<td>4</td>
+<td>2023, 2024, 2025</td>
+</tr><tr>
+<td>45</td>
+<td><b>Maryem_Fakhfekh (3).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>17</td>
+<td>3</td>
+<td>2023</td>
+</tr><tr>
+<td>46</td>
+<td><b>med-aziz-mesfar-cv (1).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>2</td>
+<td>33</td>
+<td>2</td>
+<td>2019, 2023, 2024, 2025, 2026</td>
+</tr><tr>
+<td>47</td>
+<td><b>Professional Modern CV Resume.pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>21</td>
+<td>2</td>
+<td>2025</td>
+</tr><tr>
+<td>48</td>
+<td><b>Rihab Ghallabi_20241115_202753_0000.pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>8</td>
+<td>2</td>
+<td>2022, 2023</td>
+</tr><tr>
+<td>49</td>
+<td><b>Sellami_Hana (2).pdf</b></td>
+<td><span class='method-ocr'>ocr</span></td>
+<td>1</td>
+<td>18</td>
+<td>3</td>
+<td>2023</td>
+</tr><tr>
+<td>50</td>
+<td><b>YC (3).pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>32</td>
+<td>3</td>
+<td>2020, 2023, 2025</td>
+</tr><tr>
+<td>51</td>
+<td><b>yesmine cherif.pdf</b></td>
+<td><span class='method-native'>native</span></td>
+<td>1</td>
+<td>34</td>
+<td>1</td>
+<td>2023, 2024, 2025, 2026</td>
+</tr></tbody></table><h2>🔍 Détail par CV</h2>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">1. 1776620108789_CV_HANA.pdf</div>
+      <div class="cv-meta">393.2 KB · 1 page(s) · 2233 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (30)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Espagnol</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Flask</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Big Data</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiante en 3éme année licence en génie logiciel</div><div class="education-line">Licence en génie logiciel et systèmes</div><div class="education-line">Institut International De Technologie</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">2. anascv.pdf</div>
+      <div class="cv-meta">5408.8 KB · 1 page(s) · 1683 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (25)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Anglais</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Tableau</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">SQL</span> <span class="skill-tag">PL/SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">GitLab</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">MVC</span> <span class="skill-tag">UML</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Licence en Informatique – 3 ann´ee (en cours)</div><div class="education-line">Institut International de Technologie</div><div class="education-line">Institut International de Technologie</div><div class="education-line">Institut International de Technologie</div><div class="education-line">Licence en G´enie Logiciel et Syst`emes d’Information – 3 ann´ee</div><div class="education-line">Institut International de Technologie</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">3. Bassem-MOALLA_newest.pdf</div>
+      <div class="cv-meta">176.3 KB · 1 page(s) · 2411 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (27)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Allemand</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">teamwork</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">FastAPI</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Scrum</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">A Third Year Bachelor's Degree in Software Engineering and</div><div class="education-line">Diploma in Software Engineering and Information</div><div class="education-line">Systems International Institute of Technologynorth</div><div class="education-line">american private university</div><div class="education-line">high school 9 april 1938 sfax</div><div class="education-line">Institute of Electrical and Electronics Engineers</div><div class="education-line">•WebMaster/Media Manager of the Computer Society</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">4. Blue Simple Professional CV Resume (7).pdf</div>
+      <div class="cv-meta">674.3 KB · 1 page(s) · 2753 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (26)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">gestion du temps</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">HTML5</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Big Data</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Postman</span> <span class="skill-tag">IntelliJ</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiant en 3° année de Licence en Génie Logiciel et Systèmes Informatiques à</div><div class="education-line">CONTACT l'Institut International de Technologie. doté d’une expérience en</div><div class="education-line">Q sie Juche LICENCE EN GENIE LOGICIEL ET SYSTEMES INFORMATIQUES 2022-2026</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2023, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">5. chaima_hamdaoui.pdf</div>
+      <div class="cv-meta">246.6 KB · 1 page(s) · 2432 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (38)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">résolution de problèmes</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span> <span class="skill-tag">Microservices</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Data Science</span> <span class="skill-tag">Big Data</span> <span class="skill-tag">Hadoop</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span> <span class="skill-tag">PL/SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span> <span class="skill-tag">IntelliJ</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Département Informatique – Institut International de Technologie, Sfax</div><div class="education-line">Membreactif– IEEEStudentBranch, Institut International de</div><div class="education-line">Masterclass : AI Tools for Coding Une matinée riche en</div><div class="education-line">Institut International de Technologie (IIT), Sfax</div><div class="education-line">Esprit d’équipe.</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">6. CV (1) (1).pdf</div>
+      <div class="cv-meta">243.2 KB · 1 page(s) · 3134 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (35)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">MATLAB</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Deep Learning</span> <span class="skill-tag">scikit-learn</span> <span class="skill-tag">Pandas</span> <span class="skill-tag">Matplotlib</span> <span class="skill-tag">Seaborn</span> <span class="skill-tag">Hugging Face</span> <span class="skill-tag">Big Data</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQLite</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Postman</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Institut International de Technologie G´enie Logiciel et Syst`eme d’Information</div><div class="education-line">◦B1 en Anglais – Open School</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2018, 2022, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">7. CV (9).pdf</div>
+      <div class="cv-meta">65.6 KB · 1 page(s) · 1683 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (12)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Allemand</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">leadership</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">des Systèmes Informatiques à l’ISET Sfax, je suis actuellement à</div><div class="education-line">Institut Supérieur des Études Technologiques de Sfax (ISET Sfax)</div><div class="education-line">Licence en Informatique – Développement des Systèmes Informatiques</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2024, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">8. cv _eya.pdf</div>
+      <div class="cv-meta">111.8 KB · 1 page(s) · 1357 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (17)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Allemand</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">à l’institut internationale de technologie ,NAU.</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">9. CV Emna_br.pdf</div>
+      <div class="cv-meta">190.6 KB · 1 page(s) · 2456 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (39)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Symfony</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">JPA</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Big Data</span> <span class="skill-tag">Power BI</span> <span class="skill-tag">ETL</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span> <span class="skill-tag">Swagger</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">MVC</span> <span class="skill-tag">UML</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Institut International de Technologie</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">10. CV Informatique Étudiant - ISET Sfax.pdf</div>
+      <div class="cv-meta">284.5 KB · 1 page(s) · 1444 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (17)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en 2ème année licence en informatique à l'ISET Sfax,</div><div class="education-line">Java, MySQL | ISET Sfax | 2025</div><div class="education-line">HTML, CSS, JavaScript, PHP | ISET Sfax | 2024</div><div class="education-line">Python, Sockets | ISET Sfax | 2024</div><div class="education-line">Licence en Informatique</div><div class="education-line">ISET Sfax</div><div class="education-line">Membre IEEE ISET Sfax</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2024, 2025, 2027</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">11. CV Professionnel Français – Ameni CHAABANE (1).pdf</div>
+      <div class="cv-meta">815.1 KB · 1 page(s) · 1604 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (26)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">rigueur</span> <span class="skill-tag">adaptabilité</span></div><div class="category"><span class="cat-name">office:</span> <span class="skill-tag">Excel</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">scikit-learn</span> <span class="skill-tag">Pandas</span> <span class="skill-tag">Matplotlib</span> <span class="skill-tag">Plotly</span> <span class="skill-tag">Jupyter</span> <span class="skill-tag">spaCy</span> <span class="skill-tag">NLP</span> <span class="skill-tag">Data Science</span> <span class="skill-tag">Big Data</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Master Data Science — ENSI</div><div class="education-line">Étudiante en Master Data Science à l'ENSI Manouba, je me</div><div class="education-line">Master Data Science & IA Dot</div><div class="education-line">| [TELEPHONE] ENSI Manouba</div><div class="education-line">A o.chaabane@ensi.n Projet : Système recommandation</div><div class="education-line">A Ariana, Tunisie Licence Fondamentale Informatique</div><div class="education-line">Esprit analytique Certifications</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2021, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">12. CV rihab Ghallabi en.pdf</div>
+      <div class="cv-meta">480.4 KB · 2 page(s) · 5916 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (31)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Italien</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span> <span class="skill-tag">GraphQL</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">Postman</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">UML</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">HTTPS</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">International Institute of Technology (IIT) – Sfax, Tunisia</div><div class="education-line">Bachelor’s Degree in Computer Science</div><div class="education-line">Designer – ANCU Sfax (University Association)</div><div class="education-line">ÉTUDIANTE EN 3ᵉ ANNÉE LICENCE INFORMATIQUE – À LA</div><div class="education-line">Licence en Informatique</div><div class="education-line">International Institute of Technology (IIT) – Sfax, Tunisie</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">13. cv shahdBenHmida (2).pdf</div>
+      <div class="cv-meta">133.7 KB · 1 page(s) · 1635 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (20)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">teamwork</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">PHP</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Laravel</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span> <span class="skill-tag">Android</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">MongoDB</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">VS Code</span> <span class="skill-tag">Android Studio</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span> <span class="skill-tag">SOLID</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Motivated and versatile final-year student pursuing a Bachelor’s degree in Computer Systems Develop-</div><div class="education-line">— Higher Institute of Technological Studies (ISET Sfax)</div><div class="education-line">Bachelor’s Degree in Computer Systems Development</div><div class="education-line">— Habib Maazoun High School</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2020, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">14. CV Étudiant Informatique Débutant.pdf</div>
+      <div class="cv-meta">431.8 KB · 1 page(s) · 1259 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (23)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Android</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQLite</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">MVC</span> <span class="skill-tag">UML</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en 2ème année du cycle ingénieur en informatique, sérieuse</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">15. CV Étudiant Informatique – Mohamed Amine Jlassi.pdf</div>
+      <div class="cv-meta">529.6 KB · 1 page(s) · 1748 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (18)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">ÉTUDIANT INGÉNIEUR EN 9 linkedin.com/in/mohamed-</div><div class="education-line">Étudiant en 1ère année cycle ingénieur en informatique à l'ENIS Sfax, passionné par le développement logiciel,</div><div class="education-line">CYCLE INGÉNIEUR EN INFORMATIQUE APPLICATION DE GESTION</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">16. CV Étudiant Ingénieur Informatique (1).pdf</div>
+      <div class="cv-meta">581.1 KB · 1 page(s) · 1786 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (15)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">créativité</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante motivée en 2eme licence informatique à l'ISIMS, passionnée par le développement web, le</div><div class="education-line">Licence en Informatique 2024 - Présent</div><div class="education-line">Institut Supérieur d'Informatique et de Multimédia de Sfax (ISIMS)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">17. CV Étudiant Ingénieur Informatique (2).pdf</div>
+      <div class="cv-meta">138.7 KB · 1 page(s) · 1606 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (21)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">TypeScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Tableau</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Cycle Ingénieur en Informatique (2ème année)</div><div class="education-line">Étudiante en 2ème année cycle ingénieur en informatique à l'ISIMS,</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2021, 2023</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">18. CV Étudiant Ingénieur Informatique (3).pdf</div>
+      <div class="cv-meta">640.9 KB · 1 page(s) · 2102 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (31)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">rigueur</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">R</span> <span class="skill-tag">Bash</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Tableau</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span> <span class="skill-tag">Swagger</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">JWT</span> <span class="skill-tag">Cybersécurité</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiant en 3ème année cycle ingénieur en informatique à l'ENET'Com, passionné par le développement</div><div class="education-line">Cycle Ingénieur en Informatique (3ème année) 2022 - Présent</div><div class="education-line">École Nationale d'Électronique et des Télécommunications de Sfax (ENET'Com)</div><div class="education-line">Formation intensive en sciences fondamentales et algorithmique.</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2020, 2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">19. CV Étudiant Ingénieur Informatique (4).pdf</div>
+      <div class="cv-meta">640.6 KB · 1 page(s) · 1428 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (15)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en 2ème année licence informatique à Sfax, motivée et passionnée par le développement</div><div class="education-line">Licence en Informatique (2ème année) 2023 - Présent</div><div class="education-line">Faculté des Sciences de Sfax</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">20. CV Étudiant Ingénieur Informatique.pdf</div>
+      <div class="cv-meta">624.8 KB · 1 page(s) · 1962 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (20)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">Bash</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiant en 1ère année cycle ingénieur en informatique, passionné par les nouvelles technologies, le</div><div class="education-line">Cycle Ingénieur en Informatique (1ère année) 2024 - Présent</div><div class="education-line">École Nationale d'Ingénieurs / Faculté des Sciences</div><div class="education-line">Formation intensive en sciences fondamentales et algorithmique.</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">21. CV Étudiante Ingénieure Informatique (1).pdf</div>
+      <div class="cv-meta">842.1 KB · 1 page(s) · 3240 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (15)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">esprit d'analyse</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Apache</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">Cryptographie</span> <span class="skill-tag">Cybersécurité</span> <span class="skill-tag">Pentesting</span> <span class="skill-tag">OWASP</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Esprit d'analyse</div><div class="education-line">Etudiante en Master Cybersécurité</div><div class="education-line">Étudiante en 2ème année Master Cybersécurité à 'ENET'Com, passionnée</div><div class="education-line">Master Cybersécurité (2ème année) 2024 - présent</div><div class="education-line">Licence en Informatique 2021 - 2024</div><div class="education-line">Faculté des Sciences - Sfax</div><div class="education-line">* Sensibilisation des employés aux bonnes pratiques</div><div class="education-line">Université ENET Com | Sept 2023 - Juin 2024</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2021, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">22. CV Étudiante Ingénieure Informatique (2).pdf</div>
+      <div class="cv-meta">762.5 KB · 1 page(s) · 3001 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (22)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">office:</span> <span class="skill-tag">Excel</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Pandas</span> <span class="skill-tag">NumPy</span> <span class="skill-tag">Matplotlib</span> <span class="skill-tag">Seaborn</span> <span class="skill-tag">Data Science</span> <span class="skill-tag">Data Analysis</span> <span class="skill-tag">Tableau</span> <span class="skill-tag">Power BI</span> <span class="skill-tag">ETL</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Esprit analytique</div><div class="education-line">Étudiant en Master Business Intelligence</div><div class="education-line">Étudiant en 1ère année Master Business Intelligence à la FSEGS, passionné</div><div class="education-line">Master Business Intelligence (1ère année) 2025 - présent</div><div class="education-line">Licence en Informatique de Gestion 2022 ~ 2025</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">23. CV Étudiante Ingénieure Informatique.pdf</div>
+      <div class="cv-meta">97.9 KB · 1 page(s) · 1388 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (19)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Cycle ingénieur en informatique (2ème année)</div><div class="education-line">École d'ingénieurs - Sfax</div><div class="education-line">Licence en informatique</div><div class="education-line">Faculté des Sciences - Sfax</div><div class="education-line">Étudiante en 2ème année cycle ingénieur en informatique,</div><div class="education-line">Étudiante ingénieure en</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2021, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">24. CV_Ahmed_benAli.pdf</div>
+      <div class="cv-meta">61.0 KB · 1 page(s) · 3874 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (57)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">rigueur</span> <span class="skill-tag">gestion du temps</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">Scala</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Django</span> <span class="skill-tag">Flask</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Deep Learning</span> <span class="skill-tag">TensorFlow</span> <span class="skill-tag">scikit-learn</span> <span class="skill-tag">Pandas</span> <span class="skill-tag">NumPy</span> <span class="skill-tag">Matplotlib</span> <span class="skill-tag">Seaborn</span> <span class="skill-tag">Plotly</span> <span class="skill-tag">Jupyter</span> <span class="skill-tag">NLP</span> <span class="skill-tag">Data Science</span> <span class="skill-tag">Big Data</span> <span class="skill-tag">Spark</span> <span class="skill-tag">Hadoop</span> <span class="skill-tag">Tableau</span> <span class="skill-tag">Power BI</span> <span class="skill-tag">ETL</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span> <span class="skill-tag">Apache</span> <span class="skill-tag">Linux</span> <span class="skill-tag">Ubuntu</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">Redis</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">Cassandra</span> <span class="skill-tag">SQL</span> <span class="skill-tag">NoSQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Jira</span> <span class="skill-tag">Trello</span> <span class="skill-tag">Postman</span> <span class="skill-tag">VS Code</span> <span class="skill-tag">PyCharm</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiant en 1ere annee Master Big Data a l'ENIS Sfax, passionne par l'analyse de donnees,</div><div class="education-line">2025 - Present | Master Big Data & Intelligence Artificielle</div><div class="education-line">2022 - 2025 | Licence Fondamentale en Informatique</div><div class="education-line">Master Big Data & IA - ENIS Sfax</div><div class="education-line">Esprit analytique</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">25. cv_Ahmed_Feki (1).pdf</div>
+      <div class="cv-meta">948.7 KB · 1 page(s) · 2097 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (19)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Allemand</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span> <span class="skill-tag">Microservices</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span> <span class="skill-tag">MVVM</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">ˊEtudiant en licence de gˊenie informatique</div><div class="education-line">ˊEtudiant en 3ˊeme annˊee de licence en gˊenie logiciel et systˋemes d’information ˋa l’Institut International de</div><div class="education-line">Institut International de Technologie de Sfax</div><div class="education-line">Diplˆome de licence en informatique</div><div class="education-line">• Participation au Club Robotique de l’Institut International de Technologie (2023-2024)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">26. CV_Amin.pdf</div>
+      <div class="cv-meta">77.1 KB · 1 page(s) · 1988 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (17)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">R</span> <span class="skill-tag">Bash</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">Linux</span> <span class="skill-tag">Ubuntu</span> <span class="skill-tag">CentOS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">Cryptographie</span> <span class="skill-tag">Cybersécurité</span> <span class="skill-tag">Pentesting</span> <span class="skill-tag">OWASP</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Licence en Sciences de l'Informatique</div><div class="education-line">ESPRIT</div><div class="education-line">Cycle Ingénieur en Informatique - Spécialité Cybersécurité</div><div class="education-line">Étudiante en cycle ingénieur en informatique, passionnée par la cybersécurité, la</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2019, 2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">27. CV_Amina Zouaghi.pdf</div>
+      <div class="cv-meta">126.3 KB · 2 page(s) · 2747 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (38)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Espagnol</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">gestion du temps</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">GitLab</span> <span class="skill-tag">Postman</span> <span class="skill-tag">IntelliJ</span> <span class="skill-tag">Eclipse</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">MVC</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">HTTPS</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Faculté des Sciences Economiques et de Gestion Sfax</div><div class="education-line">Licence en Informatique de Gestion</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2019, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">28. CV_Amira.pdf</div>
+      <div class="cv-meta">54.3 KB · 1 page(s) · 1960 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (27)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Django</span> <span class="skill-tag">Flask</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">NLP</span> <span class="skill-tag">Data Science</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">SQL</span> <span class="skill-tag">NoSQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">ISIMS - Institut Superieur d'Informatique et de Multimedia de Sfax</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">29. CV_AZIZ.pdf</div>
+      <div class="cv-meta">42.9 KB · 1 page(s) · 2848 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (31)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">rigueur</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">HTML5</span> <span class="skill-tag">CSS</span> <span class="skill-tag">CSS3</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Tableau</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span> <span class="skill-tag">Ubuntu</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQLite</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">VS Code</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en Licence Informatique | Développeuse Web Junior</div><div class="education-line">Étudiant en 1ère année Licence en Informatique à l'ISIMS (Institut Supérieur d'Informatique et de Multimédia de Sfax), passionné par le</div><div class="education-line">Licence en Informatique - ISIMS, Sfax</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2021, 2025, 2028</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">30. CV_ELYES.pdf</div>
+      <div class="cv-meta">89.1 KB · 1 page(s) · 2611 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (39)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">adaptabilité</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">TypeScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Tailwind</span> <span class="skill-tag">Tailwind CSS</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">Express</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">scikit-learn</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span> <span class="skill-tag">Ubuntu</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQLite</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Notion</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">1ère année Cycle Ingénieur - Informatique & Télécommunications</div><div class="education-line">Étudiant en 1ère année cycle ingénieur à l'ENET'Com (École Nationale</div><div class="education-line">Travail en équipe  •  Communication  •  Résolution de problèmes  •  Adaptabilité  •  Organisation  •  Autonomie  •  Esprit</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">31. CV_EMNA_MASMOUDI.pdf</div>
+      <div class="cv-meta">119.9 KB · 1 page(s) · 1988 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (41)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">leadership</span> <span class="skill-tag">communication</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">TypeScript</span> <span class="skill-tag">PHP</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Tailwind</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">Express</span> <span class="skill-tag">Express.js</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">TensorFlow</span> <span class="skill-tag">NLP</span> <span class="skill-tag">Tableau</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">JWT</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiante en 1ere annee Master en Informatique a l'ENET'Com de Sfax. Passionnee par le</div><div class="education-line">ETUDIANTE EN MASTER INFORMATIQUE - ENET'COM</div><div class="education-line">Master en Informatique</div><div class="education-line">Licence en Informatique</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2021, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">32. CV_Eya_Fersi.pdf</div>
+      <div class="cv-meta">329.5 KB · 1 page(s) · 2494 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (41)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">adaptabilité</span> <span class="skill-tag">gestion du temps</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Tailwind</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Big Data</span> <span class="skill-tag">Hadoop</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span> <span class="skill-tag">PL/SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span> <span class="skill-tag">VS Code</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Institut International de Technologie Sfax</div><div class="education-line">Étudiante en 3ème année de licence en Génie Logiciel et Systèmes d’Information, à la recherche d’un stage</div><div class="education-line">Institut International de Technologie Sfax (NAPU)</div><div class="education-line">• Esprit d’équipe</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">33. CV_EYA_MOALLA.pdf</div>
+      <div class="cv-meta">120.5 KB · 1 page(s) · 3139 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (41)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">adaptabilité</span> <span class="skill-tag">gestion du temps</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">HTML5</span> <span class="skill-tag">CSS</span> <span class="skill-tag">CSS3</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Laravel</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span> <span class="skill-tag">Android</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Tableau</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Apache</span> <span class="skill-tag">Linux</span> <span class="skill-tag">Ubuntu</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQLite</span> <span class="skill-tag">Firebase</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">VS Code</span> <span class="skill-tag">IntelliJ</span> <span class="skill-tag">Android Studio</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">UML</span> <span class="skill-tag">Merise</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en 2ème année Licence Informatique - ENETCOM</div><div class="education-line">Étudiante en 2ème année licence en informatique à l'ENETCOM Sfax, motivée et passionnée par les technologies informatiques et</div><div class="education-line">Licence en Informatique (en cours) - ENETCOM, Sfax</div><div class="education-line">- Python for Everybody - Coursera (University of Michigan)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2019, 2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">34. cv_fr (1).pdf</div>
+      <div class="cv-meta">136.9 KB · 2 page(s) · 2846 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (28)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Tailwind</span> <span class="skill-tag">Tailwind CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">Laravel</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span> <span class="skill-tag">Android</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">LLM</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">VS Code</span> <span class="skill-tag">Android Studio</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en dernière année de Licence en Développement des Systèmes Informatiques à l’ISET Sfax, spé-</div><div class="education-line">Licence en Développement des Systèmes Informatiques</div><div class="education-line">Institut Supérieur des Études Technologiques de Sfax (ISET Sfax)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2020, 2023, 2024, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">35. CV_Kenza.pdf</div>
+      <div class="cv-meta">88.8 KB · 1 page(s) · 1254 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (15)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en 2ème année licence en informatique à l'ISET, motivée et passionnée</div><div class="education-line">Licence en</div><div class="education-line">ISET - 2ème année</div><div class="education-line">Étudiante en Informatique - ISET</div></div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">36. CV_NOUR.pdf</div>
+      <div class="cv-meta">216.0 KB · 1 page(s) · 1921 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (37)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">autonomie</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Tailwind</span> <span class="skill-tag">Bootstrap</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Hadoop</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQL</span> <span class="skill-tag">PL/SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span> <span class="skill-tag">VS Code</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiante en 3eme annee de licence en Genie Logiciel et Systemes d'Information a l'ISIMS. Passionnee</div><div class="education-line">Licence Genie Logiciel et Systemes d'Information</div><div class="education-line">Esprit d'equipe</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">37. CV_YASMINE_BOUAZIZ.pdf</div>
+      <div class="cv-meta">128.6 KB · 1 page(s) · 1858 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (27)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Deep Learning</span> <span class="skill-tag">TensorFlow</span> <span class="skill-tag">Tableau</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">JWT</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Élève ingénieure en 2ème année cycle Ingénieur Informatique</div><div class="education-line">Cycle Ingénieur Informatique</div><div class="education-line">Élève Ingénieure en Informatique - ENIS Sfax</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">38. CV_YOUSSEF.pdf</div>
+      <div class="cv-meta">85.9 KB · 1 page(s) · 2288 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (27)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">autonomie</span> <span class="skill-tag">créativité</span> <span class="skill-tag">adaptabilité</span> <span class="skill-tag">gestion du temps</span> <span class="skill-tag">esprit critique</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">Kotlin</span> <span class="skill-tag">R</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span> <span class="skill-tag">Android</span> <span class="skill-tag">Kotlin</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQLite</span> <span class="skill-tag">Firebase</span> <span class="skill-tag">Firestore</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Android Studio</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">ESPRIT Prépa</div><div class="education-line">ESPRIT</div><div class="education-line">1ère année Cycle Ingénieur en Informatique</div><div class="education-line">Étudiant en 1ère année cycle ingénieur à ESPRIT, passionné par le développement</div><div class="education-line">Esprit critique  •  Créativité</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">39. cvEmnaGassara.pdf</div>
+      <div class="cv-meta">595.0 KB · 1 page(s) · 1565 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (22)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">PHP</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Postman</span> <span class="skill-tag">IntelliJ</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Agile</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Third-year Bachelor’s student in Software</div><div class="education-line">IInternational Institute of Technology</div><div class="education-line">Institution: .ASM</div><div class="education-line">Monji Slim High School</div><div class="education-line">High School Diploma in Experimental Sciences, 2023</div><div class="education-line">Institution: IIT</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">40. Dhia Triki CV_EN.pdf</div>
+      <div class="cv-meta">110.8 KB · 1 page(s) · 2675 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (26)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Espagnol</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Big Data</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">School level</div><div class="education-line">Bachelor's Degree in Software Engineering and</div><div class="education-line">Information Systems, International Institute of Technology</div><div class="education-line">Baccalaureate in Mathematics, Monji Slim Highschool</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">41. Dhia_Triki_CV.pdf</div>
+      <div class="cv-meta">106.8 KB · 1 page(s) · 2865 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (26)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Espagnol</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Big Data</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiant en 3ème année licence informatique</div><div class="education-line">Licence Génie Logiciel et Système d'Information,</div><div class="education-line">Institut International de Technologie (IIT)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">42. jawhar.pdf</div>
+      <div class="cv-meta">237.0 KB · 1 page(s) · 2269 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (14)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Vue</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">Symfony</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Deep Learning</span> <span class="skill-tag">Spark</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">Firebase</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">VS Code</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Elève ingénieur en informatique</div><div class="education-line">Institut International de Technologie</div><div class="education-line">Licence en électrotechnique, électronique et automatique</div><div class="education-line">Faculté des Sciences Sfax</div><div class="education-line">ELÈVE INGÉNIEUR EN GÉNIE INFORMATIQUE</div><div class="education-line">Institute of Electrical and Electronics</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2015, 2019, 2020, 2021, 2022, 2023, 2024</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">43. LAJMI Zouhour (3).pdf</div>
+      <div class="cv-meta">356.7 KB · 1 page(s) · 1028 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (13)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">C</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">HTML5</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiant en deuxième année de licence informatique , je suis motivé et discipliné . A la</div><div class="education-line">Licence Professionnelle en Informatique</div><div class="education-line">Institut International de Technologie</div><div class="education-line">Stage en Communication – North American Private University (IIT)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">44. Mahdi-Boujelben CV .pdf</div>
+      <div class="cv-meta">387.1 KB · 1 page(s) · 2372 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (22)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">ASP.NET</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQL Server</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">IntelliJ</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Licence en Génie Logiciel & Systèmes</div><div class="education-line">Institut International de Technologie -Sfax</div><div class="education-line">Étudiant en 3ᵉ année de Licence en Génie Logiciel</div><div class="education-line">Étudiant en 3ème année Licence</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">45. Maryem_Fakhfekh (3).pdf</div>
+      <div class="cv-meta">122.7 KB · 1 page(s) · 1335 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (17)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">UML</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">LICENCE EN GÉNIE LOGICIEL ET</div><div class="education-line">INSTITUT INTERNATIONAL DE</div><div class="education-line">Etudiante en 2ème année de licence en génie logiciel</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">46. med-aziz-mesfar-cv (1).pdf</div>
+      <div class="cv-meta">198.2 KB · 2 page(s) · 3644 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (33)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">TypeScript</span> <span class="skill-tag">C</span> <span class="skill-tag">PHP</span> <span class="skill-tag">Dart</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">React.js</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span> <span class="skill-tag">Vite</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">NestJS</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Big Data</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">AWS</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">MongoDB</span> <span class="skill-tag">NoSQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Git</span> <span class="skill-tag">GitHub</span> <span class="skill-tag">Postman</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">MVC</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">OAuth</span> <span class="skill-tag">JWT</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Diploma in Computer Science (ISIMS, Sfax,Tuinisia)</div><div class="education-line">High School Diploma(Soukra High School,Ariana,Tunisia)</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2019, 2023, 2024, 2025, 2026</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">47. Professional Modern CV Resume.pdf</div>
+      <div class="cv-meta">661.6 KB · 1 page(s) · 1603 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (21)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span> <span class="skill-tag">résolution de problèmes</span> <span class="skill-tag">adaptabilité</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">TypeScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">Cybersécurité</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Licence Pro informatique en génie</div><div class="education-line">Institut international de Technologie, Sfax. FO R M AT I O N C O M P LÉ M E N TAI R E</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">48. Rihab Ghallabi_20241115_202753_0000.pdf</div>
+      <div class="cv-meta">587.4 KB · 1 page(s) · 661 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (8)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span> <span class="skill-tag">Italien</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">communication</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">* Diplôme Bac 2022-2023</div><div class="education-line">= 2eme année en institut international de technologie</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2022, 2023</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">49. Sellami_Hana (2).pdf</div>
+      <div class="cv-meta">1015.7 KB · 1 page(s) · 1636 caractères</div>
+    </div>
+    <span class='method-ocr'>OCR</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (18)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">.NET</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">UML</span></div><div class="category"><span class="cat-name">security:</span> <span class="skill-tag">Cybersécurité</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Etudiante en 2ème année de licence en génie logiciel et</div><div class="education-line">Licence en génie logiciel et * SQL,Oracle</div><div class="education-line">Institut International De + UML,Alete</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">50. YC (3).pdf</div>
+      <div class="cv-meta">82.5 KB · 1 page(s) · 2258 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (32)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Flask</span> <span class="skill-tag">.NET</span> <span class="skill-tag">REST</span> <span class="skill-tag">REST API</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">spaCy</span> <span class="skill-tag">NLP</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Docker</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">SQLite</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">tools versioning:</span> <span class="skill-tag">Postman</span> <span class="skill-tag">VS Code</span> <span class="skill-tag">IntelliJ</span> <span class="skill-tag">PyCharm</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">Étudiante en 3e année de Licence en Génie</div><div class="education-line">2023 – Présent | Licence en Génie</div><div class="education-line">Institut International de</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2020, 2023, 2025</div></div>
+<div class="cv-card">
+  <div class="cv-header">
+    <div>
+      <div class="cv-title">51. yesmine cherif.pdf</div>
+      <div class="cv-meta">202.5 KB · 1 page(s) · 2586 caractères</div>
+    </div>
+    <span class='method-native'>NATIVE</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 Compétences détectées (34)</div>
+<div class="category"><span class="cat-name">languages human:</span> <span class="skill-tag">Français</span> <span class="skill-tag">Anglais</span> <span class="skill-tag">Arabe</span></div><div class="category"><span class="cat-name">soft skills:</span> <span class="skill-tag">leadership</span> <span class="skill-tag">communication</span> <span class="skill-tag">travail en équipe</span></div><div class="category"><span class="cat-name">programming languages:</span> <span class="skill-tag">Python</span> <span class="skill-tag">Java</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">C</span> <span class="skill-tag">C#</span> <span class="skill-tag">PHP</span> <span class="skill-tag">R</span></div><div class="category"><span class="cat-name">web frontend:</span> <span class="skill-tag">React</span> <span class="skill-tag">Angular</span> <span class="skill-tag">HTML</span> <span class="skill-tag">CSS</span></div><div class="category"><span class="cat-name">web backend:</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">Spring</span> <span class="skill-tag">Spring Boot</span> <span class="skill-tag">Flask</span> <span class="skill-tag">Laravel</span> <span class="skill-tag">.NET</span> <span class="skill-tag">Microservices</span></div><div class="category"><span class="cat-name">mobile:</span> <span class="skill-tag">Flutter</span></div><div class="category"><span class="cat-name">data ia:</span> <span class="skill-tag">Machine Learning</span> <span class="skill-tag">Big Data</span> <span class="skill-tag">Power BI</span></div><div class="category"><span class="cat-name">devops cloud:</span> <span class="skill-tag">Linux</span></div><div class="category"><span class="cat-name">databases:</span> <span class="skill-tag">MySQL</span> <span class="skill-tag">Oracle</span> <span class="skill-tag">SQL</span></div><div class="category"><span class="cat-name">methodologies:</span> <span class="skill-tag">Scrum</span> <span class="skill-tag">UML</span></div><div class="section"><div class="section-title">🎓 Lignes de formation</div><div class="education-line">2023_2026 : Institut internationale de technologie</div></div><div class="section"><div class="section-title">📅 Années détectées</div>2023, 2024, 2025, 2026</div></div></body></html>

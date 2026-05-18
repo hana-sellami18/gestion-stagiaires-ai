@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Env
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Tests
+.pytest_cache/
+
+# Données
+app/data/cvs/*.pdf
+*.log
+
+logs/
+*.jsonl

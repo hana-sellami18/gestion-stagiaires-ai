@@ -1,0 +1,155 @@
+{
+  "S1_BACKEND": {
+    "title": "Stage Développeur Backend Java/Spring Boot",
+    "description": "Développement d'une API REST avec Spring Boot, Java 17, base MySQL, déploiement Docker.",
+    "competences_cibles": [
+      "Java",
+      "Spring Boot",
+      "REST API",
+      "MySQL",
+      "JPA",
+      "Hibernate",
+      "SQL",
+      "Docker",
+      "Git",
+      "Microservices",
+      "Maven"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Master"
+  },
+  "S2_MOBILE": {
+    "title": "Stage Développeur Mobile Flutter",
+    "description": "Développement d'une application mobile multi-plateforme avec Flutter et Dart.",
+    "competences_cibles": [
+      "Flutter",
+      "Dart",
+      "REST API",
+      "Firebase",
+      "Mobile Development",
+      "API",
+      "Git",
+      "Android",
+      "iOS",
+      "React Native",
+      "Kotlin",
+      "SQLite"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+  "S3_FRONTEND": {
+    "title": "Stage Développeur Frontend Angular",
+    "description": "Développement d'une interface web responsive avec Angular et TypeScript.",
+    "competences_cibles": [
+      "Angular",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "REST API",
+      "Git",
+      "Bootstrap",
+      "Material UI",
+      "SASS"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+  "S4_FULLSTACK": {
+    "title": "Stage Développeur Full-Stack React/Node.js",
+    "description": "Développement d'une application web complète avec React.js et Node.js/Express.",
+    "competences_cibles": [
+      "React",
+      "Node.js",
+      "JavaScript",
+      "REST API",
+      "MongoDB",
+      "MySQL",
+      "HTML",
+      "CSS",
+      "TypeScript",
+      "Docker",
+      "Git",
+      "Redux",
+      "JWT",
+      "Express"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Ingénieur"
+  },
+  "S5_DATA_IA": {
+    "title": "Stage Data Science / Intelligence Artificielle",
+    "description": "Analyse de données, développement de modèles de machine learning et deep learning.",
+    "competences_cibles": [
+      "Python",
+      "Machine Learning",
+      "scikit-learn",
+      "Pandas",
+      "NumPy",
+      "Deep Learning",
+      "Data Science",
+      "TensorFlow",
+      "PyTorch",
+      "Matplotlib",
+      "Seaborn",
+      "Power BI",
+      "NLP",
+      "SQL",
+      "Jupyter"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Master"
+  },
+  "S6_DEVOPS": {
+    "title": "Stage DevOps / Cloud",
+    "description": "Mise en place de pipelines CI/CD, containerisation avec Docker et orchestration Kubernetes.",
+    "competences_cibles": [
+      "Docker",
+      "Linux",
+      "Git",
+      "CI/CD",
+      "AWS",
+      "Jenkins",
+      "Bash",
+      "Kubernetes",
+      "Ansible",
+      "Terraform",
+      "Azure",
+      "GitHub Actions",
+      "GitLab CI",
+      "Nginx"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Ingénieur"
+  },
+  "S7_RESEAUX": {
+    "title": "Stage Réseaux & Systèmes",
+    "description": "Administration et configuration de réseaux informatiques.",
+    "competences_cibles": [
+      "Linux",
+      "Réseaux",
+      "Cisco",
+      "TCP/IP",
+      "VLAN",
+      "VPN",
+      "Pare-feu",
+      "Windows Server",
+      "Ansible",
+      "Bash",
+      "Python",
+      "Wireshark",
+      "SNMP",
+      "Active Directory"
+    ],
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  }
+}

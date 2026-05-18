@@ -1,0 +1,129 @@
+{
+  "S1_BACKEND": {
+    "title": "Stage Développeur Backend Java/Spring Boot",
+    "description": "Développement d'une API REST avec Spring Boot, Java 17, base MySQL, déploiement Docker. Architecture microservices appréciée. Méthodologie Agile.",
+    "core_skills": ["Java", "Spring Boot"],
+    "important_skills": ["REST API", "MySQL", "JPA", "Hibernate", "SQL"],
+    "bonus_skills": ["Docker", "Git", "Microservices", "Maven"],
+    "skill_equivalents": {
+      "Spring Boot": ["Spring"],
+      "MySQL": ["SQL", "PostgreSQL", "Database"],
+      "REST API": ["REST", "API", "Web Services"],
+      "Hibernate": ["JPA"],
+      "Java": ["Java SE", "Java EE"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+
+  "S2_MOBILE": {
+    "title": "Stage Développeur Mobile Flutter",
+    "description": "Développement d'une application mobile multi-plateforme avec Flutter et Dart. Intégration d'API REST, Firebase pour le backend.",
+    "core_skills": ["Flutter", "Dart"],
+    "important_skills": ["REST API", "Firebase", "Mobile Development", "API"],
+    "bonus_skills": ["Git", "Android", "iOS", "React Native", "Kotlin", "SQLite"],
+    "skill_equivalents": {
+      "Flutter": ["React Native"],
+      "Dart": ["JavaScript"],
+      "REST API": ["REST", "API"],
+      "Firebase": ["Backend as a Service"],
+      "Mobile Development": ["Android", "iOS"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+
+  "S3_FRONTEND": {
+    "title": "Stage Développeur Frontend Angular",
+    "description": "Développement d'une interface web responsive avec Angular et TypeScript. Intégration d'API REST, design Material UI.",
+    "core_skills": ["Angular", "TypeScript"],
+    "important_skills": ["HTML", "CSS", "JavaScript", "REST API"],
+    "bonus_skills": ["Git", "Bootstrap", "Material UI", "SASS"],
+    "skill_equivalents": {
+      "Angular": ["AngularJS", "React", "Vue"],
+      "TypeScript": ["JavaScript"],
+      "REST API": ["REST", "API"],
+      "CSS": ["SASS", "SCSS", "Bootstrap"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+
+  "S4_FULLSTACK": {
+    "title": "Stage Développeur Full-Stack React/Node.js",
+    "description": "Développement d'une application web complète avec React.js côté frontend et Node.js/Express côté backend. Intégration d'API REST, base de données MongoDB ou MySQL, gestion de l'authentification JWT. Méthodologie Agile.",
+    "core_skills": ["React", "Node.js"],
+    "important_skills": ["JavaScript", "REST API", "MongoDB", "MySQL", "HTML", "CSS"],
+    "bonus_skills": ["TypeScript", "Docker", "Git", "Redux", "JWT", "Express"],
+    "skill_equivalents": {
+      "React": ["React.js", "ReactJS", "Vue", "Angular"],
+      "Node.js": ["NodeJS", "Express", "NestJS"],
+      "MongoDB": ["NoSQL", "Firebase"],
+      "MySQL": ["PostgreSQL", "SQL"],
+      "REST API": ["REST", "API", "GraphQL"],
+      "JavaScript": ["TypeScript"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+
+  "S5_DATA_IA": {
+    "title": "Stage Data Science / Intelligence Artificielle",
+    "description": "Analyse de données, développement de modèles de machine learning et deep learning. Utilisation de Python, scikit-learn, TensorFlow ou PyTorch. Visualisation des données avec Matplotlib, Seaborn ou Power BI. Traitement NLP ou Computer Vision selon le projet.",
+    "core_skills": ["Python", "Machine Learning"],
+    "important_skills": ["scikit-learn", "Pandas", "NumPy", "Deep Learning", "Data Science"],
+    "bonus_skills": ["TensorFlow", "PyTorch", "Matplotlib", "Seaborn", "Power BI", "NLP", "SQL", "Jupyter"],
+    "skill_equivalents": {
+      "Machine Learning": ["Deep Learning", "IA", "AI"],
+      "scikit-learn": ["sklearn"],
+      "TensorFlow": ["Keras", "PyTorch"],
+      "Pandas": ["NumPy"],
+      "Power BI": ["Tableau", "Matplotlib"],
+      "Python": ["R", "MATLAB"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+
+  "S6_DEVOPS": {
+    "title": "Stage DevOps / Cloud",
+    "description": "Mise en place de pipelines CI/CD, containerisation avec Docker et orchestration Kubernetes. Déploiement sur cloud AWS, Azure ou GCP. Administration Linux, automatisation avec Ansible ou Terraform. Monitoring et gestion des logs.",
+    "core_skills": ["Docker", "Linux"],
+    "important_skills": ["Git", "CI/CD", "AWS", "Jenkins", "Bash"],
+    "bonus_skills": ["Kubernetes", "Ansible", "Terraform", "Azure", "GitHub Actions", "GitLab CI", "Nginx"],
+    "skill_equivalents": {
+      "Docker": ["Kubernetes", "Containerisation"],
+      "AWS": ["Azure", "GCP", "Google Cloud", "DigitalOcean"],
+      "Jenkins": ["GitLab CI", "GitHub Actions", "Travis CI"],
+      "CI/CD": ["DevOps", "Intégration continue"],
+      "Linux": ["Ubuntu", "CentOS"],
+      "Bash": ["Shell"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  },
+
+  "S7_RESEAUX": {
+    "title": "Stage Réseaux & Systèmes",
+    "description": "Administration et configuration de réseaux informatiques (routeurs, switches, VLAN). Mise en place de solutions de sécurité réseau, VPN, pare-feu. Administration systèmes Linux/Windows. Monitoring réseau et diagnostic des pannes.",
+    "core_skills": ["Linux", "Réseaux"],
+    "important_skills": ["Cisco", "TCP/IP", "VLAN", "VPN", "Pare-feu"],
+    "bonus_skills": ["Windows Server", "Ansible", "Bash", "Python", "Wireshark", "SNMP", "Active Directory"],
+    "skill_equivalents": {
+      "Linux": ["Ubuntu", "CentOS", "Debian"],
+      "Réseaux": ["Network", "TCP/IP", "LAN", "WAN"],
+      "Cisco": ["Routeurs", "Switches"],
+      "VPN": ["OpenVPN", "IPSec"],
+      "Pare-feu": ["Firewall", "iptables"]
+    },
+    "required_languages": ["Français", "Anglais"],
+    "filiere": "Informatique",
+    "cycle": "Licence"
+  }
+}

@@ -1,0 +1,934 @@
+{
+  "f1b8f49d0345ed4e0bec8e3e7e9f639a": {
+    "nombre_stages": 3,
+    "entreprises_de_stage": [
+      "ASM",
+      "Softodo",
+      "STEG"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "teamwork"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "ea69ea3cb7ed34e053083cc462b07caa": {
+    "nombre_stages": 4,
+    "entreprises_de_stage": [
+      "ASM",
+      "Softodo",
+      "STEG"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": true,
+    "soft_skills": [
+      "travail en equipe"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "f937a5174e88a1194a0375997ca6ed20": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "apprentissage rapide",
+      "travail en équipe",
+      "autonomie et rigueur",
+      "résolution de problèmes",
+      "curiosité technique"
+    ],
+    "projets_count": 6,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "29140d586e54e022b9cc1d39f0f5e38d": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "f67c5fe613e43abacaafee8b94d23d07": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe",
+      "resolution de problemes"
+    ],
+    "projets_count": 4,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "5104689e99a67055b40224b5d9413491": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "908e87a923db5878e01c594ff90fdb49": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "StartApp Tunisia",
+      "MobiTech Solutions"
+    ],
+    "cycle": "ingenieur",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en équipe",
+      "communication",
+      "résolution de problèmes",
+      "autonomie",
+      "adaptabilité",
+      "gestion du temps",
+      "esprit critique",
+      "créativité"
+    ],
+    "projets_count": 5,
+    "has_github": true,
+    "specialite_dominante": "mobile",
+    "_llm_available": true
+  },
+  "bb60927721c6ebb7d4fd969d11750fce": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Societe XYZ Technologies"
+    ],
+    "cycle": "ingenieur",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "teamwork",
+      "communication"
+    ],
+    "projets_count": 5,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "e8b45fe884283fdb422af46f8ada8168": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "TIM'ESS"
+    ],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "leadership",
+      "travail en équipe",
+      "communication",
+      "organisation"
+    ],
+    "projets_count": 0,
+    "has_github": false,
+    "specialite_dominante": "frontend",
+    "_llm_available": true
+  },
+  "23c6fd50341f2ab8f1fed3baac8dd52c": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "Business Web Services",
+      "21'C Digital"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": true,
+    "soft_skills": [
+      "leadership",
+      "communication",
+      "autonomie"
+    ],
+    "projets_count": 8,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "3313b995c5e2c30ecae426bae34bf6ba": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Tunisie Télécom"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe",
+      "communication"
+    ],
+    "projets_count": 5,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "cbd7b5bf867dfcfcf0afce214778be03": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Société My Partner isc"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "communication",
+      "travail en équipe",
+      "gestion du temps"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "869bd7e2efe62f2493dc5bb0c2381605": {
+    "nombre_stages": 3,
+    "entreprises_de_stage": [
+      "Spark-IT",
+      "Smart Ways Innovations"
+    ],
+    "cycle": "ingenieur",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": true,
+    "soft_skills": [],
+    "projets_count": 4,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "fc87ec323587b09802ff3b9f2deba5ed": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "WEDTECT"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": true,
+    "soft_skills": [
+      "leadership",
+      "communication",
+      "teamwork"
+    ],
+    "projets_count": 5,
+    "has_github": true,
+    "specialite_dominante": "backend",
+    "_llm_available": true
+  },
+  "a13e8dee2f75ee13ff440540ac92affe": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "ASM"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe"
+    ],
+    "projets_count": 4,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "283065d741aa3043b00480409683e3ce": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "DataTech Solutions",
+      "InnoSoft"
+    ],
+    "cycle": "master",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "leadership",
+      "travail en equipe",
+      "communication",
+      "adaptabilite"
+    ],
+    "projets_count": 7,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "05c2da6d1081d249cfd7085ea4ccdaaa": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "Vermeg",
+      "BIAT"
+    ],
+    "cycle": "master",
+    "annee_etude": 2,
+    "is_pfe": true,
+    "has_pfe_project": true,
+    "soft_skills": [
+      "leadership",
+      "communication",
+      "rigueur",
+      "autonomie"
+    ],
+    "projets_count": 2,
+    "has_github": false,
+    "specialite_dominante": "data",
+    "_llm_available": true
+  },
+  "4bf0b75dd481e2e90f570d0b02b2840f": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en équipe",
+      "résolution de problèmes",
+      "curiosité technique",
+      "autonomie"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "08739839e472c7ddf3014e8b9134ad86": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "créativité",
+      "travail en équipe",
+      "curiosité",
+      "sens du détail"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "464884e48e165dc108423327958a7a5b": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "Société asm",
+      "Université ENET Com"
+    ],
+    "cycle": "master",
+    "annee_etude": 2,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "rigoureuse et méthodique",
+      "esprit d'analyse",
+      "autonome et proactive",
+      "travail en équipe"
+    ],
+    "projets_count": 5,
+    "has_github": false,
+    "specialite_dominante": "autre",
+    "_llm_available": true
+  },
+  "bf9caebde254c25293a36173a12351a0": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "rigueur",
+      "autonomie",
+      "travail en equipe"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "704d1304ce5882fc5e9a9a395f08b983": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "Société ABC",
+      "FSEGS"
+    ],
+    "cycle": "master",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en équipe",
+      "rigueur",
+      "autonomie",
+      "curiosité intellectuelle"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "data",
+    "_llm_available": true
+  },
+  "7931d362ff8cd02d7ea1befa9ca98d4e": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "ID Software Solutions",
+      "Team Technology"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "esprit d'equipe",
+      "communication",
+      "adaptabilite",
+      "autonomie"
+    ],
+    "projets_count": 4,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "23ee6a89cdb75a017bdb5aef62ea73e4": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Société IT"
+    ],
+    "cycle": "ingenieur",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "39536834668c19ede32204a9cae1a43c": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "Entreprise IT",
+      "Société X"
+    ],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en équipe",
+      "communication efficace",
+      "adaptabilité et autonomie",
+      "résolution de problèmes",
+      "gestion du temps"
+    ],
+    "projets_count": 4,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "e92f2720944a153afe47e63d7f154f7d": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 4,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "287c5c373c9524b16bbc25604b3e3a35": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Comptoir Hammemi"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 6,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "390839593a2f7eb5c288e7fcca954eca": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "ASM"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "leadership",
+      "communication",
+      "teamwork"
+    ],
+    "projets_count": 5,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "c9d279c04f9e727a8842d6d2451bf002": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "résolution de problèmes",
+      "apprentissage continu",
+      "esprit d'équipe"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "638ff8f6ecc8d9e7538c32a0a91c0853": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "ASM"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 6,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "6c7c74110a34996bcf38cda9fd08aaec": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "North American Private University (IIT)"
+    ],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "motivation",
+      "discipline"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "frontend",
+    "_llm_available": true
+  },
+  "2e777af3d33b8dcd25515f5fa5215ebc": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "AllSoftMultimédia"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe",
+      "communication",
+      "adaptabilité",
+      "résolution de problèmes"
+    ],
+    "projets_count": 4,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "6d8eba4a5d15cd2fda00e4512fd97083": {
+    "nombre_stages": 4,
+    "entreprises_de_stage": [
+      "Primatec",
+      "ASM"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "leadership",
+      "communication",
+      "travail en equipe",
+      "gestion du stress",
+      "sens de l'organisation",
+      "collaboration"
+    ],
+    "projets_count": 11,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "721c98aef6021a775ae8f894e4c1f69a": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "WebDev Agency"
+    ],
+    "cycle": "ingenieur",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en équipe",
+      "communication",
+      "résolution de problèmes",
+      "adaptabilité",
+      "organisation",
+      "autonomie",
+      "esprit analytique",
+      "curiosité technique"
+    ],
+    "projets_count": 8,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "9017da3a29277fb27ab1ffd7946007e2": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "83a6766729ec8e4f4d82059170ec1881": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "ingenieur",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "travail en equipe"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "02bff8e41a6b5a0ef71a53ba31e46dd4": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "motivation",
+      "curiosité",
+      "travail en équipe",
+      "organisation"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "eb523d824e1316987f62fd3b020b7ad1": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "DataTech Solutions"
+    ],
+    "cycle": "master",
+    "annee_etude": 1,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "esprit analytique",
+      "resolution de problemes",
+      "travail en equipe",
+      "rigueur",
+      "autonomie",
+      "curiosite intellectuelle",
+      "communication technique",
+      "gestion du temps",
+      "adaptabilite"
+    ],
+    "projets_count": 7,
+    "has_github": true,
+    "specialite_dominante": "data",
+    "_llm_available": true
+  },
+  "e73684d6402cceed540ffc74c2f8a990": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "DataShield Corp",
+      "SecurIT Solutions"
+    ],
+    "cycle": "ingenieur",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "motivation",
+      "rigueur",
+      "curiosite"
+    ],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "devops",
+    "_llm_available": true
+  },
+  "8173ef8ceb945638efb18eddcc08abc9": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "ID Software Solutions",
+      "Team Technology"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "esprit d'équipe",
+      "gestion du temps",
+      "communication",
+      "résolution de problèmes",
+      "adaptabilité",
+      "autonomie"
+    ],
+    "projets_count": 4,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "a9dee143c853bc99db1d7be12f0b6400": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Tunisie télécom"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 5,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "76e52046391adf1f666c2cdfe7c37c74": {
+    "nombre_stages": 2,
+    "entreprises_de_stage": [
+      "Best Buy",
+      "Crésus Solutions"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 3,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "873211b6ee20b83302cb99d19b036f1e": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "TECHVANT"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "communication",
+      "critical thinking",
+      "creative thinking",
+      "teamwork"
+    ],
+    "projets_count": 6,
+    "has_github": true,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "3a22177322690b6240af9d1020871719": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "All Soft Multimedia (ASM)"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 5,
+    "has_github": false,
+    "specialite_dominante": "ai",
+    "_llm_available": true
+  },
+  "bbf102a7a9a7efc3faed392b6d9a2df1": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "PolySoft"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "2a1045bdfb036f14d5cd51ff3946f18e": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "MTD Group"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "leadership",
+      "autonomie"
+    ],
+    "projets_count": 5,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "887d107034c9cf55459fa83e0c61f1e9": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "MTD Group"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "déterminé",
+      "sérieux",
+      "autonome"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "17ed9a2d40a1c23b81f67044e19d11ae": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "BEST SANTE"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "motivation",
+      "rigueur",
+      "curiosite"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "c1c9600bf75e9a2240608db5ce9570f9": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [],
+    "projets_count": 4,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  },
+  "2e141071e9173c9216ea981c24ae2e44": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "communication",
+      "travail d'équipe",
+      "leadership"
+    ],
+    "projets_count": 0,
+    "has_github": false,
+    "specialite_dominante": "autre",
+    "_llm_available": true
+  },
+  "f153010230ac83e2ae6998e96b34e2dd": {
+    "nombre_stages": 0,
+    "entreprises_de_stage": [],
+    "cycle": "licence",
+    "annee_etude": 2,
+    "is_pfe": false,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "leadership",
+      "communication",
+      "teamwork"
+    ],
+    "projets_count": 4,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
+  }
+}

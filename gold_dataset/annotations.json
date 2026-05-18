@@ -1,0 +1,728 @@
+{
+  "version": "1.0",
+  "annotations_source": "human_expert_rh",
+  "methodology": "Chaque CV est évalué uniquement sur les sujets compatibles avec sa filière (Informatique) et son cycle (Licence / Ingénieur / Master). Les critères d'évaluation sont : compétences techniques correspondantes, expériences professionnelles, niveau académique, qualité des projets. Valeurs possibles : ADAPTE | PARTIELLEMENT_ADAPTE | PEU_ADAPTE.",
+  "legende": {
+    "ADAPTE": "Le candidat possède la majorité des compétences cibles, un niveau académique compatible, et idéalement une expérience pertinente.",
+    "PARTIELLEMENT_ADAPTE": "Le candidat possède certaines compétences pertinentes mais il manque des éléments clés (technologie principale, expérience, niveau).",
+    "PEU_ADAPTE": "Le profil correspond peu ou pas au sujet : compétences insuffisantes, niveau trop bas ou cycle inadapté."
+  },
+  "note": "S1_BACKEND requiert cycle Ingénieur/Master. S5_DATA_IA requiert cycle Master. S6_DEVOPS requiert cycle Ingénieur/Master. Les autres sujets sont ouverts à tous les cycles Licence+.",
+  "annotations": [
+
+    {
+      "cv_filename": "cv_shahdBenHmida__2_.pdf",
+      "nom": "Shahd Ben Hmida (v1 - junior)",
+      "cycle": "Licence 3 (ISET)",
+      "commentaire_rh": "Profil Licence orienté web/mobile avec stages réels (Laravel, Flutter). Bon potentiel pour S2/S3. Pas de Spring Boot ni Java avancé pour S1. Niveau Licence, S1 et S6 hors cible.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "cv_fr__1_.pdf",
+      "nom": "Shahd Ben Hmida (v2 - Full-Stack & IA)",
+      "cycle": "Licence 3 (ISET)",
+      "commentaire_rh": "Version enrichie avec IA (LLM, RAG), Angular, Node.js, Docker, Power BI. Expérience PFE en cours sur plateforme de recrutement intelligente. Nettement plus solide que la v1. Très bon profil Licence pour S2/S3/S4. S1 reste hors cible (pas de Spring Boot/Java backend).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_AZIZ.pdf",
+      "nom": "Aziz Ben Salah",
+      "cycle": "Licence 1 (ISIMS)",
+      "commentaire_rh": "1ère année Licence, profil très débutant. Que des projets académiques basiques (portfolio, to-do, météo). Niveau insuffisant pour tous les sujets sauf éventuellement S3 (frontend débutant) et S7 (notions réseaux). Bon potentiel mais trop tôt.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiante_Ingénieure_Informatique.pdf",
+      "nom": "Yasmine Ben Amor",
+      "cycle": "Ingénieur 2 (École ingénieurs Sfax)",
+      "commentaire_rh": "2ème année cycle ingénieur. Projets en Java/MySQL, e-commerce PHP/CSS, réseaux Cisco/Linux. Stack classique sans frameworks modernes avancés. Correct pour S7 (réseaux Cisco/Linux). S1 insuffisant (pas de Spring Boot). S4/S6 hors portée.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Informatique___Mohamed_Amine_Jlassi.pdf",
+      "nom": "Mohamed Amine Jlassi",
+      "cycle": "Ingénieur 1 (ENIS)",
+      "commentaire_rh": "1ère année cycle ingénieur. Projets académiques corrects (Java/MySQL, site web, algo). Pas de framework web avancé. Niveau trop junior pour S1/S4/S6. S3 et S7 partiellement accessibles.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Informatique_Débutant.pdf",
+      "nom": "Sana Ben Ali",
+      "cycle": "Ingénieur 2 (ENIS)",
+      "commentaire_rh": "2ème année ingénieur avec Spring Boot/Angular (bibliothèque), PHP/MySQL, appli Android. Profil orienté full-stack/backend. Bon pour S4, partiellement pour S1 (Spring Boot présent mais pas Docker/Maven explicite). S7 accessible via Android/Java.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_YOUSSEF.pdf",
+      "nom": "Youssef Bougacha",
+      "cycle": "Ingénieur 1 (ESPRIT)",
+      "commentaire_rh": "Profil mobile fort avec 2 stages réels (Flutter/Firebase, Kotlin/Android). Certifié Flutter. Excellent pour S2. Pas de compétences backend Java/Spring Boot significatives pour S1. S6/S7 hors profil.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Amira.pdf",
+      "nom": "Amira Ben Ali",
+      "cycle": "Ingénieur 2 (ISIMS)",
+      "commentaire_rh": "Profil IA/ML bien marqué : ML Coursera, stage Flask/API REST, projet NLP (détection sentiments). Bon pour S5. Flask/Django présents. Spring Boot absent → S1 peu adapté. S3/S4 partiellement via React/HTML. Bonne candidate S5.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV__9_.pdf",
+      "nom": "Amina Chaabene",
+      "cycle": "Licence 2 (ISET)",
+      "commentaire_rh": "2ème année ISET, stage web HTML/CSS/JS chez TIM'ESS avec rapport 18/20. Compétences très basiques (pas de framework). Seul S3 est partiellement accessible au niveau débutant front. Responsable RH en club (leadership).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_rihab_Ghallabi_en.pdf",
+      "nom": "Ghallabi Rihab (EN - PFE React/GraphQL)",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "PFE en cours chez une société française (React/GraphQL/Headless CMS). Stage ASP.NET. Projets variés (React, Spring Boot, Flutter, .NET). Profil très complet pour une Licence. Excellent pour S3/S4. Spring Boot → S1 partiellement. Flutter → S2 adapté.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Blue_Simple_Professional_CV_Resume__7_.pdf",
+      "nom": "Mohamed Karim Affes",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "Licence 3 GLSI. Stage Tunisie Télécom (réseau/télécom). Projets : .NET (restaurant), Spring Boot (fédéré), Flutter (Return Track), Unity. Profil diversifié mais sans profondeur dans un domaine. Spring Boot + stage télécom → S1 partiellement, S7 partiellement. Flutter → S2 partiellement.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Amina_Zouaghi.pdf",
+      "nom": "Zouaghi Amina",
+      "cycle": "Licence 3 (FSEGS)",
+      "commentaire_rh": "Informatique de gestion, 3ème année. Stage Spring Boot/SQL Server (cron jobs, Digi Kids). Projets Spring Boot/React, PHP/MySQL, HTML/CSS. Certification Scrum. Vie associative riche (Microsoft Tech Club, Career Fair). Bonne pour S1 (Spring Boot présent) et S4 (React+Spring).",
+      "S1_BACKEND": "ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "jawhar.pdf",
+      "nom": "Jawhar Chaabene",
+      "cycle": "Ingénieur 3+ (IIT)",
+      "commentaire_rh": "Élève ingénieur avec background électrotechnique converti à l'informatique. Stage Symfony/React. Projets Angular, Vue.js, Laravel, .NET, Deep Learning (concentration étudiants). Profil atypique mais riche. Bon pour S3/S4 (Angular, Vue, Laravel, React). S1 partiellement (Spring Boot absent). Deep Learning → S5 possible.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "med-aziz-mesfar-cv__1_.pdf",
+      "nom": "Mohamed Aziz Mesfar",
+      "cycle": "Licence 3 (ISIMS)",
+      "commentaire_rh": "Profil backend/fullstack fort : PFE NestJS/TypeScript/MongoDB, JWT, OAuth, WebSockets, Groq/LLaMA IA, stage Flutter. Gagnant DevFest, Vice-Captain AWS Club. Excellent pour S2 (Flutter) et S4 (React+Node). S1 (Java/Spring Boot) absent → peu adapté. IA intégrée → S5 partiellement.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "YC__3_.pdf",
+      "nom": "Yasmine Chaabene",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI. Stage PFA ASM (AI Resume Analyzer : spaCy, SentenceTransformer, Angular/Python). Projets : .NET, Unity, Flask, Spring Boot. IA NLP appliquée → excellente pour S5 (NLP bien démontré). Angular → S3 adapté. Python/Flask → S4 partiellement. S1 (Java/Spring Boot présent) partiellement.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_EMNA_MASMOUDI.pdf",
+      "nom": "Emna Masmoudi",
+      "cycle": "Master 1 (ENET'Com)",
+      "commentaire_rh": "Master Informatique ENET'Com. 2 stages ingénieur (React/Node/MongoDB/Python + Laravel/MySQL). Projets IA : Chatbot TensorFlow/NLP, Dashboard Power BI, Spring Boot/Docker. Profil très complet. Parfaite pour S1 (Spring Boot, JWT, REST), S4 (React/Node/Express/MongoDB), S5 (ML/Python/NLP). S6 partiellement (Docker présent, pas de CI/CD explicite).",
+      "S1_BACKEND": "ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Professionnel_Français___Ameni_CHAABANE__1_.pdf",
+      "nom": "Ameni Chaabane",
+      "cycle": "Master 2 (ENSI Manouba)",
+      "commentaire_rh": "Master Data Science & IA à l'ENSI. Stages : Data Analyst Vermeg (Python/pandas/Power BI/ML churn 81%), BI BIAT (SQL Oracle). Projets NLP : détection fake news (LSTM 87%), COVID dashboard. Certifications IBM + Google Data Analytics. Profil idéal pour S5. S6 partiellement (Docker dans sa stack). S1/S4 hors profil Data.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Ingénieur_Informatique.pdf",
+      "nom": "Eya Triki",
+      "cycle": "Ingénieur 1 (École Nationale Ingénieurs)",
+      "commentaire_rh": "1ère année cycle ingénieur. Projets académiques simples : Java/MySQL (bibliothèque), HTML/CSS/PHP/JS (e-commerce), Linux/Bash (réseau). Pas de framework avancé. S7 partiellement (Linux/Bash/TCP-IP projet réseau). S3 partiellement (HTML/CSS/JS). Trop junior pour S1/S4/S6.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Ingénieur_Informatique__1_.pdf",
+      "nom": "Nour Ben Salem",
+      "cycle": "Licence 1 (ISIMS)",
+      "commentaire_rh": "1ère année Licence ISIMS. Projets débutants : e-commerce PHP/MySQL, portfolio HTML/CSS, gestion tâches PHP. Bonne motivation mais niveau insuffisant pour la majorité des sujets. S3 partiellement accessible (HTML/CSS/Bootstrap/JS présents).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiante_Ingénieure_Informatique__1_.pdf",
+      "nom": "Lina Kammoun",
+      "cycle": "Master 2 Cybersécurité (ENET'Com)",
+      "commentaire_rh": "Master Cybersécurité 2ème année. Spécialiste sécurité (pentesting, SIEM, IDS/IPS, pare-feu, Wireshark, OWASP). Stage sécurité chez ASM + assistante IT ENET'Com (Active Directory, maintenance réseau). Certifications Cisco CCNA, CompTIA Security+ en cours. Profil parfait pour S7 (réseaux/sécurité). S6 partiellement (Linux, Docker, Python/Bash). Les autres sujets hors spécialité.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Ingénieur_Informatique__3_.pdf",
+      "nom": "Aymen Gharbi",
+      "cycle": "Ingénieur 3 (ENET'Com)",
+      "commentaire_rh": "3ème année ingénieur ENET'Com. Projets Spring Boot/Angular/MySQL (RH), API REST JWT Spring Security/MongoDB, monitoring réseau Python/Linux/SNMP/Bash. Profil fullstack solide avec touche réseaux. Excellent pour S1 (Spring Boot + JWT + MySQL) et S4. S7 partiellement (SNMP/Linux/TCP-IP projet). S6 partiellement (Linux, Python/Bash mais pas Docker/CI-CD).",
+      "S1_BACKEND": "ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiante_Ingénieure_Informatique__2_.pdf",
+      "nom": "Youssef Ben Khalifa",
+      "cycle": "Master 1 Business Intelligence (FSEGS)",
+      "commentaire_rh": "Master BI 1ère année. Stage Data Analyst (Python/SQL/Power BI). Projets : Power BI/DAX, Python/Pandas/NumPy/Matplotlib, Excel/SQL. Certifications Google Data Analytics, Power BI Microsoft. Profil Data BI orienté. Parfait pour S5 (Power BI, Python, pandas, visualisation). S1/S4/S2 hors profil BI.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_NOUR.pdf",
+      "nom": "Nour Feki",
+      "cycle": "Licence 3 (ISIMS)",
+      "commentaire_rh": "3ème année Licence GLSI ISIMS. 2 stages (Laravel/MySQL + Laravel/Bootstrap). Projets variés : Flutter/Supabase/IA, React/Tailwind, ASP.NET MVC, Spring Boot/MySQL. Profil très complet pour une Licence. Adaptée pour S3 (React/Tailwind), S4 (React+Laravel+Node), S2 (Flutter). S1 partiellement (Spring Boot présent, MySQL, REST).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_YASMINE_BOUAZIZ.pdf",
+      "nom": "Yasmine Bouaziz",
+      "cycle": "Ingénieur 2 (ENIS)",
+      "commentaire_rh": "2ème année cycle ingénieur ENIS. Projets : React/Node/MongoDB (e-commerce), Python/TensorFlow (recommandation ML 87%), Java/Spring Boot/MySQL (hôpital). Stage backend été 2025. Certifications Python + Deep Learning en cours. Profil très solide multi-domaines. Excellente pour S4 (React/Node/MongoDB/JWT) et S5 (ML/TensorFlow). S1 adapté (Spring Boot, Java, MySQL, REST API). S6 partiellement (Docker, Git, CI-CD).",
+      "S1_BACKEND": "ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_EYA_MOALLA.pdf",
+      "nom": "Eya Moalla",
+      "cycle": "Licence 2 (ENETCOM)",
+      "commentaire_rh": "2ème année Licence ENETCOM. Deux stages (développeur web Laravel/MySQL + maintenance réseau/Linux). Projets riches : Java/JavaFX, PHP/Bootstrap, Flutter/Firebase, Python/SQLite. Profil généraliste polyvalent. S2 adapté (Flutter/Firebase avec stage + projet). S3 partiellement (HTML/CSS/JS/Bootstrap). S7 partiellement (stage maintenance réseau/Linux). S1 insuffisant (pas de Spring Boot).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Kenza.pdf",
+      "nom": "Kenza Jmal",
+      "cycle": "Licence 2 (ISET)",
+      "commentaire_rh": "2ème année ISET. Compétences très basiques : Python/Java/C, HTML/CSS/JS/PHP, SQL, réseaux. Aucun stage. Projets simples (bibliothèque Java, e-commerce PHP, réseau local). Niveau insuffisant pour tous les sujets avancés. S3 et S7 restent partiellement accessibles comme initiation.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Emna_br.pdf",
+      "nom": "Emna Ben Romdhane",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. Stage Symfony. Projets : Spring Boot (backend complet), ASP.NET MVC, Angular, React, Flutter, Unity. Certification AWS. Membre IEEE. Profil très complet pour une Licence. Adaptée pour S3 (Angular/React), S4 (React+Spring+Laravel), S2 (Flutter). S1 partiellement (Spring Boot présent mais pas Java 17/JPA explicite). Bonne candidate globale.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "1776620108789_CV_HANA.pdf",
+      "nom": "Hana Sellami (v1 PFE)",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. Stage PFE ASM : Angular/Flask/Python (résumé automatique T5 IA). Projets : HTML/CSS (librairie, animalerie), CRUD .NET, Unity. IA appliquée (T5, NLP). Bon pour S3 (Angular prouvé en stage). S5 partiellement (Flask/Python/IA mais pas de ML pipeline complet). S2 non démontré (Flutter non mentionné en stage). S1 non adapté (Java/Spring Boot absent).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "chaima_hamdaoui.pdf",
+      "nom": "Chaima Hamdaoui",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. Stage PFE IIT : Laravel/Angular (gestion congés, API REST, dashboards, MySQL). Projets : ASP.NET MVC (pharmacie), Spring Boot microservices (centre médical), Flutter. Power BI, Talend, Hadoop, AWS. Profil fullstack très complet. Excellente pour S3 (Angular prouvé) et S4. S1 partiellement (Spring Boot + MySQL mais pas Java 17 explicite). S2 partiellement (Flutter projet). S6 partiellement (Docker, AWS, Hadoop).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "cvEmnaGassara.pdf",
+      "nom": "Emna Gassara",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année SEIS IIT. Stage ASM (API REST gestion restaurant). Projets : HTML/CSS (librairie), ASP.NET MVC, Unity, Flutter (banking app). AWS en cours. CV assez vague sur les détails techniques. Peu de profondeur démontrée. S2 partiellement (Flutter mentionné). S3 partiellement (HTML/CSS basique). Les autres sujets insuffisants.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "LAJMI_Zouhour__3_.pdf",
+      "nom": "Lajmi Zouhour",
+      "cycle": "Licence 2 (IIT)",
+      "commentaire_rh": "2ème année Licence IIT. Stage en communication (pas informatique). Projets très basiques : HTML/CSS (librairie), base de données réseau social, .NET (site web). Compétences limitées. S3 partiellement possible comme découverte front-end débutant. Tous les autres sujets hors portée.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Professional_Modern_CV_Resume.pdf",
+      "nom": "Farah Bennacer",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. Stage ASM (Laravel/Angular, gestion événements). Projets : Laravel/Angular (événements), .NET (pharmacie), HTML/CSS/JS (pâtisserie), Spring Boot (hôtel). S3 adapté (Angular confirmé en stage). S4 partiellement (Laravel+Angular+Spring). S1 partiellement (Spring Boot présent). S2 non démontré (Flutter absent).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "yesmine_cherif.pdf",
+      "nom": "Yesmine Cherif",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. 4 stages : Python (Primatec), Laravel/Angular/Node (ASM x2), Laravel/Angular/IA/PowerBI/Keycloak (ASM PFE en cours). Certifications Scrum, IBM Project Management. Profil fullstack très expérimenté pour une Licence. Excellente pour S3 (Angular prouvé 3x). S4 adaptée (Laravel+Angular+Node). S1 partiellement (Spring Boot présent dans projets microservices). IA dans PFE → S5 partiellement.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_ELYES.pdf",
+      "nom": "Elyes Bouchaala",
+      "cycle": "Ingénieur 1 (ENET'Com)",
+      "commentaire_rh": "1ère année cycle ingénieur ENET'Com. Stage full-stack (React/Tailwind/Laravel/MySQL/Agile). Projets : React/Node/MongoDB, PHP/Laravel, Angular, chat Socket.io. Membre IEEE, hackathons. Excellent pour un ingénieur 1ère année. S3 adapté (React+Angular prouvés). S4 partiellement (React+Laravel+Node+MongoDB). S1 partiellement (Laravel présent, Spring Boot absent). S2 non adapté (pas de Flutter/mobile).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Informatique_Étudiant_-_ISET_Sfax.pdf",
+      "nom": "Baya Feki",
+      "cycle": "Licence 2 (ISET)",
+      "commentaire_rh": "2ème année Licence ISET. Aucun stage. Projets académiques simples : Java/MySQL (bibliothèque), HTML/CSS/PHP (e-commerce), Python/Sockets (chat réseau). Niveau correct pour 2ème année. S7 partiellement (projet réseau TCP, Linux mentionné). S3 partiellement (HTML/CSS/JS/PHP). Pas de framework avancé.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Ingénieur_Informatique__2_.pdf",
+      "nom": "Ines Ben Youssef",
+      "cycle": "Ingénieur 2 (ISIMS)",
+      "commentaire_rh": "2ème année cycle ingénieur ISIMS. Projets académiques : Java/MySQL (bibliothèque), HTML/CSS/PHP/MySQL (e-commerce), Python/Sockets (chat réseau). Profil classique sans framework moderne confirmé. S3 partiellement (HTML/CSS/JS). S7 partiellement (Python Sockets/TCP). Pas assez de profondeur pour S1/S4/S6.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Étudiant_Ingénieur_Informatique__4_.pdf",
+      "nom": "Amina Bouazizi",
+      "cycle": "Licence 2 (Faculté des Sciences Sfax)",
+      "commentaire_rh": "2ème année Licence. Projets très basiques : HTML/CSS/JS (site vitrine), Python console (contacts), SQL/MySQL (BDD étudiants). Aucun stage. Niveau débutant. S3 partiellement possible comme initiation front-end. Tous les autres sujets hors portée.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Ahmed_benAli.pdf",
+      "nom": "Ahmed Ben Ali",
+      "cycle": "Master 1 Big Data & IA (ENIS)",
+      "commentaire_rh": "Master Big Data & IA ENIS, ex-Licence FSS Mention Bien. Stage Data Analyst (Python/Pandas/Power BI/ETL Talend/ML churn 89%). Projet de recherche REGIM (Spark, clustering). Projets : Spark/Hive/Kafka, Power BI/SQL, TensorFlow/SMOTE, Django. Certifications IBM, Google, Stanford ML, Power BI, Big Data Coursera. Profil exceptionnel pour S5. S6 partiellement (Docker, Linux présents). S1/S4 non dans sa spécialité principale.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Amin.pdf",
+      "nom": "Amin Ben Salah",
+      "cycle": "Ingénieur 3 Cybersécurité (ESPRIT)",
+      "commentaire_rh": "Fin de cycle ingénieur spécialité Cybersécurité. 2 stages : admin réseau/sécurité (Nagios/Zabbix/Linux) + cybersécurité (pentesting/IDS/pare-feu/Python/Bash). Certifications Cisco Intro, Google Cybersecurity. Profil idéal pour S7 (TCP/IP, Firewalls, IDS/IPS, Linux, Python/Bash confirmés). S6 partiellement (Linux, Docker, Git, Bash). Les autres sujets hors profil sécurité.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV_Eya_Fersi.pdf",
+      "nom": "Eya Fersi",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. 2 stages (Laravel/MySQL + Laravel/Bootstrap). Projets variés : Flutter/Supabase/IA, React/Tailwind, ASP.NET MVC, Spring Boot/MySQL. Power BI, Talend, AWS, Hadoop. Profil très similaire à Nour Feki (même stack). Très complet pour une Licence. S3 adapté (React/Tailwind), S4 (React+Laravel+Spring), S2 (Flutter). S1 partiellement (Spring Boot).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "cv__eya.pdf",
+      "nom": "Eya Ghribi",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. Stage Tunisie Télécom (application GPON en .NET). Projets : HTML/CSS (bibliothèque, cosmétiques), .NET (GPON, pharmacie), site emplois HTML/CSS/JS. Formation Flutter et Cloud en cours. Profil orienté .NET avec touche télécom. S3 partiellement (HTML/CSS/JS). S7 partiellement (stage Tunisie Télécom, notions réseau). Flutter en cours → S2 peu adapté actuellement. S1 insuffisant (Spring Boot/Java absent).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    },
+
+    {
+      "cv_filename": "anascv.pdf",
+      "nom": "Anas Besbes",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année Licence GLSI IIT. 2 stages : WordPress (e-commerce) + Laravel (dashboard admin). Projets : HTML/CSS/JS (e-commerce), Unity/C# (jeu), Spring Boot/SQL (gestion). S3 partiellement (React présent dans stack, pas confirmé en stage). S4 partiellement (React+Laravel+Spring Boot). S1 partiellement (Spring Boot projet). S2 (Flutter mentionné dans stack). Profil correct mais moins complet que certains concurrents.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Bassem-MOALLA_newest.pdf",
+      "nom": "Bassem Moalla",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année Licence SEIS IIT. Stage TECHVANT : Spring Boot/React/MySQL (gestion médicale). Projets : HTML/CSS/JS/PHP, .NET (cinéma), Spring Boot (coffee shop), Python/FastAPI/ML (énergie IEEE 3ème place). Vice-Chair IEEE Computer Society. Profil bien équilibré. S1 partiellement (Spring Boot + MySQL en stage). S4 partiellement (React+Spring+MySQL). S5 partiellement (ML/Python/FastAPI, projet IEEE primé). S7 partiellement (Linux mentionné).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "CV__1___1_.pdf",
+      "nom": "Mohamed Zouari",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année GLSI IIT. Stage ASM (Laravel/Angular, timesheet). Projets : Fine-Tuning LLMs (LLaMA/Qwen, LoRA, vLLM, Hugging Face), ML Python (Scikit-learn, CRISP-DM), HTML/CSS/JS (CRUD), Spring Boot, Angular. Certification NVIDIA Deep Learning. Profil IA/LLM remarquable pour une Licence. Excellent pour S5 (ML bien démontré, LLMs, NVIDIA cert). S3 partiellement (Angular confirmé en stage). S4 partiellement (Angular+Laravel+Spring). S1 partiellement (Spring Boot présent).",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "cv_Ahmed_Feki__1_.pdf",
+      "nom": "Ahmed Feki",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année Licence GLSI IIT. Stage PolySoft (.NET WPF/MVVM). Projets : .NET MVC (complexe médical), Flutter (météo/API), Spring Boot microservices. Clubs IEEE/ACM/Robotique. Profil orienté .NET/mobile. S2 partiellement (Flutter dans projets). S4 partiellement (React+Spring Boot+Flutter). S1 partiellement (Spring Boot microservices mais Java/Maven/JPA pas détaillés). .NET = profil plutôt Microsoft stack.",
+      "S1_BACKEND": "PARTIELLEMENT_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Dhia_Triki_CV_EN.pdf",
+      "nom": "Dhia Triki (EN)",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "Version anglaise du même candidat. Stage MTD Group (React/PHP, dashboard interactif, optimisation SQL). Projets : Angular/PHP (e-commerce), ASP.NET/C#/SQL Server (location voitures), React/PHP/SQL Server (orientation bac). AWS, Docker, PowerBI, Talend. S3 adapté (Angular + React confirmés). S4 partiellement (React+PHP, pas Node.js). S6 partiellement (Docker, AWS). S1 non adapté (Spring Boot/Java absent).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Dhia_Triki_CV.pdf",
+      "nom": "Dhia Triki (FR)",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "Même candidat, version française. Identique à l'évaluation EN. Profil fullstack front-heavy (Angular, React, Flutter). Stage MTD Group confirmé. S3 adapté. S4 partiellement. S6 partiellement (Docker/AWS). S2 partiellement (Flutter dans stack mais pas de stage mobile). S1 non adapté (pas Java/Spring Boot).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "ADAPTE",
+      "S4_FULLSTACK": "PARTIELLEMENT_ADAPTE",
+      "S5_DATA_IA": "PARTIELLEMENT_ADAPTE",
+      "S6_DEVOPS": "PARTIELLEMENT_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Mahdi-Boujelben_CV_.pdf",
+      "nom": "Boujelben Mahdi",
+      "cycle": "Licence 3 (IIT)",
+      "commentaire_rh": "3ème année Licence GLSI IIT. Stage web/maintenance WordPress/HTML/CSS/PHP (BEST SANTE). Projets : HTML/CSS/JS (location voitures), ASP.NET Core MVC (FastOrder restaurant), Flutter (Return Track). S3 partiellement (HTML/CSS/JS, pas Angular/TypeScript). S2 partiellement (Flutter projet). S4 insuffisant (React absent). S1 non adapté (Spring Boot/Java absent).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PARTIELLEMENT_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Maryem_Fakhfekh__3_.pdf",
+      "nom": "Fakhfekh Maryem",
+      "cycle": "Licence 2 (IIT)",
+      "commentaire_rh": "2ème année Licence GLSI IIT. Aucun stage. Projets très simples : HTML/CSS (librairie, bougerie), CRUD .NET, Unity. Membre IEEE. Profil très débutant. S3 partiellement comme initiation (HTML/CSS/JS présents). Tous les autres sujets hors portée. À re-évaluer en 3ème année.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Rihab_Ghallabi_20241115_202753_0000.pdf",
+      "nom": "Rihab Ghallabi (ancienne version - 2ème année)",
+      "cycle": "Licence 2 (IIT)",
+      "commentaire_rh": "Version ancienne CV de Rihab Ghallabi. 2ème année GLSI, compétences basiques (JavaScript, Java, C). Expériences : financière NACU + comptable Lacentrale (non informatique). Version nettement plus faible que la version actuelle. Profil trop junior et non technique. Tous les sujets sont peu adaptés sur cette version.",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PEU_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PEU_ADAPTE"
+    },
+
+    {
+      "cv_filename": "Sellami_Hana__2_.pdf",
+      "nom": "Sellami Hana (v2 - stage d'été 2ème année)",
+      "cycle": "Licence 2 (IIT)",
+      "commentaire_rh": "Version 2ème année, recherche de stage d'été. Compétences : Python/Java/C/C#, HTML/CSS/JS/PHP, SQL/Oracle, Linux. Projets simples : librairie HTML/CSS, animalerie HTML/CSS/JS, CRUD .NET, Unity. Même personne que la v1 PFE mais à un stade antérieur. Niveau nettement plus bas. S3 partiellement (HTML/CSS/JS). S7 partiellement (Linux + réseau mentionnés).",
+      "S1_BACKEND": "PEU_ADAPTE",
+      "S2_MOBILE": "PEU_ADAPTE",
+      "S3_FRONTEND": "PARTIELLEMENT_ADAPTE",
+      "S4_FULLSTACK": "PEU_ADAPTE",
+      "S5_DATA_IA": "PEU_ADAPTE",
+      "S6_DEVOPS": "PEU_ADAPTE",
+      "S7_RESEAUX": "PARTIELLEMENT_ADAPTE"
+    }
+
+  ]
+}

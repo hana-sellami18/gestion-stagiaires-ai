@@ -1,0 +1,170 @@
+{
+  "version": "1.0",
+  "language": "multilingual",
+ "transversal": {
+    "languages_human": {
+      "skills": ["Français", "Anglais", "Arabe", "Espagnol", "Allemand", "Italien"],
+      "aliases": {
+        "english": "Anglais",
+        "french": "Français",
+        "arabic": "Arabe",
+        "spanish": "Espagnol",
+        "german": "Allemand",
+        "italian": "Italien",
+        "francais": "Français",
+        "anglais ": "Anglais",
+        "arabe ": "Arabe",
+        "francaise": "Français",
+        "Français": "Français",
+        "Francais": "Français"
+      }
+
+ },
+    "soft_skills": {
+      "skills": [
+        "leadership", "communication", "travail en équipe", "teamwork",
+        "résolution de problèmes", "problem solving", "autonomie",
+        "créativité", "esprit d'analyse", "rigueur", "adaptabilité",
+        "gestion du temps", "time management", "esprit critique"
+      ],
+      "aliases": {}
+    },
+    "office": {
+      "skills": ["Excel", "Word", "PowerPoint", "Outlook", "Microsoft 365", "LibreOffice"],
+      "aliases": {"MS Office": "Microsoft 365"}
+    }
+  },
+  "informatique": {
+    "programming_languages": {
+      "skills": [
+        "Python", "Java", "JavaScript", "TypeScript", "C", "C++", "C#",
+        "Go", "Rust", "Ruby", "PHP", "Swift", "Kotlin", "Scala", "R",
+        "Dart", "Perl", "Haskell", "Lua", "MATLAB", "Bash", "Shell"
+      ],
+      "aliases": {
+        "JS": "JavaScript",
+        "TS": "TypeScript",
+        "Py": "Python",
+        "C Sharp": "C#",
+        "Cpp": "C++"
+      }
+    },
+    "web_frontend": {
+      "skills": [
+        "React", "React.js", "Angular", "Vue.js", "Vue", "Svelte", "Next.js",
+        "Nuxt.js", "HTML", "HTML5", "CSS", "CSS3", "Sass", "SCSS", "Less",
+        "Tailwind", "Tailwind CSS", "Bootstrap", "Material UI", "MUI",
+        "jQuery", "Webpack", "Vite", "Redux", "Zustand"
+      ],
+      "aliases": {
+        "ReactJS": "React",
+        "VueJS": "Vue.js",
+        "NextJS": "Next.js",
+        "NuxtJS": "Nuxt.js"
+      }
+    },
+    "web_backend": {
+      "skills": [
+        "Node.js", "Express", "Express.js", "NestJS", "Spring", "Spring Boot",
+        "Django", "Flask", "FastAPI", "Laravel", "Symfony", "Ruby on Rails",
+        "ASP.NET", ".NET", "Hibernate", "JPA", "REST", "REST API", "GraphQL",
+        "WebSocket", "gRPC", "Microservices"
+      ],
+"aliases": {
+        "NodeJS": "Node.js",
+        "ExpressJS": "Express",
+        "RoR": "Ruby on Rails",
+        "RESTful": "REST",
+        "REST APIs": "REST API",
+        "APIREST": "REST API",
+        "API REST": "REST API",
+        "APIs REST": "REST API",
+        "RESTful API": "REST API",
+        "RESTful APIs": "REST API",
+        "Web API": "REST API",
+        "Spring-Boot": "Spring Boot",
+        "SpringBoot": "Spring Boot"
+      }
+    },
+    "mobile": {
+      "skills": [
+        "Flutter", "React Native", "Android", "iOS", "Kotlin",
+        "Swift", "Xamarin", "Ionic", "Jetpack Compose", "SwiftUI"
+      ],
+      "aliases": {}
+    },
+    "data_ia": {
+      "skills": [
+        "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch",
+        "Keras", "scikit-learn", "Pandas", "NumPy", "SciPy", "Matplotlib",
+        "Seaborn", "Plotly", "Jupyter", "OpenCV", "NLTK", "spaCy",
+        "Hugging Face", "LangChain", "OpenAI", "LLM", "NLP", "Computer Vision",
+        "Data Science", "Data Analysis", "Big Data", "Spark", "Hadoop",
+        "Tableau", "Power BI", "ETL"
+      ],
+      "aliases": {
+        "ML": "Machine Learning",
+        "DL": "Deep Learning",
+        "IA": "Machine Learning",
+        "AI": "Machine Learning",
+        "sklearn": "scikit-learn"
+      }
+    },
+    "devops_cloud": {
+      "skills": [
+        "Docker", "Kubernetes", "Jenkins", "GitLab CI", "GitHub Actions",
+        "Travis CI", "CircleCI", "Ansible", "Terraform", "Vagrant",
+        "AWS", "Azure", "Google Cloud", "GCP", "Heroku", "DigitalOcean",
+        "Nginx", "Apache", "Linux", "Ubuntu", "CentOS", "CI/CD"
+      ],
+      "aliases": {
+        "K8s": "Kubernetes",
+        "GH Actions": "GitHub Actions",
+        "AWS Cloud": "AWS"
+      }
+    },
+    "databases": {
+      "skills": [
+        "MySQL", "PostgreSQL", "MongoDB", "Redis", "SQLite", "Oracle",
+        "SQL Server", "MariaDB", "Cassandra", "Elasticsearch", "Neo4j",
+        "DynamoDB", "Firebase", "Firestore", "SQL", "NoSQL", "PL/SQL"
+      ],
+      "aliases": {
+        "Postgres": "PostgreSQL",
+        "MS SQL": "SQL Server",
+        "MSSQL": "SQL Server"
+      }
+    },
+    "tools_versioning": {
+      "skills": [
+        "Git", "GitHub", "GitLab", "Bitbucket", "SVN", "Jira", "Confluence",
+        "Trello", "Notion", "Slack", "Postman", "Insomnia", "Swagger",
+        "OpenAPI", "Maven", "Gradle", "npm", "yarn", "pnpm", "pip",
+        "VS Code", "IntelliJ", "PyCharm", "Eclipse", "Android Studio"
+      ],
+      "aliases": {
+        "VSCode": "VS Code",
+        "Github": "GitHub"
+      }
+    },
+    "methodologies": {
+      "skills": [
+        "Agile", "Scrum", "Kanban", "TDD", "BDD", "DDD", "Clean Code",
+        "Design Patterns", "MVC", "MVVM", "SOLID", "UML", "Merise"
+      ],
+      "aliases": {
+        "Test Driven Development": "TDD",
+        "Behavior Driven Development": "BDD"
+      }
+    },
+    "security": {
+      "skills": [
+        "OAuth", "OAuth2", "JWT", "OpenID", "SSO", "HTTPS", "TLS", "SSL",
+        "Cryptographie", "Cybersécurité", "Pentesting", "OWASP"
+      ],
+      "aliases": {
+        "JSON Web Token": "JWT"
+      }
+    }
+  }
+}
