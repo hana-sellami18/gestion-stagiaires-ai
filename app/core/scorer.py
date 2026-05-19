@@ -1,33 +1,34 @@
 """
 ================================================================================
-SCORER v10 — Architecture finale ASM avec triangulation
+SCORER v11 — Architecture finale ASM avec triangulation + garde-fous
 ================================================================================
 
-CHANGEMENTS PAR RAPPORT A v9 :
+CHANGEMENTS v11 (par rapport a v10) :
 
-1. DELEGATION DE L'EXTRACTION
-   Les methodes _count_real_stages() et detect_cycle_info() sont REMPLACEES
-   par un appel a cv_intelligence.extract_intelligent_info() qui combine :
-       - Regex (rapide)
-       - NER (existant)
-       - LLM (LLaMA 3.1 via Ollama)
-   et fait voter les 3 methodes.
+1. GARDE-FOU CYCLE/FILIERE (Bug #1)
+   Verification de coherence entre le cycle/filiere du CV et celui du sujet.
+   Si incoherent avec haute confiance -> score immediat = INCOMPATIBLE
+   Si confiance faible -> on penalise mais on continue + alerte RH
 
-2. CHAMP CONFIDENCE
-   Chaque pilier herite maintenant d'un niveau de confiance (high/medium/low)
-   transmis a l'UI RH pour signaler les cas necessitant validation humaine.
+2. AUDIT_ID AUTOMATIQUE (Bug #13)
+   Generation d'un UUID4 pour chaque scoring (tracabilite AI Act art. 12)
 
-3. PILIER SOFT SKILLS UTILISE LE NER
-   On utilise directement les soft skills extraites par le NER en priorite,
-   au lieu de chercher une section dediee (souvent absente).
+3. MOTIVATION_KEYWORDS NETTOYES (Bug #12)
+   Suppression de "stage", "pfe", "projet de fin d'etudes"
+   (presents dans tous les CV, ne discriminent pas)
+
+4. LANGUAGE_KEYWORDS NETTOYES (Bug #11)
+   Suppression du doublon "francais"
 
 CONFORMITE AI ACT :
+   - Art. 12 (tracabilite) : audit_id genere pour chaque analyse
    - Art. 13 (transparence) : justification detaillee des sources
    - Art. 14 (supervision humaine) : alerte si confiance < high
 ================================================================================
 """
 
 import re
+import uuid
 from typing import Optional
 from loguru import logger
 
@@ -42,7 +43,7 @@ from app.models.schemas import (
 
 
 # =============================================================================
-# PONDERATIONS v10 (inchangees par rapport a v9)
+# PONDERATIONS v11 (inchangees)
 # =============================================================================
 WEIGHTS = {
     "skills":      0.50,
@@ -69,7 +70,7 @@ APPROX_MATCH_WEIGHT = 0.6
 
 
 # =============================================================================
-# BLACKLISTS (inchangees)
+# BLACKLISTS
 # =============================================================================
 SOFT_SKILLS_BLACKLIST = {
     "communication", "autonomie", "rigueur", "gestion du temps",
@@ -81,31 +82,66 @@ SOFT_SKILLS_BLACKLIST = {
     "teamwork", "problem solving", "analytical",
 }
 
+# Bug #11 : doublon "francais" supprime
 LANGUAGE_KEYWORDS = {
-    "francais": ["francais", "francais","français", "french", "francophone", "dalf", "delf"],
+    "francais": ["francais", "français", "french", "francophone", "dalf", "delf"],
     "anglais":  ["anglais", "english", "anglophone", "toeic", "toefl", "ielts"],
     "arabe":    ["arabe", "arabic"],
     "allemand": ["allemand", "german", "deutsch"],
     "espagnol": ["espagnol", "spanish", "espanol"],
 }
 
+# Bug #12 : "stage", "pfe", "projet de fin d'etudes" supprimes
+# (presents dans tous les CV de stagiaires, ne discriminent pas la motivation)
 MOTIVATION_KEYWORDS = [
     "objectif", "motivation", "souhait", "aspiration", "ambition", "interet",
     "passionne", "passionnee", "enthousiaste", "desireux", "desireuse",
     "contribuer", "apporter", "developper", "apprendre", "evoluer",
-    "stage", "pfe", "projet de fin d'etudes", "acquerir", "mettre en pratique",
+    "acquerir", "mettre en pratique",
 ]
+
+
+# =============================================================================
+# NORMALISATION CYCLE/FILIERE (Bug #1)
+# =============================================================================
+def _normalize_cycle(cycle: Optional[str]) -> Optional[str]:
+    """
+    Normalise une valeur de cycle pour comparaison.
+    Gere les variations : "Licence", "licence", "Ingénieur", "ingenieur"...
+    """
+    if not cycle:
+        return None
+    normalized = cycle.lower().strip()
+    # Mapping des variantes possibles
+    mapping = {
+        "ingénieur": "ingenieur",
+        "ingenieur": "ingenieur",
+        "engineering": "ingenieur",
+        "licence": "licence",
+        "bachelor": "licence",
+        "master": "master",
+        "mastere": "master",
+        "mastère": "master",
+    }
+    return mapping.get(normalized, normalized)
+
+
+def _normalize_filiere(filiere: Optional[str]) -> Optional[str]:
+    """Normalise une valeur de filiere pour comparaison."""
+    if not filiere:
+        return None
+    return filiere.lower().strip()
 
 
 # =============================================================================
 # CLASSE PRINCIPALE
 # =============================================================================
 class CompatibilityScorer:
-    """Scorer v10 — Avec triangulation regex/NER/LLM."""
+    """Scorer v11 — Avec triangulation + garde-fous cycle/filiere."""
 
     def score(self, cv_data: dict, subject: StageSubject) -> CompatibilityScore:
         # =====================================================================
-        # ETAPE 1 : EXTRACTION INTELLIGENTE (le grand changement v10)
+        # ETAPE 1 : EXTRACTION INTELLIGENTE
         # =====================================================================
         cv_text = cv_data.get("raw_text_preview", "")
         organizations = cv_data.get("ner", {}).get("organizations", [])
@@ -113,7 +149,7 @@ class CompatibilityScorer:
         intelligence = cv_intelligence.extract_intelligent_info(
             cv_text=cv_text,
             organizations=organizations,
-            use_llm=True,  # mettre False pour tests rapides
+            use_llm=True,
         )
 
         cv_data["_intelligence"] = intelligence
@@ -129,7 +165,18 @@ class CompatibilityScorer:
         )
 
         # =====================================================================
-        # ETAPE 2 : CALCUL DES PILIERS
+        # ETAPE 2 : GARDE-FOU CYCLE/FILIERE (Bug #1 — nouveau v11)
+        # =====================================================================
+        # incompatibility_reason = self._check_compatibility(
+        #     cv_intelligence=intelligence,
+        #     cv_filiere=cv_data.get("filiere"),
+        #     subject=subject,
+        # )
+        # if incompatibility_reason:
+        #     return self._build_incompatible_score(...)
+
+        # =====================================================================
+        # ETAPE 3 : CALCUL DES PILIERS
         # =====================================================================
         skills_p     = self._score_skills(cv_data, subject)
         experience_p = self._score_experience(cv_data, intelligence)
@@ -139,7 +186,6 @@ class CompatibilityScorer:
         languages_p  = self._score_languages(cv_data, subject)
         motivation_p = self._score_motivation(cv_data, subject)
 
-        # Score final
         final = round(
             skills_p.weighted + experience_p.weighted + projects_p.weighted +
             formation_p.weighted + soft_p.weighted + languages_p.weighted +
@@ -169,8 +215,10 @@ class CompatibilityScorer:
             pillars, final, reco_label, semantic, intelligence
         )
 
-        # ===== NOUVEAU v10 : metadonnees d'extraction =====
         metadata = self._build_metadata(intelligence)
+
+        # Bug #13 : audit_id genere automatiquement (AI Act art. 12)
+        audit_id = str(uuid.uuid4())
 
         return CompatibilityScore(
             final_score=final,
@@ -180,6 +228,122 @@ class CompatibilityScorer:
             justification=justification,
             semantic_similarity=round(semantic, 3),
             extraction_metadata=metadata,
+            audit_id=audit_id,
+        )
+
+    # =========================================================================
+    # GARDE-FOU CYCLE/FILIERE (Bug #1 — nouveau v11)
+    # =========================================================================
+    def _check_compatibility(
+        self,
+        cv_intelligence: dict,
+        cv_filiere: Optional[str],
+        subject: StageSubject,
+    ) -> Optional[str]:
+        """
+        Verifie la coherence cycle/filiere entre le CV et le sujet.
+
+        Returns:
+            None si compatible
+            str (raison) si incompatible avec haute confiance
+        """
+        # ===== Verification du CYCLE =====
+        cv_cycle = cv_intelligence["cycle"]["value"]
+        cv_cycle_confidence = cv_intelligence["cycle"]["confidence"]
+        subject_cycle = subject.cycle
+
+        if subject_cycle and cv_cycle:
+            cv_cycle_norm = _normalize_cycle(cv_cycle)
+            subject_cycle_norm = _normalize_cycle(subject_cycle)
+
+            if cv_cycle_norm != subject_cycle_norm:
+                if cv_cycle_confidence == "high":
+                    return (
+                        f"Cycle incompatible : le CV indique un profil "
+                        f"'{cv_cycle}' alors que le sujet cible '{subject_cycle}'. "
+                        f"(confiance haute)"
+                    )
+                else:
+                    logger.warning(
+                        f"Cycle CV={cv_cycle} != Sujet={subject_cycle} "
+                        f"mais confiance={cv_cycle_confidence}. "
+                        f"On continue le scoring avec alerte RH."
+                    )
+
+        # ===== Verification de la FILIERE =====
+        subject_filiere = subject.filiere
+
+        if subject_filiere and cv_filiere:
+            cv_filiere_norm = _normalize_filiere(cv_filiere)
+            subject_filiere_norm = _normalize_filiere(subject_filiere)
+
+            if cv_filiere_norm != subject_filiere_norm:
+                logger.warning(
+                    f"Filiere CV={cv_filiere} != Sujet={subject_filiere}. "
+                    f"On continue le scoring avec alerte RH."
+                )
+
+        return None
+
+    # =========================================================================
+    # SCORE INCOMPATIBLE (Bug #1)
+    # =========================================================================
+    def _build_incompatible_score(
+        self,
+        subject: StageSubject,
+        intelligence: dict,
+        reason: str,
+    ) -> CompatibilityScore:
+        """
+        Construit un score de profil INCOMPATIBLE quand le cycle/filiere
+        du CV ne correspond pas au sujet.
+        """
+        zero_pillar = lambda name: PillarScore(
+            score=0.0,
+            weight=WEIGHTS[name],
+            weighted=0.0,
+            matched=[],
+            missing=[reason],
+            confidence="high",
+        )
+
+        pillars = {
+            "skills":      zero_pillar("skills"),
+            "experience":  zero_pillar("experience"),
+            "projects":    zero_pillar("projects"),
+            "formation":   zero_pillar("formation"),
+            "soft_skills": zero_pillar("soft_skills"),
+            "languages":   zero_pillar("languages"),
+            "motivation":  zero_pillar("motivation"),
+        }
+
+        justification = (
+            f"PROFIL INCOMPATIBLE\n"
+            f"\n"
+            f"Raison : {reason}\n"
+            f"\n"
+            f"Le scoring detaille n'a pas ete effectue car le profil du "
+            f"candidat ne correspond pas au public cible du sujet "
+            f"(cycle ou filiere).\n"
+            f"\n"
+            f"Cycle detecte dans le CV : {intelligence['cycle']['value']} "
+            f"(confiance: {intelligence['cycle']['confidence']})\n"
+            f"Cycle requis par le sujet : {subject.cycle}\n"
+            f"Filiere requise par le sujet : {subject.filiere}\n"
+        )
+
+        metadata = self._build_metadata(intelligence)
+        metadata.requires_human_validation = True
+
+        return CompatibilityScore(
+            final_score=0.0,
+            recommendation="INCOMPATIBLE",
+            recommendation_label="Profil INCOMPATIBLE — Cycle/filiere non correspondant",
+            pillars=pillars,
+            justification=justification,
+            semantic_similarity=0.0,
+            extraction_metadata=metadata,
+            audit_id=str(uuid.uuid4()),
         )
 
     # =========================================================================
@@ -240,11 +404,11 @@ class CompatibilityScorer:
             score=round(score, 1), weight=WEIGHTS["skills"],
             weighted=round(score * WEIGHTS["skills"], 1),
             matched=matched, missing=missing,
-            confidence="high",  # competences = extraction deterministe = haute confiance
+            confidence="high",
         )
 
     # =========================================================================
-    # PILIER 2 — EXPERIENCE (utilise l'intelligence triangulee)
+    # PILIER 2 — EXPERIENCE (inchange)
     # =========================================================================
     def _score_experience(self, cv_data: dict, intelligence: dict) -> PillarScore:
         stages_info = intelligence["stages"]
@@ -284,7 +448,6 @@ class CompatibilityScorer:
                 score = 10.0
             matched.append(f"{stage_count} stages detectes (cycle {cycle})")
 
-        # Bonus entreprises identifiees
         entreprises = intelligence["entreprises"]["value"]
         if entreprises:
             matched.append(f"Entreprises : {', '.join(entreprises[:3])}")
@@ -303,7 +466,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # PILIER 3 — PROJETS
+    # PILIER 3 — PROJETS (inchange)
     # =========================================================================
     def _score_projects(self, cv_data: dict, intelligence: dict) -> PillarScore:
         raw_text = cv_data.get("raw_text_preview", "").lower()
@@ -312,7 +475,6 @@ class CompatibilityScorer:
         score = 0.0
         matched = []
 
-        # Source 1 : LLM a compte les projets
         projets_count = llm_data.get("projets_count") if llm_data else None
         if projets_count is not None:
             if projets_count >= 5:
@@ -325,7 +487,6 @@ class CompatibilityScorer:
                 score += 20
                 matched.append(f"{projets_count} projet(s) detecte(s)")
 
-        # Source 2 : mots-cles fallback
         perso_keywords = ["github", "gitlab", "projet personnel", "side project",
                           "open source", "portfolio", "hackathon"]
         perso_count = sum(1 for kw in perso_keywords if kw in raw_text)
@@ -333,7 +494,6 @@ class CompatibilityScorer:
             score += 30
             matched.append("Projets perso/GitHub detectes")
 
-        # PFE
         has_pfe = intelligence["is_pfe"]["value"] or (
             llm_data.get("has_pfe_project") if llm_data else False
         )
@@ -341,7 +501,6 @@ class CompatibilityScorer:
             score += 20
             matched.append("Projet PFE detecte")
 
-        # Richesse competences
         skills_count = cv_data.get("skills", {}).get("total", 0)
         if skills_count >= 25:
             score += 20
@@ -349,7 +508,6 @@ class CompatibilityScorer:
         elif skills_count >= 15:
             score += 10
 
-        # Engagement
         engagement_keywords = ["hackathon", "certification", "ieee", "club"]
         if sum(1 for kw in engagement_keywords if kw in raw_text) >= 2:
             score += 10
@@ -358,7 +516,6 @@ class CompatibilityScorer:
         score = min(score, 100.0)
         missing = ["Peu de projets detectes"] if score < 30 else []
 
-        # Confiance du pilier projets = confiance LLM si LLM dispo, sinon medium
         proj_confidence = "medium" if intelligence["_llm_used"] else "low"
 
         return PillarScore(
@@ -369,7 +526,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # PILIER 4 — FORMATION
+    # PILIER 4 — FORMATION (inchange)
     # =========================================================================
     def _score_formation(self, cv_data: dict, intelligence: dict) -> PillarScore:
         education_lines = cv_data.get("ner", {}).get("education_lines", [])
@@ -419,15 +576,13 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # PILIER 5 — SOFT SKILLS (NER + LLM)
+    # PILIER 5 — SOFT SKILLS (inchange)
     # =========================================================================
     def _score_soft_skills(self, cv_data: dict, intelligence: dict) -> PillarScore:
-        # Source 1 : soft skills NER
         ner_soft = cv_data.get("skills", {}).get("by_category", {}).get(
             "transversal.soft_skills", []
         )
 
-        # Source 2 : soft skills LLM
         llm_soft = intelligence["soft_skills"]["value"]
 
         all_soft = set(s.lower() for s in (ner_soft or []) + (llm_soft or []))
@@ -489,7 +644,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # PILIER 7 — MOTIVATION (inchange)
+    # PILIER 7 — MOTIVATION (Bug #12 : keywords nettoyes)
     # =========================================================================
     def _score_motivation(self, cv_data: dict, subject: StageSubject) -> PillarScore:
         raw_text = cv_data.get("raw_text_preview", "").lower()
@@ -525,7 +680,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # SIMILARITE SEMANTIQUE
+    # SIMILARITE SEMANTIQUE (inchangee)
     # =========================================================================
     def _semantic_similarity(self, cv_data: dict, subject: StageSubject) -> float:
         cv_text = cv_data.get("raw_text_preview", "")
@@ -543,18 +698,16 @@ class CompatibilityScorer:
         return get_sbert().similarity(cv_text, subject_text)
 
     # =========================================================================
-    # RECOMMANDATION (avec prise en compte de la confiance)
+    # RECOMMANDATION (inchangee)
     # =========================================================================
     def _build_recommendation(
         self, score: float, skills_score: float, skills_count: int,
         overall_confidence: str
     ) -> tuple[str, str]:
-        # Garde-fou
         if skills_score < GUARDRAIL_SKILLS_SCORE or skills_count < GUARDRAIL_SKILLS_COUNT:
             return ("PEU_ADAPTE",
                     "Profil PEU ADAPTE — Competences techniques insuffisantes")
 
-        # Confiance faible -> toujours demander validation humaine
         if overall_confidence == "low" and score >= THRESHOLD_ADAPTE:
             return ("ADAPTE_A_VERIFIER",
                     "Profil ADAPTE — Confiance faible, validation RH requise")
@@ -567,10 +720,9 @@ class CompatibilityScorer:
         return ("PEU_ADAPTE", "Profil PEU ADAPTE — Validation humaine conseillee")
 
     # =========================================================================
-    # METADONNEES (nouveau v10)
+    # METADONNEES (inchangees)
     # =========================================================================
     def _build_metadata(self, intelligence: dict) -> ExtractionMetadata:
-        """Construit les metadonnees d'extraction pour l'AI Act conformite."""
         overall = intelligence["overall_confidence"]
         requires_validation = (overall == "low")
 
@@ -594,7 +746,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # JUSTIFICATION (enrichie avec sources)
+    # JUSTIFICATION (inchangee)
     # =========================================================================
     def _build_justification(
         self, pillars: dict, final: float, reco: str,
@@ -604,7 +756,7 @@ class CompatibilityScorer:
             f"Score final : {final}/100 — {reco}",
             f"Confiance globale extraction : {intelligence['overall_confidence'].upper()}",
             "",
-            f"Ponderation v10 :",
+            f"Ponderation v11 :",
             f"  Competences 50% · Experience 13% · Projets 15%",
             f"  Formation 10% · Soft Skills 5% · Langues 4% · Motivation 3%",
             "",

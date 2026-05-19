@@ -80,7 +80,7 @@
     ],
     "required_languages": ["Français", "Anglais"],
     "filiere": "Informatique",
-    "cycle": "Ingénieur"
+    "cycle": "licence"
   },
   "S5_DATA_IA": {
     "title": "Stage Data Science / Intelligence Artificielle",
@@ -150,6 +150,6 @@
     ],
     "required_languages": ["Français", "Anglais"],
     "filiere": "Informatique",
-    "cycle": "Licence"
+    "cycle": "ingenieur"
   }
 }

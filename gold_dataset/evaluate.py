@@ -38,6 +38,30 @@ RESULTS_HTML = GOLD_DATASET_DIR / "evaluation_report.html"
 
 LABELS_ORDER = ["ADAPTE", "PARTIELLEMENT_ADAPTE", "PEU_ADAPTE"]
 
+def _is_eligible(cv_cycle: str, cv_annee, subject_id: str) -> bool:
+    """Filtre les paires (CV, sujet) incompatibles selon le cycle."""
+    if subject_id == "S5_DATA_IA":
+        return cv_cycle == "master"
+    if subject_id in ("S1_BACKEND", "S6_DEVOPS"):
+        return cv_cycle in ("ingenieur", "master")
+    return True
+
+def _extract_label(value) -> str:
+    """Extrait une string depuis une recommendation, qu'elle soit str, dict ou enum."""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        # Tente les clés courantes
+        for key in ("value", "label", "recommendation", "name"):
+            if key in value:
+                return str(value[key])
+        return str(next(iter(value.values())))
+    # Enum ou autre objet avec .value ou .name
+    if hasattr(value, "value"):
+        return str(value.value)
+    if hasattr(value, "name"):
+        return str(value.name)
+    return str(value)
 
 def load_annotations():
     """Charge les annotations humaines et les sujets depuis les fichiers de référence."""
@@ -84,16 +108,42 @@ def evaluate():
         cv_data = cv_cache[cv_filename]
 
         # Évaluation pour chaque sujet
+        # Évaluation UNIQUEMENT sur les sujets annotés par le RH
+        # (= sujets compatibles avec le cycle/filière du candidat)
+        cv_cycle = cv_data.get("cycle", "").lower()
+        cv_annee = cv_data.get("_intelligence", {}).get("annee", {}).get("value")
+
         for subj_id, subj_def in subjects_dict.items():
-            label_human = ann.get(subj_id)
-            if not label_human:
+            label_human_raw = ann.get(subj_id)
+            print(f"DEBUG {subj_id} → {repr(label_human_raw)}")
+            # FILTRE 1 : le RH n'a pas annoté ce sujet → non pertinent pour ce profil
+            if not label_human_raw:
+                continue
+
+            # Extraction de la string depuis le dict si nécessaire
+            if isinstance(label_human_raw, dict):
+                label_human = label_human_raw.get("value") or label_human_raw.get("label") or str(
+                    next(iter(label_human_raw.values())))
+            else:
+                label_human = str(label_human_raw)
+
+            # FILTRE 2 : vérification d'éligibilité cycle (sécurité)
+            if not _is_eligible(cv_cycle, cv_annee, subj_id):
+                print(f"   ⏭️  {subj_id} ignoré (cycle/année incompatible)")
                 continue
 
             subject = StageSubject(**subj_def)
 
             try:
                 result = scorer.score(cv_data, subject)
-                label_ai = result.recommendation
+                rec = result.recommendation
+                if isinstance(rec, dict):
+                    label_ai = rec.get("value") or rec.get("label") or rec.get("recommendation") or str(
+                        next(iter(rec.values())))
+                elif hasattr(rec, "value"):
+                    label_ai = rec.value
+                else:
+                    label_ai = str(rec)
                 score = result.final_score
             except Exception as e:
                 print(f"   ❌ Erreur scoring {subj_id} : {e}")

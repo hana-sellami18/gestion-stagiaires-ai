@@ -77,7 +77,7 @@ class SkillsExtractor:
             escaped = re.escape(variant)
             # Tolère un ou plusieurs espaces dans les compétences multi-mots
             # Ex: "spring boot" matche "spring  boot" ou "spring\nboot"
-            pattern_flexible = escaped.replace(r"\ ", r"\s+")
+            pattern_flexible = escaped.replace(r"\ ", r"[\s\-]+")
             pattern = rf"(?<![a-zA-Z0-9]){pattern_flexible}(?![a-zA-Z0-9])"
             if re.search(pattern, text_normalized):
                 found.add(canonical)

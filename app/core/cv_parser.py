@@ -25,11 +25,11 @@ CYCLE_PATTERNS = [
     (r"\bmaster\b.{0,30}\b(big\s*data|intelligence|data\s*science|ia|bi)\b", "master"),
 
     # Ingénieur
-    (r"\bcycle\s+ing[eé]nieur\b", "ingénieur"),
-    (r"\bing[eé]nieur\b.{0,20}\b(informatique|logiciel|syst[eè]mes)\b", "ingénieur"),
-    (r"\b[eé]tudiant[e]?\s+ing[eé]nieur\b", "ingénieur"),
-    (r"\b[eé]cole\s+(nationale|sup[eé]rieure|d'ing[eé]nieurs)\b", "ingénieur"),
-    (r"\b(esprit|enis|insat|polytechnique)\b", "ingénieur"),
+    (r"\bcycle\s+ing[eé]nieur\b", "ingenieur"),
+    (r"\bing[eé]nieur\b.{0,20}\b(informatique|logiciel|syst[eè]mes)\b", "ingenieur"),
+    (r"\b[eé]tudiant[e]?\s+ing[eé]nieur\b", "ingenieur"),
+    (r"\b[eé]cole\s+(nationale|sup[eé]rieure|d'ing[eé]nieurs)\b", "ingenieur"),
+    (r"\b(esprit|enis|insat|polytechnique)\b", "ingenieur"),
 
     # Licence (priorité basse)
     (r"\blicence\b", "licence"),
@@ -51,7 +51,7 @@ FILIERE_PATTERNS = [
     (r"\breseaux?\b", "Informatique"),
 ]
 
-CYCLE_ORDER = {"licence": 1, "ingénieur": 2, "master": 3}
+CYCLE_ORDER = {"licence": 1, "ingenieur": 2, "master": 3}
 
 
 def detect_cycle(text: str) -> str:
