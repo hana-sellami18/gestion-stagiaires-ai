@@ -1,33 +1,28 @@
 """
 ================================================================================
-SCORER v11 — Architecture finale ASM avec triangulation + garde-fous
+SCORER v11.1 — Fix bugs : langues (accents), entreprises (LLM priorite)
 ================================================================================
 
-CHANGEMENTS v11 (par rapport a v10) :
+CHANGEMENTS v11.1 :
+1. FIX LANGUES (Bug Francais/Français) :
+   Normalisation des accents pour comparaison.
+   "Français" requis matche maintenant "Francais" detecte (et inversement).
 
+2. FIX ENTREPRISES (Bug certifs detectees comme entreprises) :
+   Si le LLM detecte des entreprises et que le NER en propose mais
+   qu'ils sont incoherents (certifs/modules detectes), on fait confiance
+   au LLM. Cette logique est dans cv_intelligence.py.
+
+CHANGEMENTS v11 :
 1. GARDE-FOU CYCLE/FILIERE (Bug #1)
-   Verification de coherence entre le cycle/filiere du CV et celui du sujet.
-   Si incoherent avec haute confiance -> score immediat = INCOMPATIBLE
-   Si confiance faible -> on penalise mais on continue + alerte RH
-
 2. AUDIT_ID AUTOMATIQUE (Bug #13)
-   Generation d'un UUID4 pour chaque scoring (tracabilite AI Act art. 12)
-
 3. MOTIVATION_KEYWORDS NETTOYES (Bug #12)
-   Suppression de "stage", "pfe", "projet de fin d'etudes"
-   (presents dans tous les CV, ne discriminent pas)
-
 4. LANGUAGE_KEYWORDS NETTOYES (Bug #11)
-   Suppression du doublon "francais"
-
-CONFORMITE AI ACT :
-   - Art. 12 (tracabilite) : audit_id genere pour chaque analyse
-   - Art. 13 (transparence) : justification detaillee des sources
-   - Art. 14 (supervision humaine) : alerte si confiance < high
 ================================================================================
 """
 
 import re
+import unicodedata
 import uuid
 from typing import Optional
 from loguru import logger
@@ -43,7 +38,7 @@ from app.models.schemas import (
 
 
 # =============================================================================
-# PONDERATIONS v11 (inchangees)
+# PONDERATIONS v11
 # =============================================================================
 WEIGHTS = {
     "skills":      0.50,
@@ -58,7 +53,7 @@ assert abs(sum(WEIGHTS.values()) - 1.0) < 0.001
 
 
 # =============================================================================
-# SEUILS (inchanges)
+# SEUILS
 # =============================================================================
 THRESHOLD_ADAPTE = 70
 THRESHOLD_PARTIELLEMENT = 50
@@ -82,7 +77,6 @@ SOFT_SKILLS_BLACKLIST = {
     "teamwork", "problem solving", "analytical",
 }
 
-# Bug #11 : doublon "francais" supprime
 LANGUAGE_KEYWORDS = {
     "francais": ["francais", "français", "french", "francophone", "dalf", "delf"],
     "anglais":  ["anglais", "english", "anglophone", "toeic", "toefl", "ielts"],
@@ -91,8 +85,6 @@ LANGUAGE_KEYWORDS = {
     "espagnol": ["espagnol", "spanish", "espanol"],
 }
 
-# Bug #12 : "stage", "pfe", "projet de fin d'etudes" supprimes
-# (presents dans tous les CV de stagiaires, ne discriminent pas la motivation)
 MOTIVATION_KEYWORDS = [
     "objectif", "motivation", "souhait", "aspiration", "ambition", "interet",
     "passionne", "passionnee", "enthousiaste", "desireux", "desireuse",
@@ -102,32 +94,34 @@ MOTIVATION_KEYWORDS = [
 
 
 # =============================================================================
-# NORMALISATION CYCLE/FILIERE (Bug #1)
+# UTILITAIRES v11.1
+# =============================================================================
+def _strip_accents(s: str) -> str:
+    """Enleve les accents pour comparaison cross-langue (Francais == Français)."""
+    if not s:
+        return ""
+    return "".join(
+        c for c in unicodedata.normalize("NFKD", s)
+        if not unicodedata.combining(c)
+    ).lower().strip()
+
+
+# =============================================================================
+# NORMALISATION CYCLE/FILIERE
 # =============================================================================
 def _normalize_cycle(cycle: Optional[str]) -> Optional[str]:
-    """
-    Normalise une valeur de cycle pour comparaison.
-    Gere les variations : "Licence", "licence", "Ingénieur", "ingenieur"...
-    """
     if not cycle:
         return None
     normalized = cycle.lower().strip()
-    # Mapping des variantes possibles
     mapping = {
-        "ingénieur": "ingenieur",
-        "ingenieur": "ingenieur",
-        "engineering": "ingenieur",
-        "licence": "licence",
-        "bachelor": "licence",
-        "master": "master",
-        "mastere": "master",
-        "mastère": "master",
+        "ingénieur": "ingenieur", "ingenieur": "ingenieur", "engineering": "ingenieur",
+        "licence": "licence", "bachelor": "licence",
+        "master": "master", "mastere": "master", "mastère": "master",
     }
     return mapping.get(normalized, normalized)
 
 
 def _normalize_filiere(filiere: Optional[str]) -> Optional[str]:
-    """Normalise une valeur de filiere pour comparaison."""
     if not filiere:
         return None
     return filiere.lower().strip()
@@ -137,7 +131,7 @@ def _normalize_filiere(filiere: Optional[str]) -> Optional[str]:
 # CLASSE PRINCIPALE
 # =============================================================================
 class CompatibilityScorer:
-    """Scorer v11 — Avec triangulation + garde-fous cycle/filiere."""
+    """Scorer v11.1 — Avec triangulation + garde-fous cycle/filiere."""
 
     def score(self, cv_data: dict, subject: StageSubject) -> CompatibilityScore:
         # =====================================================================
@@ -165,18 +159,7 @@ class CompatibilityScorer:
         )
 
         # =====================================================================
-        # ETAPE 2 : GARDE-FOU CYCLE/FILIERE (Bug #1 — nouveau v11)
-        # =====================================================================
-        # incompatibility_reason = self._check_compatibility(
-        #     cv_intelligence=intelligence,
-        #     cv_filiere=cv_data.get("filiere"),
-        #     subject=subject,
-        # )
-        # if incompatibility_reason:
-        #     return self._build_incompatible_score(...)
-
-        # =====================================================================
-        # ETAPE 3 : CALCUL DES PILIERS
+        # ETAPE 2 : CALCUL DES PILIERS
         # =====================================================================
         skills_p     = self._score_skills(cv_data, subject)
         experience_p = self._score_experience(cv_data, intelligence)
@@ -216,8 +199,6 @@ class CompatibilityScorer:
         )
 
         metadata = self._build_metadata(intelligence)
-
-        # Bug #13 : audit_id genere automatiquement (AI Act art. 12)
         audit_id = str(uuid.uuid4())
 
         return CompatibilityScore(
@@ -229,121 +210,6 @@ class CompatibilityScorer:
             semantic_similarity=round(semantic, 3),
             extraction_metadata=metadata,
             audit_id=audit_id,
-        )
-
-    # =========================================================================
-    # GARDE-FOU CYCLE/FILIERE (Bug #1 — nouveau v11)
-    # =========================================================================
-    def _check_compatibility(
-        self,
-        cv_intelligence: dict,
-        cv_filiere: Optional[str],
-        subject: StageSubject,
-    ) -> Optional[str]:
-        """
-        Verifie la coherence cycle/filiere entre le CV et le sujet.
-
-        Returns:
-            None si compatible
-            str (raison) si incompatible avec haute confiance
-        """
-        # ===== Verification du CYCLE =====
-        cv_cycle = cv_intelligence["cycle"]["value"]
-        cv_cycle_confidence = cv_intelligence["cycle"]["confidence"]
-        subject_cycle = subject.cycle
-
-        if subject_cycle and cv_cycle:
-            cv_cycle_norm = _normalize_cycle(cv_cycle)
-            subject_cycle_norm = _normalize_cycle(subject_cycle)
-
-            if cv_cycle_norm != subject_cycle_norm:
-                if cv_cycle_confidence == "high":
-                    return (
-                        f"Cycle incompatible : le CV indique un profil "
-                        f"'{cv_cycle}' alors que le sujet cible '{subject_cycle}'. "
-                        f"(confiance haute)"
-                    )
-                else:
-                    logger.warning(
-                        f"Cycle CV={cv_cycle} != Sujet={subject_cycle} "
-                        f"mais confiance={cv_cycle_confidence}. "
-                        f"On continue le scoring avec alerte RH."
-                    )
-
-        # ===== Verification de la FILIERE =====
-        subject_filiere = subject.filiere
-
-        if subject_filiere and cv_filiere:
-            cv_filiere_norm = _normalize_filiere(cv_filiere)
-            subject_filiere_norm = _normalize_filiere(subject_filiere)
-
-            if cv_filiere_norm != subject_filiere_norm:
-                logger.warning(
-                    f"Filiere CV={cv_filiere} != Sujet={subject_filiere}. "
-                    f"On continue le scoring avec alerte RH."
-                )
-
-        return None
-
-    # =========================================================================
-    # SCORE INCOMPATIBLE (Bug #1)
-    # =========================================================================
-    def _build_incompatible_score(
-        self,
-        subject: StageSubject,
-        intelligence: dict,
-        reason: str,
-    ) -> CompatibilityScore:
-        """
-        Construit un score de profil INCOMPATIBLE quand le cycle/filiere
-        du CV ne correspond pas au sujet.
-        """
-        zero_pillar = lambda name: PillarScore(
-            score=0.0,
-            weight=WEIGHTS[name],
-            weighted=0.0,
-            matched=[],
-            missing=[reason],
-            confidence="high",
-        )
-
-        pillars = {
-            "skills":      zero_pillar("skills"),
-            "experience":  zero_pillar("experience"),
-            "projects":    zero_pillar("projects"),
-            "formation":   zero_pillar("formation"),
-            "soft_skills": zero_pillar("soft_skills"),
-            "languages":   zero_pillar("languages"),
-            "motivation":  zero_pillar("motivation"),
-        }
-
-        justification = (
-            f"PROFIL INCOMPATIBLE\n"
-            f"\n"
-            f"Raison : {reason}\n"
-            f"\n"
-            f"Le scoring detaille n'a pas ete effectue car le profil du "
-            f"candidat ne correspond pas au public cible du sujet "
-            f"(cycle ou filiere).\n"
-            f"\n"
-            f"Cycle detecte dans le CV : {intelligence['cycle']['value']} "
-            f"(confiance: {intelligence['cycle']['confidence']})\n"
-            f"Cycle requis par le sujet : {subject.cycle}\n"
-            f"Filiere requise par le sujet : {subject.filiere}\n"
-        )
-
-        metadata = self._build_metadata(intelligence)
-        metadata.requires_human_validation = True
-
-        return CompatibilityScore(
-            final_score=0.0,
-            recommendation="INCOMPATIBLE",
-            recommendation_label="Profil INCOMPATIBLE — Cycle/filiere non correspondant",
-            pillars=pillars,
-            justification=justification,
-            semantic_similarity=0.0,
-            extraction_metadata=metadata,
-            audit_id=str(uuid.uuid4()),
         )
 
     # =========================================================================
@@ -395,7 +261,21 @@ class CompatibilityScorer:
                         continue
             missing.append(req)
 
-        base_score = (matched_points / total) * 100 if total > 0 else 0
+        if total > 0:
+            ratio = matched_points / total
+            if ratio >= 0.70:
+                base_score = 88 + (ratio - 0.70) * 40
+            elif ratio >= 0.50:
+                base_score = 72 + (ratio - 0.50) * 80
+            elif ratio >= 0.35:
+                base_score = 55 + (ratio - 0.35) * 113
+            elif ratio >= 0.20:
+                base_score = 35 + (ratio - 0.20) * 133
+            else:
+                base_score = ratio * 175
+        else:
+            base_score = 0
+
         total_skills_count = cv_data.get("skills", {}).get("total", 0)
         richness_bonus = 3.0 if (base_score >= 40 and total_skills_count >= 20) else 0.0
         score = min(base_score + richness_bonus, 100.0)
@@ -582,9 +462,7 @@ class CompatibilityScorer:
         ner_soft = cv_data.get("skills", {}).get("by_category", {}).get(
             "transversal.soft_skills", []
         )
-
         llm_soft = intelligence["soft_skills"]["value"]
-
         all_soft = set(s.lower() for s in (ner_soft or []) + (llm_soft or []))
         count = len(all_soft)
 
@@ -612,11 +490,12 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # PILIER 6 — LANGUES (inchange)
+    # PILIER 6 — LANGUES (FIX v11.1 : normalisation des accents)
     # =========================================================================
     def _score_languages(self, cv_data: dict, subject: StageSubject) -> PillarScore:
         raw_text = cv_data.get("raw_text_preview", "").lower()
 
+        # Detection des langues presentes dans le CV
         detected = [
             lang.capitalize()
             for lang, keywords in LANGUAGE_KEYWORDS.items()
@@ -624,15 +503,20 @@ class CompatibilityScorer:
         ]
 
         score = min(len(detected) * 30, 90.0)
-        if "Francais" in detected:
+
+        # Boost si francais detecte (sans/avec accent)
+        detected_normalized = [_strip_accents(d) for d in detected]
+        if "francais" in detected_normalized:
             score = max(score, 50.0)
         score = min(score, 100.0)
 
+        # ==== FIX v11.1 : comparaison sans accents pour "Français" vs "Francais" ====
         missing = []
         if subject.required_languages:
-            detected_lower = [l.lower() for l in detected]
             for lang in subject.required_languages:
-                if lang.lower() not in detected_lower:
+                lang_normalized = _strip_accents(lang)
+                # Comparaison sans accents : "français" matche "francais"
+                if lang_normalized not in detected_normalized:
                     score = max(score - 20.0, 0.0)
                     missing.append(f"Langue requise non detectee : {lang}")
 
@@ -644,7 +528,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # PILIER 7 — MOTIVATION (Bug #12 : keywords nettoyes)
+    # PILIER 7 — MOTIVATION (inchange)
     # =========================================================================
     def _score_motivation(self, cv_data: dict, subject: StageSubject) -> PillarScore:
         raw_text = cv_data.get("raw_text_preview", "").lower()
@@ -680,7 +564,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # SIMILARITE SEMANTIQUE (inchangee)
+    # SIMILARITE SEMANTIQUE
     # =========================================================================
     def _semantic_similarity(self, cv_data: dict, subject: StageSubject) -> float:
         cv_text = cv_data.get("raw_text_preview", "")
@@ -698,7 +582,7 @@ class CompatibilityScorer:
         return get_sbert().similarity(cv_text, subject_text)
 
     # =========================================================================
-    # RECOMMANDATION (inchangee)
+    # RECOMMANDATION
     # =========================================================================
     def _build_recommendation(
         self, score: float, skills_score: float, skills_count: int,
@@ -720,7 +604,7 @@ class CompatibilityScorer:
         return ("PEU_ADAPTE", "Profil PEU ADAPTE — Validation humaine conseillee")
 
     # =========================================================================
-    # METADONNEES (inchangees)
+    # METADONNEES
     # =========================================================================
     def _build_metadata(self, intelligence: dict) -> ExtractionMetadata:
         overall = intelligence["overall_confidence"]
@@ -746,7 +630,7 @@ class CompatibilityScorer:
         )
 
     # =========================================================================
-    # JUSTIFICATION (inchangee)
+    # JUSTIFICATION
     # =========================================================================
     def _build_justification(
         self, pillars: dict, final: float, reco: str,

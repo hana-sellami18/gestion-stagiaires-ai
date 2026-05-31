@@ -1,24 +1,25 @@
 """
 ================================================================================
-CV INTELLIGENCE v10.9 — Cache LLM persistant (optimisation Groq rate limit)
+CV INTELLIGENCE v11.0 — Detection cycle TIMELINE-FIRST (fix bug Master/Licence)
 ================================================================================
 
+CHANGEMENTS v11.0 :
+- Nouvelle fonction _detect_cycle_from_timeline() : decoupe la section Formation
+  en blocs avec dates, identifie la formation EN COURS, et retourne son cycle.
+- _regex_detect_cycle() appelle d'abord la timeline. Si une formation en cours
+  est trouvee, on l'utilise. Sinon fallback sur l'ancienne logique regex.
+- Les overrides metier (IIT Sfax GLSI, Genie Informatique) ne s'appliquent
+  PLUS si la timeline a deja decide (evite d'ecraser Master par Licence).
+- Fix bug Ahmed : "Master Big Data (2025 - Present)" + "Licence (2022 - 2025)"
+  -> cycle = master (au lieu de licence).
+
 CHANGEMENTS v10.9 :
-- Cache LLM persistant sur disque (JSON), indexe par hash MD5 du texte CV
-- Reduit drastiquement les appels API : 1 appel par CV au lieu de N appels
-  (N = nombre de sujets compatibles cycle/filiere)
-- Garantit la reproductibilite bit-a-bit des evaluations successives
-- Resout les erreurs HTTP 429 (rate limit Groq) en mode batch / gold dataset
+- Cache LLM persistant sur disque (JSON), indexe par hash MD5 du texte CV.
 
 CHANGEMENTS v10.8 :
-- Normalisation Unicode AGRESSIVE (i̇ turc, İ majuscule, ᵉ exposant...)
-- Filtre titres de projets (application, gestion, systeme, backend...)
-- AVERTISSEMENT visible si LLM ne tourne pas (CRITIQUE pour la qualite)
-- Override GLSI/Genie Logiciel renforce
+- Normalisation Unicode AGRESSIVE, filtre titres de projets, override GLSI.
 
-ATTENTION :
-SANS LE LLM, ce systeme est en MODE DEGRADE.
-Verifier que Ollama tourne : `curl http://localhost:11434/api/tags`
+ATTENTION : SANS LE LLM, ce systeme est en MODE DEGRADE.
 ================================================================================
 """
 
@@ -26,8 +27,9 @@ import hashlib
 import json
 import re
 import unicodedata
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Tuple
 
 from loguru import logger
 
@@ -37,18 +39,7 @@ from app.core import triangulator
 
 
 # =============================================================================
-# CACHE LLM PERSISTANT (v10.9)
-# =============================================================================
-# Le LLM extrait les memes infos (cycle, annee, stages, PFE) pour un meme CV,
-# peu importe le sujet evalue. On evite donc les appels redondants en cachant
-# le resultat par hash du texte du CV.
-#
-# Le cache est persiste sur disque pour :
-#   1. Survivre aux redemarrages du serveur
-#   2. Garantir la reproductibilite des evaluations (gold dataset)
-#   3. Permettre de re-generer le rapport HTML sans rappeler le LLM
-#
-# Localisation : <racine_projet>/cache/llm_cv_cache.json
+# CACHE LLM PERSISTANT (v10.9 — inchange)
 # =============================================================================
 _CACHE_DIR = Path(__file__).resolve().parent.parent.parent / "cache"
 _CACHE_DIR.mkdir(exist_ok=True)
@@ -56,7 +47,6 @@ _CACHE_FILE = _CACHE_DIR / "llm_cv_cache.json"
 
 
 def _load_cache() -> dict:
-    """Charge le cache LLM depuis le disque."""
     if _CACHE_FILE.exists():
         try:
             return json.loads(_CACHE_FILE.read_text(encoding="utf-8"))
@@ -67,7 +57,6 @@ def _load_cache() -> dict:
 
 
 def _save_cache(cache: dict) -> None:
-    """Sauvegarde le cache LLM sur disque."""
     try:
         _CACHE_FILE.write_text(
             json.dumps(cache, ensure_ascii=False, indent=2),
@@ -78,7 +67,6 @@ def _save_cache(cache: dict) -> None:
 
 
 def clear_cache() -> None:
-    """Vide le cache LLM (utile pour les tests ou regenerer les resultats)."""
     global _llm_cache
     _llm_cache = {}
     if _CACHE_FILE.exists():
@@ -86,22 +74,14 @@ def clear_cache() -> None:
     logger.info("Cache LLM vide")
 
 
-# Charge le cache au demarrage du module
 _llm_cache = _load_cache()
 logger.info(f"Cache LLM charge : {len(_llm_cache)} entrees depuis {_CACHE_FILE}")
 
 
 # =============================================================================
-# NORMALISATION UNICODE AGRESSIVE (v10.8)
-# =============================================================================
-# Certains CVs PDF contiennent des caracteres turcs/exotiques :
-#   "APPLİCATİON" au lieu de "APPLICATION"  (I avec point U+0130)
-#   "LİCENCE" au lieu de "LICENCE"
-#   "appli̇cati̇on" avec combining dot U+0307
-# Sans normalisation, mes regex et blacklists ne matchent pas.
+# NORMALISATION UNICODE AGRESSIVE (v10.8 — inchange)
 # =============================================================================
 def _aggressive_normalize(text: str) -> str:
-    """Nettoie agressivement les caracteres Unicode exotiques."""
     if not text:
         return ""
     replacements = {
@@ -114,62 +94,51 @@ def _aggressive_normalize(text: str) -> str:
         "’": "'", "‘": "'",
         "–": "-", "—": "-",
         "\u00a0": " ",
-        "\u0307": "",  # combining dot above
+        "\u0307": "",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
-    # Re-normaliser via NFKD pour decomposer les autres
     text = unicodedata.normalize("NFKC", text)
     return text
 
 
 # =============================================================================
-# BLACKLIST ENTREPRISES (v10.8 - encore enrichie)
+# BLACKLIST ENTREPRISES (v10.8 — inchange)
 # =============================================================================
 NON_ENTREPRISE_KEYWORDS = [
-    # --- Ecoles tunisiennes ---
     "enis", "enit", "ensi", "supcom", "isims", "iset", "isamm",
     "fseg", "iit", "napu", "esprit", "tek-up", "tek up", "ihec",
     "faculte", "faculté", "faculty", "universite", "université", "university",
     "ecole", "école", "school", "institut", "institute",
     "lycee", "lycée", "high school",
-    # --- Clubs etudiants ---
     "ieee", "google students", "google developers", "gdg", "gdsc",
     "students club", "club isims", "club isamm",
     "developer club", "aws club", "cloud club",
-    # --- Mots academiques ---
     "education", "diploma", "diplome", "diplôme",
     "bachelor", "master", "licence", "ingenieur", "ingénieur",
     "baccalaureat", "baccalauréat", "bac ",
     "formation", "formations", "studies", "etudes", "études",
     "scolarite", "scolarité", "parcours",
-    # --- Soft skills ---
     "travail en equipe", "travail en équipe", "teamwork",
     "communication", "leadership", "autonomie",
     "gestion", "management", "organisation",
     "competences", "compétences",
-    # --- Sections ---
     "summary", "skills", "experience", "experiences",
     "profil", "profile", "contact", "contacts",
     "languages", "langues", "interests", "interets", "intérêts",
     "projets", "projects", "certifications", "participation",
     "stage", "stages", "stage professionnel",
-    # --- Verbes anglais ---
     "developed", "designed", "engineered", "implemented",
     "integrated", "created", "built", "managed", "led",
     "configured", "deployed", "optimized",
-    # --- Verbes francais courants (commencent en majuscule) ---
     "implementation", "implémentation", "developpement", "développement",
     "conception", "creation", "création", "realisation", "réalisation",
     "gestion", "amelioration", "amélioration",
-    # --- Lieux ---
     "tunisie", "tunisia", "tunisien", "tunisienne",
     "sfax", "tunis", "ariana", "sousse", "monastir",
     "france", "francais", "français",
-    # --- Autres ---
     "linkedin", "github", "gitlab", "portfolio",
     "junior", "senior", "stagiaire", "intern",
-    # --- Technologies ---
     "jwt", "oauth", "oauth2", "mvc", "mvvm", "rest", "soap", "graphql",
     "json", "xml", "yaml", "http", "https", "tcp", "udp",
     "sql", "nosql", "orm",
@@ -188,10 +157,8 @@ NON_ENTREPRISE_KEYWORDS = [
     "groq", "openai", "llama", "anthropic",
     "powerbi", "power bi", "scrumstudy",
     "intelligence artificielle", "machine learning",
-    "amazon web services",  # AWS en toutes lettres
-    # --- Noms de projets perso ---
+    "amazon web services",
     "tunisiaflicks", "wedtect",
-    # --- Roles d'association ---
     "membre", "officer", "officer-", "officer–",
     "contribution", "contributions", "contributeur", "contributor",
     "captain", "capitaine", "vice captain", "vice-captain",
@@ -201,7 +168,6 @@ NON_ENTREPRISE_KEYWORDS = [
     "leader", "team leader", "project manager",
     "volunteer", "volontaire", "benevole", "bénévole",
     "etudiante", "étudiante", "etudiant", "étudiant",
-    # --- Mots de section parasites ---
     "systemes & reseaux", "systèmes & réseaux",
     "systemes et reseaux", "systèmes et réseaux",
     "technologie & programmation", "technologie et programmation",
@@ -209,9 +175,6 @@ NON_ENTREPRISE_KEYWORDS = [
     "intelligence", "artificielle",
     "developpement web", "développement web",
     "cloud computing", "big data",
-
-    # ============= NOUVEAU v10.8 : TITRES DE PROJETS =============
-    # Patterns frequents dans les CV qui ne sont PAS des entreprises
     "application", "site", "site web", "site e-commerce",
     "systeme", "système", "plateforme", "platform",
     "backend", "frontend", "fullstack",
@@ -225,7 +188,7 @@ NON_ENTREPRISE_KEYWORDS = [
     "portfolio", "cv professionnel",
     "labyrinthe", "challenge", "competition",
     "afro tech", "afrotech",
-    "comptoir",  # "Comptoir Hammemi" est une entreprise mais souvent confondu
+    "comptoir",
 ]
 
 GENERIC_COMPANIES = {"google", "microsoft", "facebook", "meta",
@@ -233,19 +196,15 @@ GENERIC_COMPANIES = {"google", "microsoft", "facebook", "meta",
 
 
 def _filter_real_entreprises(organizations: List[str], text: str) -> List[str]:
-    """Filtre rigoureusement les organisations du NER."""
     text_normalized = _aggressive_normalize(text)
     text_lower = text_normalized.lower()
     result = []
     for org in organizations:
         if not org or not isinstance(org, str):
             continue
-
-        # IMPORTANT v10.8 : normaliser AUSSI le nom de l'organisation
         org_normalized = _aggressive_normalize(org)
         org_clean = org_normalized.strip()
         org_lower = org_clean.lower()
-
         if len(org_clean) < 3 or len(org_clean) > 50:
             continue
         if any(kw in org_lower for kw in NON_ENTREPRISE_KEYWORDS):
@@ -273,12 +232,8 @@ def _filter_real_entreprises(organizations: List[str], text: str) -> List[str]:
             continue
         if re.match(r"^[A-Z][a-zé]+[\-–.,;:]", org_clean):
             continue
-
-        # NOUVEAU v10.8 : Si tout en MAJUSCULES, c'est probablement
-        # un titre de section ou de projet (et pas un nom d'entreprise)
         if org_clean.isupper() and len(org_clean) > 5:
             continue
-
         result.append(org_clean)
 
     seen = set()
@@ -331,7 +286,6 @@ def _regex_count_stages(text: str, real_entreprises: List[str]) -> Optional[int]
 def _estimate_year_from_dates(text: str, cycle: Optional[str]) -> Optional[int]:
     if not text or not cycle:
         return None
-    from datetime import datetime
     current_year = datetime.now().year
     patterns = [
         r"(?:sep|sept|septembre|aug|august|aout|oct|jan|fev|feb|mar)\w*\s+(\d{4})\s*[-–]\s*"
@@ -358,60 +312,265 @@ def _estimate_year_from_dates(text: str, cycle: Optional[str]) -> Optional[int]:
     return None
 
 
+# =============================================================================
+# NOUVEAU v11.0 : DETECTION CYCLE PAR TIMELINE
+# =============================================================================
+# Idee : decouper la section Formation en blocs (un par diplome), identifier
+# pour chaque bloc son cycle ET sa periode (en cours / terminee). Le cycle
+# retenu est celui de la formation EN COURS (et le plus eleve s'il y en a
+# plusieurs).
+#
+# Fix bug Ahmed : "Master Big Data (2025-Present)" + "Licence (2022-2025)"
+# -> avant : cycle="licence" (regex PRIORITE 1 matche "Licence Fondamentale")
+# -> apres : cycle="master" (timeline detecte le Master en cours)
+# =============================================================================
+
+CYCLE_RANK = {
+    "doctorat": 4,
+    "ingenieur": 3,
+    "master": 3,
+    "licence": 2,
+    "bts": 1,
+    "bac": 0,
+}
+
+# Patterns par cycle (utilises uniquement pour la detection dans un bloc)
+_CYCLE_BLOCK_PATTERNS = [
+    ("doctorat",  r"\b(?:doctorat|phd|these|thèse)\b"),
+    ("master",    r"\b(?:master|mastere|mastère|m1|m2|mba|msc)\b"),
+    ("ingenieur", r"\b(?:ing[ée]nieur|cycle\s+ing[ée]nieur|dipl[oô]me\s+d['e]\s*ing[ée]nieur"
+                  r"|[ée]l[èe]ve[\s-]ing[ée]nieur)\b"),
+    ("licence",   r"\b(?:licence|bachelor|bsc|l1|l2|l3|"
+                  r"diploma\s+in\s+computer|glsi)\b"),
+    ("bts",       r"\b(?:bts|dut|deust)\b"),
+    ("bac",       r"\b(?:baccalaur[ée]at|bac)\b"),
+]
+
+_ONGOING_KEYWORDS = [
+    "present", "présent", "en cours", "actuel", "actuellement",
+    "today", "now", "ongoing", "current", "à ce jour", "a ce jour",
+]
+
+
+def _extract_formation_section(text: str) -> str:
+    """Isole la section Formation/Education du CV.
+
+    v11.0 : utilise une regex qui matche seulement en debut de ligne (ou
+    apres saut de ligne) pour eviter de matcher "Solide formation en
+    informatique" dans le resume du candidat.
+    """
+    # Cherche un titre de section : "FORMATION", "FORMATION ACADEMIQUE",
+    # "EDUCATION", "PARCOURS ACADEMIQUE", etc. -- mais SEULEMENT en debut
+    # de ligne (apres \n ou en debut de texte).
+    pattern = re.compile(
+        r"(?:^|\n)\s*"
+        r"(?:formation|éducation|education|parcours|cursus|studies)"
+        r"(?:\s+(?:acad[ée]mique|scolaire|universitaire|academic|history))?"
+        r"\s*:?\s*\n"
+        r"(.*?)"
+        r"(?=\n\s*(?:exp[ée]rience|projets?|comp[ée]tences|skills|"
+        r"langues|languages|certifications?|int[ée]r[êe]ts|"
+        r"interests|contact|profil|summary|references?)\b|\Z)",
+        re.IGNORECASE | re.DOTALL,
+    )
+    m = pattern.search(text)
+    if m:
+        return m.group(1)
+    # Fallback : ancienne regex moins stricte (au cas ou le CV n'a pas
+    # de retours a la ligne propres apres le titre de section)
+    fallback = re.compile(
+        r"(?:formation|éducation|education)"
+        r"(?:\s+(?:acad[ée]mique|scolaire|universitaire|academic|history))?"
+        r"(.*?)"
+        r"(?=\bexp[ée]rience|\bprojets?|\bcomp[ée]tences|\bskills|"
+        r"\blangues|\blanguages|\bcertifications?|\Z)",
+        re.IGNORECASE | re.DOTALL,
+    )
+    m2 = fallback.search(text)
+    return m2.group(1) if m2 else ""
+
+
+def _is_ongoing(end_str: str) -> bool:
+    """Vrai si la date de fin indique 'en cours' (mot-cle ou annee future)."""
+    if not end_str:
+        return True
+    end_lower = end_str.lower().strip()
+    if any(kw in end_lower for kw in _ONGOING_KEYWORDS):
+        return True
+    year_match = re.search(r"\b(20\d{2})\b", end_lower)
+    if year_match:
+        end_year = int(year_match.group(1))
+        return end_year >= datetime.now().year
+    return False
+
+
+def _detect_cycle_in_text_block(block: str) -> Optional[str]:
+    """Detecte le cycle dans un bloc (retourne le plus eleve si plusieurs)."""
+    block_lower = block.lower()
+    found = []
+    for cycle, pattern in _CYCLE_BLOCK_PATTERNS:
+        if re.search(pattern, block_lower):
+            found.append(cycle)
+    if not found:
+        return None
+    return max(found, key=lambda c: CYCLE_RANK.get(c, 0))
+
+
+def _detect_cycle_from_timeline(text: str) -> Optional[Dict[str, Any]]:
+    """
+    Decoupe la section Formation en blocs avec dates et retourne le cycle
+    de la formation EN COURS (ou la plus recente).
+
+    Returns None si aucun bloc avec date trouve (laisse le fallback decider).
+    """
+    formation = _extract_formation_section(text)
+    if not formation:
+        return None
+
+    # Pattern de plage de dates : "2022 - 2025", "2025 - Present",
+    # "Sept 2024 - Juin 2026", "09/2024 - 06/2026", "Septembre 2023 - Present"
+    date_range_re = re.compile(
+        r"((?:[A-Za-zéèêà]{3,9}\.?\s+|\d{1,2}/)?\d{4})"
+        r"\s*[-–—à]\s*"
+        r"((?:[A-Za-zéèêà]{3,9}\.?\s+|\d{1,2}/)?\d{4}"
+        r"|present|pr[ée]sent|en\s+cours|actuel(?:lement)?|today|now|"
+        r"à\s+ce\s+jour|a\s+ce\s+jour|ongoing)",
+        re.IGNORECASE,
+    )
+
+    matches = list(date_range_re.finditer(formation))
+    if not matches:
+        return None
+
+    blocks = []
+    for i, m in enumerate(matches):
+        start_pos = m.start()
+        end_pos = matches[i + 1].start() if i + 1 < len(matches) else len(formation)
+        block_text = formation[start_pos:end_pos]
+
+        cycle = _detect_cycle_in_text_block(block_text)
+        if cycle is None:
+            continue
+
+        start_year_match = re.search(r"\b(20\d{2})\b", m.group(1))
+        start_year = int(start_year_match.group(1)) if start_year_match else 0
+        ongoing = _is_ongoing(m.group(2))
+
+        blocks.append({
+            "cycle": cycle,
+            "start_year": start_year,
+            "end_str": m.group(2),
+            "ongoing": ongoing,
+            "snippet": block_text.strip()[:100],
+        })
+
+    if not blocks:
+        return None
+
+    # Priorite 1 : formations en cours -> prendre le cycle le plus eleve
+    ongoing_blocks = [b for b in blocks if b["ongoing"]]
+    if ongoing_blocks:
+        best = max(
+            ongoing_blocks,
+            key=lambda b: (CYCLE_RANK.get(b["cycle"], 0), b["start_year"]),
+        )
+        logger.info(
+            f"TIMELINE : formation en cours detectee -> cycle={best['cycle']} "
+            f"(snippet: {best['snippet'][:60]})"
+        )
+        return {
+            "cycle": best["cycle"],
+            "source": "timeline_ongoing",
+            "evidence": best["snippet"],
+            "all_blocks": blocks,
+        }
+
+    # Priorite 2 : pas de formation en cours -> prendre la plus recente
+    best = max(
+        blocks,
+        key=lambda b: (b["start_year"], CYCLE_RANK.get(b["cycle"], 0)),
+    )
+    logger.info(
+        f"TIMELINE : aucune formation en cours, plus recente = "
+        f"cycle={best['cycle']} (snippet: {best['snippet'][:60]})"
+    )
+    return {
+        "cycle": best["cycle"],
+        "source": "timeline_recent",
+        "evidence": best["snippet"],
+        "all_blocks": blocks,
+    }
+
+
+# =============================================================================
+# DETECTION CYCLE — v11.0 : timeline d'abord, regex ensuite
+# =============================================================================
 def _regex_detect_cycle(text: str) -> Dict[str, Any]:
     if not text:
-        return {"cycle": None, "annee": None}
+        return {"cycle": None, "annee": None, "source": "empty"}
 
-    # v10.8 : normaliser AGRESSIVEMENT avant matching
     text_normalized = _aggressive_normalize(text)
     text_lower = text_normalized.lower()
-    cycle = None
 
-    # PRIORITE 1 : Licence explicite
-    if re.search(
-        r"\blicence\s+(?:en|de|appliqu[ée]e?|fondamentale?|professionnelle?)\b"
-        r"|\blicence\s+(?:informatique|genie|génie|sciences?|maths?)"
-        r"|\b[ée]tudiant[e]?\s+(?:en\s+)?licence\b", text_lower):
-        cycle = "licence"
+    # ==== NOUVEAU v11.0 : TIMELINE EN PREMIER ====
+    timeline = _detect_cycle_from_timeline(text_normalized)
+    cycle = timeline["cycle"] if timeline else None
+    source = timeline["source"] if timeline else None
 
-    if cycle is None and re.search(
-        r"\bcycle\s+ing[eé]nieur\b"
-        r"|\bing[eé]nieur\s+(?:en\s+)?(?:informatique|logiciel|systemes?|systèmes?)\b"
-        r"|\b[ée]l[èe]ve[\s-]ing[eé]nieur\b"
-        r"|\b[ée]tudiant[e]?\s+ing[eé]nieur\b"
-        r"|\bbac\s*\+\s*5\b"
-        r"|\bdipl[ôo]me\s+d['']?ing[eé]nieur\b", text_lower):
-        cycle = "ingenieur"
-
-    if cycle is None and any(kw in text_lower for kw in
-                              ["master", "mastère", "mastere", " m1 ", " m2 "]):
-        cycle = "master"
-
+    # ==== FALLBACK : ancienne logique regex (si timeline n'a rien donne) ====
     if cycle is None:
-        has_gi = bool(re.search(r"\bg[eé]nie\s+informatique\b", text_lower))
-        has_gl = bool(re.search(r"\bg[eé]nie\s+logiciel\b", text_lower))
-        if has_gi and not has_gl:
-            cycle = "ingenieur"
-        else:
-            if any(kw in text_lower for kw in [
-                "enit ", "enis ", "ensi ", "supcom",
-                "école d'ingénieurs", "ecole d'ingenieurs",
-                "école nationale d'ingénieurs", "ecole nationale d'ingenieurs",
-            ]):
-                cycle = "ingenieur"
-
-    if cycle is None:
-        if any(kw in text_lower for kw in [
-            "licence", "bachelor", "bac+3", "bac+2",
-            "génie logiciel", "geni logiciel", "genie logiciel",
-            "systèmes d'information", "systemes d'information", "glsi",
-            "iset", "dut", "bts", "iit ", "isims",
-            "diploma in computer", "diploma in computer science",
-            "diplôme en informatique", "diplome en informatique",
-            "bachelor's degree", "bachelor degree",
-        ]):
+        # PRIORITE 1 : Licence explicite
+        if re.search(
+            r"\blicence\s+(?:en|de|appliqu[ée]e?|fondamentale?|professionnelle?)\b"
+            r"|\blicence\s+(?:informatique|genie|génie|sciences?|maths?)"
+            r"|\b[ée]tudiant[e]?\s+(?:en\s+)?licence\b", text_lower):
             cycle = "licence"
+            source = "regex_licence"
 
+        if cycle is None and re.search(
+            r"\bcycle\s+ing[eé]nieur\b"
+            r"|\bing[eé]nieur\s+(?:en\s+)?(?:informatique|logiciel|systemes?|systèmes?)\b"
+            r"|\b[ée]l[èe]ve[\s-]ing[eé]nieur\b"
+            r"|\b[ée]tudiant[e]?\s+ing[eé]nieur\b"
+            r"|\bbac\s*\+\s*5\b"
+            r"|\bdipl[ôo]me\s+d['']?ing[eé]nieur\b", text_lower):
+            cycle = "ingenieur"
+            source = "regex_ingenieur"
+
+        if cycle is None and any(kw in text_lower for kw in
+                                  ["master", "mastère", "mastere", " m1 ", " m2 "]):
+            cycle = "master"
+            source = "regex_master"
+
+        if cycle is None:
+            has_gi = bool(re.search(r"\bg[eé]nie\s+informatique\b", text_lower))
+            has_gl = bool(re.search(r"\bg[eé]nie\s+logiciel\b", text_lower))
+            if has_gi and not has_gl:
+                cycle = "ingenieur"
+                source = "regex_genie_info"
+            else:
+                if any(kw in text_lower for kw in [
+                    "enit ", "enis ", "ensi ", "supcom",
+                    "école d'ingénieurs", "ecole d'ingenieurs",
+                    "école nationale d'ingénieurs", "ecole nationale d'ingenieurs",
+                ]):
+                    cycle = "ingenieur"
+                    source = "regex_ecole_ing"
+
+        if cycle is None:
+            if any(kw in text_lower for kw in [
+                "licence", "bachelor", "bac+3", "bac+2",
+                "génie logiciel", "geni logiciel", "genie logiciel",
+                "systèmes d'information", "systemes d'information", "glsi",
+                "iset", "dut", "bts", "iit ", "isims",
+                "diploma in computer", "diploma in computer science",
+                "diplôme en informatique", "diplome en informatique",
+                "bachelor's degree", "bachelor degree",
+            ]):
+                cycle = "licence"
+                source = "regex_licence_keywords"
+
+    # ==== DETECTION ANNEE (inchange) ====
     annee = None
     m = re.search(r"(\d)\s*(?:ème|eme|er|ère|nd|rd|th|e|ᵉ)?\s*ann[ée]e", text_lower)
     if m:
@@ -433,8 +592,10 @@ def _regex_detect_cycle(text: str) -> Dict[str, Any]:
                 annee = int(m.group(2))
                 if m.group(1) == "m" and cycle != "master":
                     cycle = "master"
+                    source = "regex_m_pattern"
                 elif m.group(1) == "l" and cycle is None:
                     cycle = "licence"
+                    source = "regex_l_pattern"
             except ValueError:
                 pass
     if annee is None:
@@ -451,7 +612,7 @@ def _regex_detect_cycle(text: str) -> Dict[str, Any]:
         if annee:
             logger.info(f"Annee estimee depuis les dates : {annee}")
 
-    return {"cycle": cycle, "annee": annee}
+    return {"cycle": cycle, "annee": annee, "source": source}
 
 
 def _regex_detect_pfe(text: str, cycle: Optional[str], annee: Optional[int]) -> bool:
@@ -470,7 +631,7 @@ def _regex_detect_pfe(text: str, cycle: Optional[str], annee: Optional[int]) -> 
 
 
 # =============================================================================
-# FONCTION PRINCIPALE — v10.9 avec cache LLM persistant
+# FONCTION PRINCIPALE — v11.0 avec timeline + cache LLM
 # =============================================================================
 def extract_intelligent_info(
     cv_text: str,
@@ -478,7 +639,6 @@ def extract_intelligent_info(
     use_llm: bool = True,
 ) -> Dict[str, Any]:
     """Extrait les infos critiques en combinant 3 methodes."""
-    # v10.8 : normaliser le texte des le debut
     cv_text_normalized = _aggressive_normalize(cv_text)
 
     real_entreprises = _filter_real_entreprises(organizations, cv_text_normalized)
@@ -503,34 +663,29 @@ def extract_intelligent_info(
     )
 
     logger.debug(
-        f"REGEX -> stages={regex_stages}, cycle={regex_cycle_info['cycle']}, "
+        f"REGEX -> stages={regex_stages}, cycle={regex_cycle_info['cycle']} "
+        f"(source={regex_cycle_info.get('source')}), "
         f"annee={regex_cycle_info['annee']}, pfe={regex_pfe}"
     )
 
+    # IMPORTANT v11.0 : memoriser si la timeline a decide
+    # Fix v11.1 : gerer le cas ou source est None (pas juste absent du dict)
+    cycle_source = regex_cycle_info.get("source") or ""
+    cycle_from_timeline = cycle_source.startswith("timeline")
+
     ner_stages_estimate = min(len(real_entreprises), 5) if real_entreprises else None
 
-    # ===========================================================================
-    # APPEL LLM avec CACHE par hash du CV (v10.9)
-    # ===========================================================================
-    # Le LLM extrait des infos invariantes par rapport au sujet evalue.
-    # On cache donc le resultat par hash MD5 du texte normalise du CV.
-    # ===========================================================================
+    # ===== APPEL LLM avec cache (v10.9) =====
     if use_llm:
         cv_hash = hashlib.md5(cv_text_normalized.encode("utf-8")).hexdigest()
-
         if cv_hash in _llm_cache:
             llm_result = _llm_cache[cv_hash]
             llm_available = llm_result.get("_llm_available", False)
-            logger.info(
-                f"Cache LLM HIT pour CV {cv_hash[:8]} — aucun appel API"
-            )
+            logger.info(f"Cache LLM HIT pour CV {cv_hash[:8]} — aucun appel API")
         else:
             logger.info(f"Cache LLM MISS pour CV {cv_hash[:8]} — appel API LLM")
             llm_result = llm_cv_extractor.extract_cv_info(cv_text_normalized)
             llm_available = llm_result.get("_llm_available", False)
-
-            # On ne met en cache que les resultats valides
-            # (sinon on garderait un "echec" et on ne reessaierait jamais)
             if llm_available:
                 _llm_cache[cv_hash] = llm_result
                 _save_cache(_llm_cache)
@@ -538,15 +693,12 @@ def extract_intelligent_info(
                     f"Resultat LLM mis en cache pour {cv_hash[:8]} "
                     f"(total cache : {len(_llm_cache)} entrees)"
                 )
-
-        # CRITIQUE : avertir l'utilisateur si LLM ne tourne pas
         if not llm_available:
             logger.warning(
                 "=" * 70 + "\n"
                 "ATTENTION : LE LLM N'A PAS REPONDU !\n"
                 "Le systeme est en MODE DEGRADE (regex + NER uniquement).\n"
                 "Verifiez qu'Ollama tourne : curl http://localhost:11434/api/tags\n"
-                "Et que le modele est installe : ollama list\n"
                 + "=" * 70
             )
     else:
@@ -585,64 +737,107 @@ def extract_intelligent_info(
         "llm": llm_result["cycle"] if llm_available else None,
     })
 
-    # ===========================================================================
-    # OVERRIDES METIER v10.7/10.8
-    # ===========================================================================
-    text_lower_for_override = cv_text_normalized.lower()
+    # =========================================================================
+    # OVERRIDES METIER v11.0 :
+    # Si la TIMELINE a deja decide, on NE force PAS.
+    # Les overrides ne s'appliquent que si le cycle vient du fallback regex
+    # (formation sans dates, profil ambigu, etc.)
+    # =========================================================================
+    if cycle_from_timeline:
+        # Timeline a parle : on lui fait confiance, on force le consensus
+        if cycle_consensus["value"] != regex_cycle_info["cycle"]:
+            logger.info(
+                f"TIMELINE OVERRIDE : consensus etait '{cycle_consensus['value']}', "
+                f"timeline dit '{regex_cycle_info['cycle']}'. On suit la timeline."
+            )
+            cycle_consensus["value"] = regex_cycle_info["cycle"]
+            cycle_consensus["confidence"] = "high"
+            cycle_consensus["reason"] = (
+                f"Detection par timeline ({regex_cycle_info['source']})"
+            )
+    else:
+        # Pas de timeline : on applique les anciens overrides metier
+        text_lower_for_override = cv_text_normalized.lower()
 
-    explicit_licence = bool(re.search(
-        r"\blicence\s+(?:en|de|appliqu[ée]e?|fondamentale?|professionnelle?)\b"
-        r"|\blicence\s+(?:informatique|genie|génie|sciences?|maths?)"
-        r"|\b[ée]tudiant[e]?\s+(?:en\s+)?licence\b",
-        text_lower_for_override,
-    ))
+        explicit_licence = bool(re.search(
+            r"\blicence\s+(?:en|de|appliqu[ée]e?|fondamentale?|professionnelle?)\b"
+            r"|\blicence\s+(?:informatique|genie|génie|sciences?|maths?)"
+            r"|\b[ée]tudiant[e]?\s+(?:en\s+)?licence\b",
+            text_lower_for_override,
+        ))
+        has_genie_logiciel = bool(re.search(
+            r"\bg[eé]nie\s+logiciel\b", text_lower_for_override
+        ))
+        has_genie_informatique = bool(re.search(
+            r"\bg[eé]nie\s+informatique\b", text_lower_for_override
+        ))
+        is_licence_glsi = has_genie_logiciel and not has_genie_informatique
 
-    has_genie_logiciel = bool(re.search(
-        r"\bg[eé]nie\s+logiciel\b", text_lower_for_override
-    ))
-    has_genie_informatique = bool(re.search(
-        r"\bg[eé]nie\s+informatique\b", text_lower_for_override
-    ))
-    is_licence_glsi = has_genie_logiciel and not has_genie_informatique
+        explicit_ingenieur = bool(re.search(
+            r"\bcycle\s+ing[eé]nieur\b"
+            r"|\bing[eé]nieur\s+(?:en\s+)?(?:informatique|logiciel|systemes?|systèmes?)\b"
+            r"|\b[ée]l[èe]ve[\s-]ing[eé]nieur\b"
+            r"|\b[ée]tudiant[e]?\s+ing[eé]nieur\b",
+            text_lower_for_override,
+        ))
+        is_pure_ingenieur = has_genie_informatique and not has_genie_logiciel
 
-    explicit_ingenieur = bool(re.search(
-        r"\bcycle\s+ing[eé]nieur\b"
-        r"|\bing[eé]nieur\s+(?:en\s+)?(?:informatique|logiciel|systemes?|systèmes?)\b"
-        r"|\b[ée]l[èe]ve[\s-]ing[eé]nieur\b"
-        r"|\b[ée]tudiant[e]?\s+ing[eé]nieur\b",
-        text_lower_for_override,
-    ))
-    is_pure_ingenieur = has_genie_informatique and not has_genie_logiciel
-
-    if (explicit_licence or is_licence_glsi) and cycle_consensus["value"] != "licence":
-        reason = ("'Licence' explicite" if explicit_licence
-                  else "'Genie Logiciel' (specialite Licence en Tunisie)")
-        logger.info(
-            f"OVERRIDE METIER : {reason}. "
-            f"Cycle force de '{cycle_consensus['value']}' a 'licence'"
+        # =====================================================================
+        # FIX v11.0 : Si le LLM dit un cycle PLUS ELEVE que 'licence',
+        # on lui fait confiance car il a vu le contexte (timeline implicite,
+        # phrase "etudiant en 1ere annee Master", etc.). L'override ne doit
+        # PAS ecraser un Master par une Licence juste parce que le mot
+        # "Licence Fondamentale" apparait dans l'historique du candidat.
+        # =====================================================================
+        llm_says_higher = (
+            llm_available
+            and llm_result.get("cycle") in ("master", "ingenieur")
         )
-        cycle_consensus["value"] = "licence"
-        cycle_consensus["confidence"] = "high"
-        cycle_consensus["reason"] = f"Override metier : {reason}"
 
-    elif (explicit_ingenieur or is_pure_ingenieur) and cycle_consensus["value"] != "ingenieur":
-        reason = ("'Cycle ingenieur' explicite" if explicit_ingenieur
-                  else "'Genie Informatique' seul (specialite Ingenieur)")
-        logger.info(
-            f"OVERRIDE METIER : {reason}. "
-            f"Cycle force de '{cycle_consensus['value']}' a 'ingenieur'"
-        )
-        cycle_consensus["value"] = "ingenieur"
-        cycle_consensus["confidence"] = "high"
-        cycle_consensus["reason"] = f"Override metier : {reason}"
+        if (explicit_licence or is_licence_glsi) and cycle_consensus["value"] != "licence":
+            if llm_says_higher:
+                logger.info(
+                    f"OVERRIDE METIER IGNORE : 'Licence' detectee dans le texte "
+                    f"mais LLM dit '{llm_result['cycle']}'. On fait confiance au LLM "
+                    f"(probablement Licence dans l'historique du candidat)."
+                )
+            else:
+                reason = ("'Licence' explicite" if explicit_licence
+                          else "'Genie Logiciel' (specialite Licence en Tunisie)")
+                logger.info(
+                    f"OVERRIDE METIER : {reason}. "
+                    f"Cycle force de '{cycle_consensus['value']}' a 'licence'"
+                )
+                cycle_consensus["value"] = "licence"
+                cycle_consensus["confidence"] = "high"
+                cycle_consensus["reason"] = f"Override metier : {reason}"
+
+        elif (explicit_ingenieur or is_pure_ingenieur) and cycle_consensus["value"] != "ingenieur":
+            # Pareil pour ingenieur : si LLM dit master, on garde master
+            if llm_available and llm_result.get("cycle") == "master":
+                logger.info(
+                    f"OVERRIDE METIER IGNORE : 'Ingenieur' detecte mais LLM dit "
+                    f"'master'. On garde master."
+                )
+            else:
+                reason = ("'Cycle ingenieur' explicite" if explicit_ingenieur
+                          else "'Genie Informatique' seul (specialite Ingenieur)")
+                logger.info(
+                    f"OVERRIDE METIER : {reason}. "
+                    f"Cycle force de '{cycle_consensus['value']}' a 'ingenieur'"
+                )
+                cycle_consensus["value"] = "ingenieur"
+                cycle_consensus["confidence"] = "high"
+                cycle_consensus["reason"] = f"Override metier : {reason}"
 
     annee_consensus = triangulator.consensus_numeric({
         "regex": regex_cycle_info["annee"],
         "llm": llm_result["annee_etude"] if llm_available else None,
     })
 
+    text_lower_for_pfe = cv_text_normalized.lower()
     explicit_pfe_in_text = (
-        re.search(r"\bpfe\b|projet\s+de\s+fin", text_lower_for_override) is not None
+        re.search(r"\bpfe\b|projet\s+de\s+fin", text_lower_for_pfe) is not None
     )
 
     pfe_consensus = triangulator.consensus_boolean({
@@ -665,10 +860,38 @@ def extract_intelligent_info(
             if pfe_consensus["confidence"] != triangulator.CONFIDENCE_HIGH:
                 pfe_consensus["confidence"] = triangulator.CONFIDENCE_MEDIUM
 
-    entreprises_consensus = triangulator.consensus_list({
-        "ner": real_entreprises,
-        "llm": llm_result["entreprises_de_stage"] if llm_available else None,
-    })
+    # =========================================================================
+    # FIX v11.1 : ENTREPRISES — priorite au LLM quand disponible
+    # =========================================================================
+    # Probleme : le NER spaCy detecte souvent comme "entreprises" des modules
+    # de cours, des noms de technologies, ou des certifications (IBM, Microsoft
+    # via "Power BI - Microsoft", "IBM Data Science Professional", etc.)
+    # Le LLM avec contexte distingue beaucoup mieux les vraies entreprises de
+    # stage. Si le LLM retourne au moins une entreprise, on lui fait confiance.
+    # =========================================================================
+    llm_entreprises = (
+        llm_result.get("entreprises_de_stage", [])
+        if llm_available else []
+    )
+
+    if llm_available and llm_entreprises:
+        # LLM a identifie au moins une entreprise -> on lui fait confiance
+        logger.info(
+            f"Entreprises : priorite au LLM ({len(llm_entreprises)} entreprises) "
+            f"vs NER ({len(real_entreprises)} candidats potentiellement pollues)"
+        )
+        entreprises_consensus = {
+            "value": llm_entreprises,
+            "confidence": "high",
+            "sources": {"llm": llm_entreprises, "ner": real_entreprises},
+            "reason": "LLM prioritaire pour entreprises (NER souvent pollue par certifs/modules)",
+        }
+    else:
+        # Pas de LLM ou LLM n'a rien trouve -> fallback sur consensus classique
+        entreprises_consensus = triangulator.consensus_list({
+            "ner": real_entreprises,
+            "llm": llm_entreprises if llm_available else None,
+        })
 
     soft_skills_consensus = triangulator.consensus_list({
         "llm": llm_result["soft_skills"] if llm_available else None,
@@ -690,4 +913,5 @@ def extract_intelligent_info(
         "_llm_used": llm_available,
         "_raw_llm_result": llm_result if llm_available else None,
         "_real_entreprises_count": len(real_entreprises),
+        "_cycle_source": regex_cycle_info.get("source"),  # NOUVEAU v11.0
     }

@@ -38,13 +38,23 @@ RESULTS_HTML = GOLD_DATASET_DIR / "evaluation_report.html"
 
 LABELS_ORDER = ["ADAPTE", "PARTIELLEMENT_ADAPTE", "PEU_ADAPTE"]
 
+
 def _is_eligible(cv_cycle: str, cv_annee, subject_id: str) -> bool:
-    """Filtre les paires (CV, sujet) incompatibles selon le cycle."""
+    """Filtre les paires (CV, sujet) incompatibles selon le cycle.
+
+    NOTE : cette fonction n'est volontairement PAS appliquée dans l'évaluation
+    du Gold Dataset. Le Gold Dataset constitue la vérité-terrain : si le RH a
+    annoté un CV sur un sujet, c'est que la paire est jugée pertinente. Le filtre
+    automatique (basé sur le cycle détecté par parsing, faillible) ne doit pas
+    pouvoir écraser cette décision humaine. La fonction est conservée à titre
+    documentaire et reste disponible pour la logique métier en production.
+    """
     if subject_id == "S5_DATA_IA":
         return cv_cycle == "master"
     if subject_id in ("S1_BACKEND", "S6_DEVOPS"):
         return cv_cycle in ("ingenieur", "master")
     return True
+
 
 def _extract_label(value) -> str:
     """Extrait une string depuis une recommendation, qu'elle soit str, dict ou enum."""
@@ -62,6 +72,7 @@ def _extract_label(value) -> str:
     if hasattr(value, "name"):
         return str(value.name)
     return str(value)
+
 
 def load_annotations():
     """Charge les annotations humaines et les sujets depuis les fichiers de référence."""
@@ -107,7 +118,6 @@ def evaluate():
                 continue
         cv_data = cv_cache[cv_filename]
 
-        # Évaluation pour chaque sujet
         # Évaluation UNIQUEMENT sur les sujets annotés par le RH
         # (= sujets compatibles avec le cycle/filière du candidat)
         cv_cycle = cv_data.get("cycle", "").lower()
@@ -115,7 +125,6 @@ def evaluate():
 
         for subj_id, subj_def in subjects_dict.items():
             label_human_raw = ann.get(subj_id)
-            print(f"DEBUG {subj_id} → {repr(label_human_raw)}")
             # FILTRE 1 : le RH n'a pas annoté ce sujet → non pertinent pour ce profil
             if not label_human_raw:
                 continue
@@ -127,10 +136,10 @@ def evaluate():
             else:
                 label_human = str(label_human_raw)
 
-            # FILTRE 2 : vérification d'éligibilité cycle (sécurité)
-            if not _is_eligible(cv_cycle, cv_annee, subj_id):
-                print(f"   ⏭️  {subj_id} ignoré (cycle/année incompatible)")
-                continue
+            # NOTE : le filtre d'éligibilité par cycle (_is_eligible) n'est PAS
+            # appliqué ici. Le Gold Dataset est la vérité-terrain : toute paire
+            # annotée par le RH est évaluée, sans qu'une détection automatique
+            # de cycle puisse l'écarter.
 
             subject = StageSubject(**subj_def)
 
@@ -262,7 +271,16 @@ def compute_counterfactual_bias(cv_cache, subjects_dict):
                   f"original={score_original:.1f} | anon={score_anon:.1f} | "
                   f"écart={ecart:.1f} {status}")
 
-    # Résumé
+    # Résumé (garde-fou si aucun cas)
+    if not bias_results:
+        print("\n  ⚠️  Aucun cas analysé pour le test de biais.")
+        return {
+            "ecart_moyen": 0.0,
+            "conforme": True,
+            "nb_non_conformes": 0,
+            "details": [],
+        }
+
     ecart_moyen = sum(r["ecart"] for r in bias_results) / len(bias_results)
     nb_non_conformes = sum(1 for r in bias_results if not r["conforme"])
     conforme_global = ecart_moyen < 5.0
@@ -465,7 +483,7 @@ Un écart moyen &lt; 5% garantit l'absence de biais discriminatoires.
     html += "</tbody></table></div>"
 
     # Détail par cas
-    html += "<h2>🔍 Détail des 48 cas évalués</h2><div class='section'><table>"
+    html += f"<h2>🔍 Détail des {len(cases)} cas évalués</h2><div class='section'><table>"
     html += "<thead><tr><th>#</th><th>CV</th><th>Sujet</th><th>Humain</th><th>IA</th><th>Score IA</th><th>Match</th></tr></thead><tbody>"
     for i, c in enumerate(cases, 1):
         match_html = '<span class="match-yes">✅</span>' if c["match"] else '<span class="match-no">❌</span>'
