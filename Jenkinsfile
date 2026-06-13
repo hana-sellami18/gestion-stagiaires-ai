@@ -1,39 +1,35 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
+                cleanWs()
                 git branch: 'main',
                     url: 'https://github.com/hana-sellami18/gestion-stagiaires-ai.git'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Push to Hugging Face') {
             steps {
-                bat 'docker build -t asm-ia:1.0 .'
+                withCredentials([string(credentialsId: 'HF_TOKEN', variable: 'HF_TOKEN')]) {
+                    bat '''
+                        git remote remove hf || true
+                        git remote add hf https://HANA20:%HF_TOKEN%@huggingface.co/spaces/HANA20/asm-ia
+                        git push hf main --force
+                    '''
+                }
             }
         }
-
-        stage('Verify Image') {
+        stage('Wait for Build') {
             steps {
-                bat 'docker images asm-ia:1.0'
+                bat 'ping -n 121 127.0.0.1 > nul'
             }
         }
-
-        stage('Deploy') {
-            steps {
-                bat '''
-                    docker stop asm-ia || true
-                    docker rm asm-ia || true
-                    docker run -d --name asm-ia --network asm-network -p 8000:8000 --env-file C:/ProgramData/Jenkins/.jenkins/ia.env asm-ia:1.0
-                '''
-            }
-        }
-
         stage('Health Check') {
             steps {
-                bat 'ping -n 31 127.0.0.1 > nul && docker ps | findstr asm-ia'
+                retry(3) {
+                    bat 'ping -n 31 127.0.0.1 > nul'
+                    bat 'curl -f https://hana20-asm-ia.hf.space/health'
+                }
             }
         }
     }
