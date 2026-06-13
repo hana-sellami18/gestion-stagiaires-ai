@@ -42,5 +42,24 @@
     "has_github": true,
     "specialite_dominante": "backend",
     "_llm_available": true
+  },
+  "cbd7b5bf867dfcfcf0afce214778be03": {
+    "nombre_stages": 1,
+    "entreprises_de_stage": [
+      "Société My Partner isc"
+    ],
+    "cycle": "licence",
+    "annee_etude": 3,
+    "is_pfe": true,
+    "has_pfe_project": false,
+    "soft_skills": [
+      "communication",
+      "travail en équipe",
+      "gestion du temps"
+    ],
+    "projets_count": 3,
+    "has_github": false,
+    "specialite_dominante": "fullstack",
+    "_llm_available": true
   }
 }
